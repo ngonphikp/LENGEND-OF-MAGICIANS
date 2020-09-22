@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using MEC;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,9 +42,9 @@ public class ArrangeGame : MonoBehaviour
         btnFighting.gameObject.SetActive(GameManager.instance.isAttack);
         btnSave.gameObject.SetActive(!GameManager.instance.isAttack);
 
-        LoadListHero();
+        Timing.RunCoroutine(_LoadListHero());
 
-        if(GameManager.instance.isAttack) LoadListCreep();
+        if(GameManager.instance.isAttack) Timing.RunCoroutine(_LoadListCreep());
 
         LoadAnim(true);
     }
@@ -59,7 +57,7 @@ public class ArrangeGame : MonoBehaviour
         for (int i = 0; i < teamR.Length; i++) teamR[i].GetComponent<Animator>().SetBool("isArrange", v);
     }
 
-    private async void LoadListHero()
+    private IEnumerator<float> _LoadListHero()
     {
         Objs.Clear();
 
@@ -91,10 +89,10 @@ public class ArrangeGame : MonoBehaviour
 
         Debug.Log("Count: " + Objs.Keys.Count);
 
-        await Task.Yield();
+        yield return Timing.WaitForOneFrame;
     }
 
-    private async void LoadListCreep()
+    private IEnumerator<float> _LoadListCreep()
     {
         List<M_Character> creeps = GameManager.instance.milestones[GameManager.instance.idxMilestone].listCreep;
 
@@ -111,7 +109,7 @@ public class ArrangeGame : MonoBehaviour
             }
         }
 
-        await Task.Yield();
+        yield return Timing.WaitForOneFrame;
     }
 
     public void Active(M_Character nhanVat)
@@ -169,15 +167,15 @@ public class ArrangeGame : MonoBehaviour
         
         GameManager.instance.nhanVats = nhanVats;
 
-        if (GameManager.instance.test) RecArrange();
+        if (GameManager.instance.test) Timing.RunCoroutine(_RecArrange());
         else UserSendUtil.sendArrange(nhanVats);
     }
 
-    public async void RecArrange()
+    public IEnumerator<float> _RecArrange()
     {
         LoadAnim(false);
 
-        await Task.Delay(1000);
+        yield return Timing.WaitForSeconds(1f);
         if (GameManager.instance.isAttack) ScenesManager.instance.ChangeScene("FightingGame");
         else ScenesManager.instance.ChangeScene("HomeGame");
     }

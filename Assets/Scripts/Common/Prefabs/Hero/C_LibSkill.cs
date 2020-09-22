@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using MEC;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class C_LibSkill : MonoBehaviour
@@ -61,14 +59,14 @@ public class C_LibSkill : MonoBehaviour
     }
 
     // Skill
-    public static async void FxHit(List<C_Character> targets, GameObject fx = null, float timefx = 0.0f, bool isHit = true, float timehit = 0.0f)
+    public static IEnumerator<float> _FxHit(List<C_Character> targets, GameObject fx = null, float timefx = 0.0f, bool isHit = true, float timehit = 0.0f)
     {
         // DeLay tạo fx
-        await Task.Delay(TimeSpan.FromSeconds(timefx / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+        yield return Timing.WaitForSeconds(timefx / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
         for (int i = 0; i < targets.Count; i++)
         {
             CreateFx(targets[i], fx);
-            Hit(targets, i, timehit, isHit);
+            Timing.RunCoroutine(_Hit(targets, i, timehit, isHit));
         }
     }
 
@@ -81,10 +79,10 @@ public class C_LibSkill : MonoBehaviour
         }
     }
 
-    private static async void Hit(List<C_Character> targets, int index = 0, float time = 0.0f, bool isHit = true)
+    private static IEnumerator<float> _Hit(List<C_Character> targets, int index = 0, float time = 0.0f, bool isHit = true)
     {
         // DeLay anim trúng đòn
-        await Task.Delay(TimeSpan.FromSeconds(time / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+        yield return Timing.WaitForSeconds(time / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
         targets[index].Beaten();
         //Debug.Log("===========================Hit: " + targets[index].nhanvat.id_nv);
     }
@@ -93,14 +91,14 @@ public class C_LibSkill : MonoBehaviour
     {
         for (int i = 0; i < targets.Count; i++)
         {
-            CreateBullet(bullet, parent, targets[i], parent.position, targets[i].transform.position, isRotate, timeInit, timeDlMove, offset, targets);
+            Timing.RunCoroutine(_CreateBullet(bullet, parent, targets[i], parent.position, targets[i].transform.position, isRotate, timeInit, timeDlMove, offset, targets));
         }
     }
 
-    public async static void CreateBullet(GameObject bullet, Transform parent, C_Character target, Vector3 start, Vector3 finish, bool isRotate = false, float timeInit = 0.0f, float timeDlMove = 0.0f, Vector3 offset = new Vector3(), List<C_Character> targets = null)
+    public static IEnumerator<float> _CreateBullet(GameObject bullet, Transform parent, C_Character target, Vector3 start, Vector3 finish, bool isRotate = false, float timeInit = 0.0f, float timeDlMove = 0.0f, Vector3 offset = new Vector3(), List<C_Character> targets = null)
     {
         // Delay tạo đạn
-        await Task.Delay(TimeSpan.FromSeconds(timeInit / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+        yield return Timing.WaitForSeconds(timeInit / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
 
         // Tạo viên đạn
         GameObject bl = Instantiate(bullet, parent); // Cha parent
@@ -123,15 +121,15 @@ public class C_LibSkill : MonoBehaviour
         }
 
         C_Bullet c_bullet = bl.GetComponent<C_Bullet>();
-        c_bullet.Move(parent, fsh, target, timeDlMove, targets);
+        Timing.RunCoroutine(c_bullet._Move(parent, fsh, target, timeDlMove, targets));
     }
 
-    public static async void MoveTo(Transform thisTran, Vector3 finish, float timeds, float timedf, float timedm, bool isComeback = true, bool isParabol = false, float height = 5.0f)
+    public static IEnumerator<float> _MoveTo(Transform thisTran, Vector3 finish, float timeds, float timedf, float timedm, bool isComeback = true, bool isParabol = false, float height = 5.0f)
     {
         float t = 0.0f;
 
         // Delay start
-        await Task.Delay(TimeSpan.FromSeconds(timeds / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+        yield return Timing.WaitForSeconds(timeds / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
 
         Vector3 old = thisTran.position;
         Vector3 start = new Vector3();
@@ -157,11 +155,11 @@ public class C_LibSkill : MonoBehaviour
 
             if (Vector3.Distance(thisTran.position, finish) < 0.001f || t >= timedm)
                 break;
-            await Task.Yield();
+            yield return Timing.WaitForOneFrame;
         }
 
         // Delay finish
-        await Task.Delay(TimeSpan.FromSeconds(timedf / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+        yield return Timing.WaitForSeconds(timedf / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
 
         // Comeback
         if (isComeback)
@@ -183,7 +181,7 @@ public class C_LibSkill : MonoBehaviour
 
                 if (Vector3.Distance(thisTran.position, old) < 0.001f || t >= 0.2f)
                     break;
-                await Task.Yield();
+                yield return Timing.WaitForOneFrame;
             }
         }
 

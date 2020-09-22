@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using MEC;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -57,7 +54,7 @@ public class SoundManager : MonoBehaviour
         audioSource.PlayOneShot(audioClip, volume);
     }
 
-    public async void PlayOneShotAs(AudioClip audioClip = null)
+    public IEnumerator<float> _PlayOneShotAs(AudioClip audioClip = null)
     {
         AudioSource audioSource2 = this.gameObject.AddComponent<AudioSource>();
         audioSource2.mute = isMute;
@@ -65,7 +62,7 @@ public class SoundManager : MonoBehaviour
         audioSource2.PlayOneShot(audioClip, volume);
 
         audioSource.volume = 0;
-        await Task.Delay(TimeSpan.FromSeconds(audioClip.length));
+        yield return Timing.WaitForSeconds(audioClip.length);
 
         audioSource.volume = volume;
         if(audioSource2 != null) Destroy(audioSource2);
@@ -83,10 +80,10 @@ public class SoundManager : MonoBehaviour
         audioSource.mute = isMute;
         audioSource.volume = volume;
 
-        LoadAllElement();
+        Timing.RunCoroutine(_LoadAllElement());
     }
 
-    public async void LoadAllElement()
+    public IEnumerator<float> _LoadAllElement()
     {
         GameObject[] elements;
         elements = GameObject.FindGameObjectsWithTag("SoundElement");
@@ -102,7 +99,7 @@ public class SoundManager : MonoBehaviour
             }            
         }
 
-        await Task.Yield();
+        yield return Timing.WaitForOneFrame;
     }
 
     public void ChangeMute()

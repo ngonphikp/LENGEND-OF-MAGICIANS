@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using MEC;
 
 public class FightingGame : MonoBehaviour
 {
@@ -94,7 +90,7 @@ public class FightingGame : MonoBehaviour
 
         LoadData();
         Scenario();
-        Combat();
+        Timing.RunCoroutine(_Combat());
     }
 
     // Load Data
@@ -417,7 +413,7 @@ public class FightingGame : MonoBehaviour
 
     // Combat
 
-    private async void Combat()
+    private IEnumerator<float> _Combat()
     {
         int t = 3;
         txtTime.gameObject.SetActive(true);
@@ -426,11 +422,11 @@ public class FightingGame : MonoBehaviour
             if (t <= 0 || isSkip) break;
             Debug.Log("Đếm ngược: " + t);
             txtTime.text = t + " ";
-            await Task.Delay(TimeSpan.FromSeconds(1 / myTimeScale));                        
-            t -= 1;            
+            yield return Timing.WaitForSeconds(1 / myTimeScale);
+            t -= 1;
         }
         txtTime.gameObject.SetActive(false);
-       
+
         Debug.Log("Combat");
 
         while (true)
@@ -446,7 +442,7 @@ public class FightingGame : MonoBehaviour
                 }
             }
 
-            if(!getAction && Beaten == 0)
+            if (!getAction && Beaten == 0)
             {
                 CheckTurn();
 
@@ -455,7 +451,7 @@ public class FightingGame : MonoBehaviour
                     M_Action action = actions[0];
                     getAction = true;
 
-                    await Play(action);
+                    yield return Timing.WaitUntilDone(Timing.RunCoroutine(_Play(action)));
 
                     actions.RemoveAt(0);
                     getAction = false;
@@ -463,14 +459,14 @@ public class FightingGame : MonoBehaviour
 
                 if (actions.Count == 0)
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(2 / myTimeScale));
+                    yield return Timing.WaitForSeconds(2 / myTimeScale);
                     EndGame();
                     isSkip = true;
                     break;
                 }
             }
 
-            await Task.Delay(TimeSpan.FromSeconds(0.1));
+            yield return Timing.WaitForSeconds(0.1f);
         }
     }
 
@@ -503,7 +499,7 @@ public class FightingGame : MonoBehaviour
 
     private void EndGame()
     {
-        SoundManager.instance.PlayOneShotAs(acEndGame);
+        Timing.RunCoroutine(SoundManager.instance._PlayOneShotAs(acEndGame));
 
         popupEndGame.SetActive(true);
         txtResult.text = isEndGame.ToString();        
@@ -528,7 +524,7 @@ public class FightingGame : MonoBehaviour
         check = 0;
     }
 
-    private async Task Play(M_Action action)
+    private IEnumerator<float> _Play(M_Action action)
     {
         int idActor = action.idActor;
         C_Character actor = Objs[idActor];
@@ -537,7 +533,7 @@ public class FightingGame : MonoBehaviour
         {
             case C_Enum.ActionType.SKILL:
                 // Debug.Log("=========================== SKILLING: " + idActor);
-                SKILLING(actor, action);
+                Timing.RunCoroutine(_SKILLING(actor, action));
                 break;
             case C_Enum.ActionType.CHANGE_HP:
                 Debug.LogWarning("=========================== CHANGE_HP: " + idActor);
@@ -557,13 +553,13 @@ public class FightingGame : MonoBehaviour
                 {
                     if (actor.isAnim1()) break;
                     Debug.Log("=========================== Loop " + actor.nhanvat.id_nv + " Anim1");
-                    await Task.Delay(TimeSpan.FromSeconds(0.01));
+                    yield return Timing.WaitForSeconds(0.01f);
                 }
                 actor.Play(6);
                 break;
         }
 
-        await Task.Delay(TimeSpan.FromSeconds(0.01));
+        yield return Timing.WaitForSeconds(0.01f);
 
         if (action.actions.Count > 0)
         {
@@ -572,7 +568,7 @@ public class FightingGame : MonoBehaviour
         }
     }
 
-    private async void SKILLING(C_Character actor, M_Action action)
+    private IEnumerator<float> _SKILLING(C_Character actor, M_Action action)
     {       
         this.idTargets.Clear();
         this.targets.Clear();
@@ -593,7 +589,7 @@ public class FightingGame : MonoBehaviour
             {
                 if (actor.isAnim1()) break;
                 Debug.Log("=========================== Loop " + actor.nhanvat.id_nv + " Anim1");
-                await Task.Delay(TimeSpan.FromSeconds(0.01));
+                yield return Timing.WaitForSeconds(0.01f);
             }
             actor.Play(action.prop.idSkill);
         }
@@ -606,7 +602,7 @@ public class FightingGame : MonoBehaviour
             {
                 if (actor.isAnim1()) break;
                 Debug.Log("=========================== Loop " + actor.nhanvat.id_nv + " Anim1");
-                await Task.Delay(TimeSpan.FromSeconds(0.01));
+                yield return Timing.WaitForSeconds(0.01f);
             }
             actor.Play(6);
         }

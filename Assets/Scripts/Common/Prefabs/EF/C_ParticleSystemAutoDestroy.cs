@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using MEC;
 using UnityEngine;
 
 public class C_ParticleSystemAutoDestroy : MonoBehaviour
@@ -22,13 +21,13 @@ public class C_ParticleSystemAutoDestroy : MonoBehaviour
     private void Start()
     {
         if (time > 0.0f && time > t) t = time;
-        AutoDestroy();        
+        Timing.RunCoroutine(_AutoDestroy());        
     }
 
-    private async void AutoDestroy()
+    private IEnumerator<float> _AutoDestroy()
     {
         if(FightingGame.instance)
-            await Task.Delay(TimeSpan.FromSeconds(t / FightingGame.instance.myTimeScale));
+            yield return Timing.WaitForSeconds(t / FightingGame.instance.myTimeScale);
         if (this != null && gameObject != null) Destroy(gameObject);
     }
 }

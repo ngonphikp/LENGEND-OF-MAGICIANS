@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DCE3289D-4A80-ED29-3B29-63073EEA9F7B}</ProjectGuid>
+    <ProjectGuid>{7C04093B-BAAB-F9FA-1C0E-A63976012262}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2020.1.2f1</UnityVersion>
   </PropertyGroup>
@@ -55,111 +55,14 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_ParticleSystemAutoDestroy.cs" />
-    <Compile Include="Assets\Scripts\Scenes\TavenrGame\TavernGame.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1000.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\HandleRoom.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1002.cs" />
-    <Compile Include="Assets\Scripts\Scenes\ArrangeGame\ArrangeGame.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1000.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1007.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\AnimatorExtensions.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1001.cs" />
-    <Compile Include="Assets\Scripts\Scenes\LoginGame\LoginGame.cs" />
-    <Compile Include="Assets\Scripts\Scenes\SelectionGame\SelectionGame.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_SoundAnim.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Bullet.cs" />
-    <Compile Include="Assets\Scripts\Scenes\TavenrGame\GameObjects\C_TVCard.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_TaiKhoan.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1001.cs" />
-    <Compile Include="Assets\Scripts\Scenes\InforGame\InforGame.cs" />
-    <Compile Include="Assets\Scripts\Network\Helper\ConfigConnection.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\C_Util.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1004.cs" />
-    <Compile Include="Assets\Scripts\Network\Helper\JSonConvert.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_Milestone.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_Skill.cs" />
-    <Compile Include="Assets\Scripts\Common\Manager\ScenesManager.cs" />
-    <Compile Include="Assets\Scripts\Common\Manager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Scenes\InforGame\GameObjects\C_Profile.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1005.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\MathParabola.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\User\UserSendUtil.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\ModuleConfig.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_Action.cs" />
-    <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CellAT.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Login\LoginSendUtil.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1003.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1004.cs" />
-    <Compile Include="Assets\Scripts\Network\SFSConnection.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1003.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_Character.cs" />
-    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_BtnArrange.cs" />
-    <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_DD.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_Prop.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_UICharacter.cs" />
-    <Compile Include="Assets\Scripts\Scenes\HomeGame\Prefabs\C_BagEl.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\C_Params.cs" />
-    <Compile Include="Assets\Scripts\Scenes\CampaignGame\CampaignGame.cs" />
-    <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CharacterAvEl.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Login\HandleLogin.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_TimeScaleAnim.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\CmdDefine.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\C_Enum.cs" />
-    <Compile Include="Assets\Scripts\Common\Manager\SoundManager.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_TimeScalePS.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\User\HandleUser.cs" />
-    <Compile Include="Assets\Scripts\Scenes\LoginGame\GameObjects\C_ChangeHost.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_LibSkill.cs" />
-    <Compile Include="Assets\Scripts\Scenes\LoginGame\GameObjects\C_Registry.cs" />
-    <Compile Include="Assets\Scripts\Scenes\CampaignGame\Prefabs\C_Milestone.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\I_Control.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\HandleConnect.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\HandleExtension.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1002.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Avatar.cs" />
-    <Compile Include="Assets\Scripts\Scenes\HomeGame\HomeGame.cs" />
-    <Compile Include="Assets\Scripts\Scenes\HomeGame\Prefabs\C_CharacterAcEl.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T.cs" />
-    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Character.cs" />
-    <Compile Include="Assets\Scripts\Scenes\LoginGame\GameObjects\C_Login.cs" />
-    <Compile Include="Assets\Scripts\Scenes\FightingGame\FightingGame.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\ErrorCode.cs" />
+    <Compile Include="Assets\Plugins\Trinary Software\Timing.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\B_Resources\AudioClips\note.txt" />
-     <None Include="Assets\Scripts\Scenes\InforGame\Prefabs\note.txt" />
-     <None Include="Assets\Scripts\Common\Prefabs\EF\note.txt" />
-     <None Include="Assets\Scripts\Scenes\LoginGame\GameObjects\note.txt" />
-     <None Include="Assets\Scripts\Common\Models\note.txt" />
-     <None Include="Assets\Scripts\Scenes\ArrangeGame\GameObjects\note.txt" />
-     <None Include="Assets\Scripts\Scenes\TavenrGame\GameObjects\note.txt" />
-     <None Include="Assets\Scripts\Scenes\HomeGame\GameObjects\note.txt" />
-     <None Include="Assets\Scripts\Scenes\SelectionGame\GameObjects\note.txt" />
-     <None Include="Assets\Resources\ConfigJSon\note.txt" />
-     <None Include="Assets\B_Resources\Videos\note.txt" />
-     <None Include="Assets\B_Resources\Tiles\note.txt" />
-     <None Include="Assets\Scripts\Common\Enum\note.txt" />
-     <None Include="Assets\B_Resources\Animations\note.txt" />
-     <None Include="Assets\Scripts\Scenes\LoginGame\Prefabs\note.txt" />
-     <None Include="Assets\Scripts\Network\Handle\note.txt" />
-     <None Include="Assets\Scripts\Scenes\CampaignGame\GameObjects\note.txt" />
-     <None Include="Assets\Scripts\Scenes\CampaignGame\Prefabs\note.txt" />
-     <None Include="Assets\Prefabs\FX\note.txt" />
-     <None Include="Assets\Scripts\Scenes\HomeGame\Prefabs\note.txt" />
-     <None Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\note.txt" />
-     <None Include="Assets\Scripts\Common\Control\note.txt" />
-     <None Include="Assets\Scripts\Scenes\SelectionGame\Prefabs\note.txt" />
-     <None Include="Assets\B_Resources\Sprites\note.txt" />
-     <None Include="Assets\ThridParty\note.txt" />
-     <None Include="Assets\Scripts\Scenes\InforGame\GameObjects\note.txt" />
-     <None Include="Assets\Scripts\Common\Base\note.txt" />
-     <None Include="Assets\Scripts\Network\Helper\note.txt" />
-     <None Include="Assets\B_Resources\Fonts\note.txt" />
-     <None Include="Assets\B_Resources\Animators\note.txt" />
-     <None Include="Assets\Sanbox\note.txt" />
-     <None Include="Assets\Scripts\Scenes\TavenrGame\Prefabs\note.txt" />
-     <None Include="Assets\Scripts\Common\Manager\note.txt" />
+     <None Include="Assets\Plugins\note.txt" />
+     <None Include="Assets\Plugins\SmartFoxServer\SmartFox2X_WebGL.dll" />
+     <None Include="Assets\Plugins\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll" />
+     <None Include="Assets\Plugins\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.dll" />
+     <None Include="Assets\Plugins\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.dll" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -774,10 +677,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{7C04093B-BAAB-F9FA-1C0E-A63976012262}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

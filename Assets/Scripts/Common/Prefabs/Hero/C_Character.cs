@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using MEC;
 using UnityEngine;
 
 [System.Serializable]
@@ -42,7 +41,7 @@ public class C_Character : MonoBehaviour
 
         ctl = this.GetComponent<I_Control>();
 
-        preUpdate();
+        Timing.RunCoroutine(_preUpdate());
     }
 
     private void Update()
@@ -53,7 +52,7 @@ public class C_Character : MonoBehaviour
         }
     }
 
-    private async void preUpdate()
+    private IEnumerator<float> _preUpdate()
     {
         while (true)
         {
@@ -92,7 +91,7 @@ public class C_Character : MonoBehaviour
 
                 if (isCombat && FightingGame.instance.targets.Count > 0) ctl.Play(6);
 
-                AnimDie();
+                Timing.RunCoroutine(_AnimDie());
             }
             if (isAnim7)
             {
@@ -101,7 +100,7 @@ public class C_Character : MonoBehaviour
 
                 if (isCombat && FightingGame.instance.targets.Count > 0) ctl.Play(7);
             }
-            await Task.Yield();
+            yield return Timing.WaitForOneFrame;
         }
     }
 
@@ -154,7 +153,7 @@ public class C_Character : MonoBehaviour
         }
     }
 
-    private async void FAnim(int i)
+    private IEnumerator<float> FAnim(int i)
     {
         Debug.Log("=========================== F anim: " + i);
         switch (i)
@@ -176,7 +175,7 @@ public class C_Character : MonoBehaviour
                 {
                     Debug.Log("=========================== Loop F Anim");
                     if (this == null || this.gameObject == null || isAnim1() || nhanvat.isDie) break;
-                    await Task.Delay(TimeSpan.FromSeconds(0.01));
+                    yield return Timing.WaitForSeconds(0.01f);
                 }
                 isAnim6 = true;
                 break;
@@ -185,7 +184,7 @@ public class C_Character : MonoBehaviour
                 {
                     Debug.Log("=========================== Loop F Anim");
                     if (this == null || this.gameObject == null || isAnim1() || nhanvat.isDie) break;
-                    await Task.Delay(TimeSpan.FromSeconds(0.01));
+                    yield return Timing.WaitForSeconds(0.01f);
                 }
                 isAnim7 = true;
                 break;
@@ -290,7 +289,7 @@ public class C_Character : MonoBehaviour
         //return (AnimatorExtensions.GetCurrentStateName(anim, 0) == "Base Layer." + "anim1" && AnimatorExtensions.GetNextStateName(anim, 0) == "");
     }
 
-    private async void AnimDie()
+    private IEnumerator<float> _AnimDie()
     {
         // Làm mờ
         SpriteRenderer sp = anim.gameObject.GetComponent<SpriteRenderer>();
@@ -307,7 +306,7 @@ public class C_Character : MonoBehaviour
             timeOp -= delta;
             op = timeOp / maxTime;
 
-            await Task.Delay(TimeSpan.FromSeconds(delta));
+            yield return Timing.WaitForSeconds(delta);
 
             sp.color = new Color(1.0f, 1.0f, 1.0f, op);
         }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using MEC;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class C_Bullet : MonoBehaviour
@@ -88,7 +86,7 @@ public class C_Bullet : MonoBehaviour
     private float timet;
     private Vector3 startPos;
 
-    private async void Comback(bool isL2R = true)
+    private IEnumerator<float> _Comback(bool isL2R = true)
     {
         if (isL2R)
         {
@@ -98,7 +96,7 @@ public class C_Bullet : MonoBehaviour
         }
         Vector3 comback = startPos + offset;
 
-        await Task.Delay(TimeSpan.FromSeconds(timecb / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+        yield return Timing.WaitForSeconds(timecb / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
         while (true)
         {
             if (this == null || this.gameObject == null) break;
@@ -111,11 +109,11 @@ public class C_Bullet : MonoBehaviour
                 Destroy(gameObject);
                 break;
             }
-            await Task.Yield();
+            yield return Timing.WaitForOneFrame;
         }
     }
 
-    public async void Move(Transform parent, Vector3 finish, C_Character target, float timeDlMove = 0.0f, List<C_Character> targets = null)
+    public IEnumerator<float> _Move(Transform parent, Vector3 finish, C_Character target, float timeDlMove = 0.0f, List<C_Character> targets = null)
     {
         // Khởi tạo biến
         t = 0.0f;
@@ -126,7 +124,7 @@ public class C_Bullet : MonoBehaviour
         if (!(target.nhanvat.team == 1)) rotateOffset = 0;
 
         // Delay di chuyển bullet
-        await Task.Delay(TimeSpan.FromSeconds(timeDlMove / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+        yield return Timing.WaitForSeconds(timeDlMove / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
 
         while (true)
         {
@@ -171,7 +169,7 @@ public class C_Bullet : MonoBehaviour
                         {
                             for (int i = 0; i < targets.Count; i++)
                             {
-                                C_LibSkill.CreateBullet(fragment, parent, targets[i], this.gameObject.transform.position, targets[i].transform.position, false, timeinit, timefrm, offsetfrm);
+                                Timing.RunCoroutine(C_LibSkill._CreateBullet(fragment, parent, targets[i], this.gameObject.transform.position, targets[i].transform.position, false, timeinit, timefrm, offsetfrm));
                             }
                         }
                     }
@@ -192,7 +190,7 @@ public class C_Bullet : MonoBehaviour
                                         offs.x *= -1;
                                     Vector3 srt = this.transform.position + offs;
 
-                                    C_LibSkill.CreateBullet(bl, parent, targets[i], srt, targets[i].transform.position, isRotate);
+                                    Timing.RunCoroutine(C_LibSkill._CreateBullet(bl, parent, targets[i], srt, targets[i].transform.position, isRotate));
                                 }
                             }
                         }
@@ -200,32 +198,32 @@ public class C_Bullet : MonoBehaviour
                     else
                     {
                         // Rơi tự do từ lmH -> target
-                        C_LibSkill.CreateBullet(bl, parent, target, new Vector3(finish.x, lmH, this.transform.position.z), target.transform.position);
+                        Timing.RunCoroutine(C_LibSkill._CreateBullet(bl, parent, target, new Vector3(finish.x, lmH, this.transform.position.z), target.transform.position));
                     }
                 }
 
                 if (isComback)
                 {
-                    Comback(!(target.nhanvat.team == 1));
+                    Timing.RunCoroutine(_Comback(!(target.nhanvat.team == 1)));
                 }
                 else
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(timed / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+                    yield return Timing.WaitForSeconds(timed / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
                     Destroy(gameObject);
                 }
 
                 if (isHit && target != null)
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(time / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+                    yield return Timing.WaitForSeconds(time / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
                     target.Beaten();
                 }
                 break;
             }
-            await Task.Yield();
+            yield return Timing.WaitForOneFrame;
         }
     }
 
-    public async void ScaleX(Vector2 A, Vector3 B, C_Character target = null)
+    public IEnumerator<float> _ScaleX(Vector2 A, Vector3 B, C_Character target = null)
     {
         float dis = Vector2.Distance(A, B);
         float scale = dis / ratio;
@@ -234,14 +232,14 @@ public class C_Bullet : MonoBehaviour
 
         if (isExplosion && target != null)
         {
-            await Task.Delay(TimeSpan.FromSeconds(timefx / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+            yield return Timing.WaitForSeconds(timefx / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
 
             GameObject fx = Instantiate(Explosion, target.transform);
         }
 
         if (isHit && target != null)
         {
-            await Task.Delay(TimeSpan.FromSeconds(timehit / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1)));
+            yield return Timing.WaitForSeconds(timehit / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
             target.Beaten();
         }
     }

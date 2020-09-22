@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using MEC;
 using UnityEngine;
 
 public class C_Ctl_T1002 : MonoBehaviour, I_Control
@@ -82,9 +82,9 @@ public class C_Ctl_T1002 : MonoBehaviour, I_Control
 
         Vector3 G = C_LibSkill.GHero(FightingGame.instance.targets);
         Vector3 C = C_LibSkill.DisABC(G, this.transform.position, dis5d0 + Vector3.Distance(this.transform.position, G));
-        C_LibSkill.MoveTo(this.transform, C, time5ds, time5df, time5dm, false);
+        Timing.RunCoroutine(C_LibSkill._MoveTo(this.transform, C, time5ds, time5df, time5dm, false));
 
-        C_LibSkill.FxHit(FightingGame.instance.targets, fx5d0, time5d0);
+        Timing.RunCoroutine(C_LibSkill._FxHit(FightingGame.instance.targets, fx5d0, time5d0));
     }
 
     private void Anim6()

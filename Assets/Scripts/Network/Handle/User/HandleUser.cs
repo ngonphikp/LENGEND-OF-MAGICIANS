@@ -1,6 +1,5 @@
-﻿using Sfs2X.Core;
+﻿using MEC;
 using Sfs2X.Entities.Data;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -132,7 +131,7 @@ public class HandleUser
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == ErrorCode.SUCCESS)
         {
-            ArrangeGame.instance.RecArrange();
+            Timing.RunCoroutine(ArrangeGame.instance._RecArrange());
         }
         else
         {

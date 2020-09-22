@@ -1,7 +1,5 @@
-﻿using System.Collections;
+﻿using MEC;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -42,11 +40,11 @@ public class HomeGame : MonoBehaviour
         btnMuteOn.SetActive(!SoundManager.instance.isMute);
         btnMuteOff.SetActive(SoundManager.instance.isMute);
 
-        FilterListHero();
-        LoadBagHero();
+        Timing.RunCoroutine(_FilterListHero());
+        Timing.RunCoroutine(_LoadBagHero());
     }
 
-    private async void FilterListHero()
+    private IEnumerator<float> _FilterListHero()
     {
         for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
         {
@@ -57,10 +55,10 @@ public class HomeGame : MonoBehaviour
             }                
         }
 
-        await Task.Yield();
+        yield return Timing.WaitForOneFrame;
     }
 
-    private async void LoadBagHero()
+    private IEnumerator<float> _LoadBagHero()
     {
         for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
         {
@@ -68,7 +66,7 @@ public class HomeGame : MonoBehaviour
             heroBag.set(i);
         }
 
-        await Task.Yield();
+        yield return Timing.WaitForOneFrame;
     }
 
     public void ChangeVolume()

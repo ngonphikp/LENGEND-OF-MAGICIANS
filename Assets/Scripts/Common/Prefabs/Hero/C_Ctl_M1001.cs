@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
+using MEC;
 
 public class C_Ctl_M1001 : MonoBehaviour, I_Control
 {
@@ -71,9 +71,9 @@ public class C_Ctl_M1001 : MonoBehaviour, I_Control
         Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 3");
 
         Vector3 finish = C_LibSkill.DisX(FightingGame.instance.targets[0].transform.position, dis3d0, FightingGame.instance.targets[0].nhanvat.team == 1);
-        C_LibSkill.MoveTo(this.transform, finish, time3ds, time3df, time3dm);
+        Timing.RunCoroutine(C_LibSkill._MoveTo(this.transform, finish, time3ds, time3df, time3dm));
 
-        C_LibSkill.FxHit(FightingGame.instance.targets, fx3d0, time3d0);
+        Timing.RunCoroutine(C_LibSkill._FxHit(FightingGame.instance.targets, fx3d0, time3d0));
     }
 
     private void Anim4()
@@ -87,9 +87,9 @@ public class C_Ctl_M1001 : MonoBehaviour, I_Control
 
         Vector3 G = C_LibSkill.GHero(FightingGame.instance.targets);
         Vector3 C = C_LibSkill.DisABC(G, this.transform.position, dis5d0 + Vector3.Distance(this.transform.position, G));
-        C_LibSkill.MoveTo(this.transform, C, time5ds, time5df, time5dm, false);
+        Timing.RunCoroutine(C_LibSkill._MoveTo(this.transform, C, time5ds, time5df, time5dm, false));
 
-        C_LibSkill.FxHit(FightingGame.instance.targets, fx5d0, time5d0);
+        Timing.RunCoroutine(C_LibSkill._FxHit(FightingGame.instance.targets, fx5d0, time5d0));
     }
 
     private void Anim6()
