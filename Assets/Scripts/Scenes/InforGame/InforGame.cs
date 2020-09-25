@@ -24,7 +24,7 @@ public class InforGame : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         index = GameManager.instance.idxCharacter;
         LoadCharacter();

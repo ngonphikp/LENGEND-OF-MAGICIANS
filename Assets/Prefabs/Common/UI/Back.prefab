@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8059351839735318268}
   - component: {fileID: 8059351839735318211}
   - component: {fileID: 8059351839735318210}
-  - component: {fileID: 8059351839735318209}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -62,6 +61,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -118,27 +118,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8059351839735318211}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8059351839735318209}
-        m_MethodName: LoadPreviousScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8059351839735318209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8059351839735318215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754a7f6477c7d114bb7d3d0b9dca4548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+      m_Calls: []

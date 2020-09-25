@@ -47,17 +47,8 @@ public class LoginGame : MonoBehaviour
         GameManager.instance.tick_milestones = tick_milestones;
         GameManager.instance.UpdateTickMS();
 
-        // Nếu đã Selection
-        if (lstNhanVat.Count > 0)
-        {
-            GameManager.instance.nhanVats = lstNhanVat;
-            ScenesManager.instance.ChangeScene("HomeGame");
-        }
-        // Nếu chưa Selection
-        else
-        {
-            ScenesManager.instance.ChangeScene("SelectionGame");
-        }
+        GameManager.instance.nhanVats = lstNhanVat;
+        ScenesManager.instance.ChangeScene("MainGame");
 
         SoundManager.instance.PlayLoop();
     }

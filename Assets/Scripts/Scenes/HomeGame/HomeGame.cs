@@ -33,7 +33,7 @@ public class HomeGame : MonoBehaviour
         else LoginSendUtil.sendLogout();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         sbVolume.value = SoundManager.instance.volume;
         txtVolume.text = (int)(SoundManager.instance.volume * 100) + "";
@@ -46,6 +46,11 @@ public class HomeGame : MonoBehaviour
 
     private IEnumerator<float> _FilterListHero()
     {
+        foreach (Transform child in listHeroAc)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
         {
             if (GameManager.instance.nhanVats[i].idx != -1)
@@ -60,6 +65,11 @@ public class HomeGame : MonoBehaviour
 
     private IEnumerator<float> _LoadBagHero()
     {
+        foreach (Transform child in bagHero)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
         {
             C_BagEl heroBag = Instantiate(bagEl, bagHero).GetComponent<C_BagEl>();

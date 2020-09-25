@@ -88,7 +88,7 @@ public class SelectionGame : MonoBehaviour
 
             GameManager.instance.taikhoan.name = tenNhanVat;
 
-            ScenesManager.instance.ChangeScene("HomeGame");
+            ScenesManager.instance.ChangeScene("MainGame");
         }
     }
 

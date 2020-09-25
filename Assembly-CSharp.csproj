@@ -55,6 +55,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Common\Manager\MainGame.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_ParticleSystemAutoDestroy.cs" />
     <Compile Include="Assets\Scripts\Scenes\TavenrGame\TavernGame.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1000.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CellAT.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\LoginSendUtil.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1003.cs" />
+    <Compile Include="Assets\Scripts\Common\Manager\PlayGame.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1004.cs" />
     <Compile Include="Assets\Scripts\Network\SFSConnection.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1003.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_BtnArrange.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_DD.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Prop.cs" />
+    <Compile Include="Assets\Scripts\SpineAnimation.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_UICharacter.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\Prefabs\C_BagEl.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\C_Params.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="Assets\Scripts\Scenes\LoginGame\GameObjects\C_Login.cs" />
     <Compile Include="Assets\Scripts\Scenes\FightingGame\FightingGame.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\ErrorCode.cs" />
+    <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_C1000.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\B_Resources\AudioClips\note.txt" />
@@ -142,7 +146,9 @@
      <None Include="Assets\Scripts\Common\Enum\note.txt" />
      <None Include="Assets\B_Resources\Animations\note.txt" />
      <None Include="Assets\Scripts\Scenes\LoginGame\Prefabs\note.txt" />
+     <None Include="Assets\B_Resources\Spines\BeardyBuck\BeardyBuck.atlas.txt" />
      <None Include="Assets\Scripts\Network\Handle\note.txt" />
+     <None Include="Assets\B_Resources\Spines\note.txt" />
      <None Include="Assets\Scripts\Scenes\CampaignGame\GameObjects\note.txt" />
      <None Include="Assets\Scripts\Scenes\CampaignGame\Prefabs\note.txt" />
      <None Include="Assets\Prefabs\FX\note.txt" />
@@ -150,16 +156,21 @@
      <None Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\note.txt" />
      <None Include="Assets\Scripts\Common\Control\note.txt" />
      <None Include="Assets\Scripts\Scenes\SelectionGame\Prefabs\note.txt" />
+     <None Include="Assets\B_Resources\Spines\Commander-Darkstrike\Commander-Darkstrike.atlas.txt" />
      <None Include="Assets\B_Resources\Sprites\note.txt" />
      <None Include="Assets\ThridParty\note.txt" />
      <None Include="Assets\Scripts\Scenes\InforGame\GameObjects\note.txt" />
+     <None Include="Assets\Scripts\SpineDLL.dll" />
+     <None Include="Assets\B_Resources\Spines\BuckMatthews\BuckMatthews.atlas.txt" />
      <None Include="Assets\Scripts\Common\Base\note.txt" />
      <None Include="Assets\Scripts\Network\Helper\note.txt" />
+     <None Include="Assets\B_Resources\Spines\Assassin\Assassin.atlas.txt" />
      <None Include="Assets\B_Resources\Fonts\note.txt" />
      <None Include="Assets\B_Resources\Animators\note.txt" />
      <None Include="Assets\Sanbox\note.txt" />
      <None Include="Assets\Scripts\Scenes\TavenrGame\Prefabs\note.txt" />
      <None Include="Assets\Scripts\Common\Manager\note.txt" />
+     <None Include="Assets\B_Resources\Spines\ChuckMatthews\ChuckMatthews.atlas.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -345,6 +356,9 @@
     </Reference>
     <Reference Include="SmartFox2X_WebGL">
       <HintPath>Assets\Plugins\SmartFoxServer\SmartFox2X_WebGL.dll</HintPath>
+    </Reference>
+    <Reference Include="SpineDLL">
+      <HintPath>Assets\Scripts\SpineDLL.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.2f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -777,6 +791,14 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{7C04093B-BAAB-F9FA-1C0E-A63976012262}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity.csproj">
+      <Project>{4128CBEE-1D4A-AFA3-C918-0170D937E0BC}</Project>
+      <Name>spine-unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-editor.csproj">
+      <Project>{91B95AE7-84B6-09C9-6AD8-992463AE2B05}</Project>
+      <Name>spine-unity-editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

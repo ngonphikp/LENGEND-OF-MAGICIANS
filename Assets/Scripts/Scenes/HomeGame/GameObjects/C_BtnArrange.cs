@@ -8,6 +8,6 @@ public class C_BtnArrange : MonoBehaviour
     {
         GameManager.instance.isAttack = false;
 
-        ScenesManager.instance.ChangeScene("ArrangeGame");
+        ScenesManager.instance.ChangeScene("PlayGame");
     }
 }

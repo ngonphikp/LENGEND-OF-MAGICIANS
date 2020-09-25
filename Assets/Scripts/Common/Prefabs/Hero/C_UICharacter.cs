@@ -64,7 +64,7 @@ public class C_UICharacter : MonoBehaviour
         curEp = Mathf.Lerp(curEp, ep, Time.deltaTime * anim * ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1) / dis);
         Ep.fillAmount = curEp;
 
-        if (FightingGame.instance) fullMana.SetActive(curEp >= 1);
+        if (FightingGame.instance && FightingGame.instance.gameObject.activeInHierarchy) fullMana.SetActive(curEp >= 1);
     }
 
     public void set(C_Character ctl)

@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
 
         UpdateTickMS();
 
-        ScenesManager.instance.ChangeScene("HomeGame");
+        ScenesManager.instance.ChangeScene("MainGame");
         SoundManager.instance.PlayLoop();
     }
 

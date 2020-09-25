@@ -37,7 +37,7 @@ public class ArrangeGame : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         btnFighting.gameObject.SetActive(GameManager.instance.isAttack);
         btnSave.gameObject.SetActive(!GameManager.instance.isAttack);
@@ -61,9 +61,14 @@ public class ArrangeGame : MonoBehaviour
     {
         Objs.Clear();
 
+        foreach (Transform child in listHeroAv)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
         {
-            M_Character nhanVat = GameManager.instance.nhanVats[i];
+            M_Character nhanVat = new M_Character(GameManager.instance.nhanVats[i]);
             nhanVat.Current_ep = nhanVat.max_ep = 100;
             nhanVat.Current_hp = nhanVat.max_hp = nhanVat.hp;
             nhanVat.team = 0;
@@ -176,7 +181,7 @@ public class ArrangeGame : MonoBehaviour
         LoadAnim(false);
 
         yield return Timing.WaitForSeconds(1f);
-        if (GameManager.instance.isAttack) ScenesManager.instance.ChangeScene("FightingGame");
-        else ScenesManager.instance.ChangeScene("HomeGame");
+        if (GameManager.instance.isAttack) PlayGame.instance.ShowScene(true);
+        else ScenesManager.instance.ChangeScene("MainGame");
     }
 }

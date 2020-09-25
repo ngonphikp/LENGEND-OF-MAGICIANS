@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.TerrainAPI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,30 @@ public class C_TVCard : MonoBehaviour
 
     [SerializeField]
     private Transform content = null;
+
+    [SerializeField]
+    private Image bG = null;
+
+    [SerializeField]
+    private GameObject title = null;
+
+    private void OnEnable()
+    {
+        Show(true);
+    }
+
+    public void Show(bool isshow)
+    {
+        bG.gameObject.SetActive(!isshow);
+        btnConfirm.gameObject.SetActive(!isshow);
+        foreach (Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
+        content.gameObject.SetActive(!isshow);
+        title.SetActive(isshow);
+        this.GetComponent<Button>().interactable = isshow;
+    }
 
     [System.Obsolete]
     public void OnClick()

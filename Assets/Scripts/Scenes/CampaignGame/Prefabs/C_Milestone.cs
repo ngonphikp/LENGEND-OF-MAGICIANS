@@ -37,7 +37,7 @@ public class C_Milestone : MonoBehaviour
         GameManager.instance.isAttack = true;
         GameManager.instance.idxMilestone = this.milestone.id;
 
-        ScenesManager.instance.ChangeScene("ArrangeGame");
+        ScenesManager.instance.ChangeScene("PlayGame");
     }
 
     private void UpdateStar()

@@ -31,6 +31,13 @@ public class C_Character : MonoBehaviour
     private List<M_Prop> propHPs = new List<M_Prop>(); // Mảng diễn thay đổi hp
     private List<M_Prop> propEPs = new List<M_Prop>(); // Mảng diễn thay đổi ep
 
+    private CoroutineHandle preUpdate;
+
+    private void Awake()
+    {
+        ctl = this.GetComponent<I_Control>();
+    }
+
     private void Start()
     {
         if (UICharacter != null)
@@ -39,17 +46,17 @@ public class C_Character : MonoBehaviour
             UICharacter.ep = nhanvat.Current_ep * 1.0f / nhanvat.max_ep;
         }
 
-        ctl = this.GetComponent<I_Control>();
-
-        Timing.RunCoroutine(_preUpdate());
+        preUpdate = Timing.RunCoroutine(_preUpdate());
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (anim != null)
-        {
-            anim.speed = ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1);
-        }
+        if (preUpdate.IsValid) Timing.ResumeCoroutines(preUpdate);
+    }
+
+    private void OnDisable()
+    {
+        Timing.PauseCoroutines(preUpdate);
     }
 
     private IEnumerator<float> _preUpdate()
@@ -100,6 +107,12 @@ public class C_Character : MonoBehaviour
 
                 if (isCombat && FightingGame.instance.targets.Count > 0) ctl.Play(7);
             }
+
+            if (anim != null)
+            {
+                anim.speed = ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1);
+            }
+
             yield return Timing.WaitForOneFrame;
         }
     }
@@ -149,11 +162,11 @@ public class C_Character : MonoBehaviour
         else
         {
             Debug.LogWarning("=========================== " + this.nhanvat.id_nv + " Not Anim 1");
-            FAnim(i);
+            Timing.RunCoroutine(_FAnim(i));
         }
     }
 
-    private IEnumerator<float> FAnim(int i)
+    private IEnumerator<float> _FAnim(int i)
     {
         Debug.Log("=========================== F anim: " + i);
         switch (i)
@@ -274,19 +287,23 @@ public class C_Character : MonoBehaviour
         propEPs.Add(prop);
     }
 
+    public bool IsPlay()
+    {
+        return (this.isAnim1() || this.nhanvat.isDie || !this.gameObject.activeSelf);
+    }
+
     public bool isAnim1()
     {
         if (this == null) return false;
+        if (!ctl.IsPlay()) return false;
 
         if (this.GetComponent<RectTransform>().localPosition != new Vector3() && FightingGame.instance) return false;
 
         AnimatorClipInfo[] m_CurrentClipInfo = anim.GetCurrentAnimatorClipInfo(0);
         if (m_CurrentClipInfo.Length < 1) return false;
         string m_ClipName = m_CurrentClipInfo[0].clip.name;
-        //Debug.Log(m_ClipName);
-        return (m_ClipName == "anim1");
 
-        //return (AnimatorExtensions.GetCurrentStateName(anim, 0) == "Base Layer." + "anim1" && AnimatorExtensions.GetNextStateName(anim, 0) == "");
+        return (m_ClipName == "anim1");
     }
 
     private IEnumerator<float> _AnimDie()

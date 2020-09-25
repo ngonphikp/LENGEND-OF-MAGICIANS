@@ -48,6 +48,6 @@ public class C_BagEl : MonoBehaviour
     public void Click()
     {
         GameManager.instance.idxCharacter = idx;
-        ScenesManager.instance.ChangeScene("InforGame");
+        MainGame.instance.ShowScene("InforScene");
     }
 }

@@ -33,6 +33,6 @@ public class C_CharacterAcEl : MonoBehaviour
     public void ClickHero()
     {
         GameManager.instance.idxCharacter = idx;
-        ScenesManager.instance.ChangeScene("InforGame");
+        MainGame.instance.ShowScene("InforScene");
     }
 }

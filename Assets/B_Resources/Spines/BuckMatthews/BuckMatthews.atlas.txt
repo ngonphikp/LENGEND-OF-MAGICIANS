@@ -1,0 +1,265 @@
+
+BuckMatthews.png
+size: 1950,979
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BuckMatthews/BuckMatthews_arm_lower_far
+  rotate: true
+  xy: 1004, 367
+  size: 70, 111
+  orig: 259, 209
+  offset: 91, 50
+  index: -1
+BuckMatthews/BuckMatthews_arm_lower_near
+  rotate: false
+  xy: 1871, 22
+  size: 77, 125
+  orig: 258, 208
+  offset: 87, 43
+  index: -1
+BuckMatthews/BuckMatthews_arm_upper_far
+  rotate: true
+  xy: 1733, 149
+  size: 98, 179
+  orig: 299, 282
+  offset: 99, 50
+  index: -1
+BuckMatthews/BuckMatthews_arm_upper_near
+  rotate: false
+  xy: 1534, 528
+  size: 98, 179
+  orig: 299, 282
+  offset: 99, 50
+  index: -1
+BuckMatthews/BuckMatthews_foot_far_1
+  rotate: false
+  xy: 1744, 544
+  size: 168, 82
+  orig: 324, 176
+  offset: 73, 46
+  index: -1
+BuckMatthews/BuckMatthews_foot_near_1
+  rotate: false
+  xy: 1744, 544
+  size: 168, 82
+  orig: 324, 176
+  offset: 73, 46
+  index: -1
+BuckMatthews/BuckMatthews_foot_far_2_bent
+  rotate: false
+  xy: 1768, 430
+  size: 168, 112
+  orig: 305, 195
+  offset: 54, 39
+  index: -1
+BuckMatthews/BuckMatthews_foot_near_2_bent
+  rotate: false
+  xy: 1768, 430
+  size: 168, 112
+  orig: 305, 195
+  offset: 54, 39
+  index: -1
+BuckMatthews/BuckMatthews_gun
+  rotate: true
+  xy: 1178, 395
+  size: 403, 160
+  orig: 604, 421
+  offset: 91, 105
+  index: -1
+BuckMatthews/BuckMatthews_gun_shoot
+  rotate: false
+  xy: 1445, 800
+  size: 469, 177
+  orig: 604, 421
+  offset: 90, 105
+  index: -1
+BuckMatthews/BuckMatthews_hand_far_1_fistBack
+  rotate: false
+  xy: 1634, 534
+  size: 108, 84
+  orig: 203, 160
+  offset: 50, 45
+  index: -1
+BuckMatthews/BuckMatthews_hand_far_2_fistPalm
+  rotate: false
+  xy: 1537, 712
+  size: 95, 86
+  orig: 203, 160
+  offset: 55, 42
+  index: -1
+BuckMatthews/BuckMatthews_hand_far_3_open
+  rotate: true
+  xy: 1641, 414
+  size: 118, 125
+  orig: 233, 220
+  offset: 68, 49
+  index: -1
+BuckMatthews/BuckMatthews_hand_near_3_open
+  rotate: true
+  xy: 1641, 414
+  size: 118, 125
+  orig: 233, 220
+  offset: 68, 49
+  index: -1
+BuckMatthews/BuckMatthews_hand_near_1_fistBack
+  rotate: true
+  xy: 1534, 413
+  size: 113, 105
+  orig: 203, 160
+  offset: 48, 42
+  index: -1
+BuckMatthews/BuckMatthews_hand_near_2_fistPalm
+  rotate: false
+  xy: 1340, 707
+  size: 101, 93
+  orig: 203, 160
+  offset: 52, 39
+  index: -1
+BuckMatthews/BuckMatthews_head_1
+  rotate: false
+  xy: 2, 2
+  size: 290, 338
+  orig: 543, 543
+  offset: 123, 51
+  index: -1
+BuckMatthews/BuckMatthews_head_2_injured
+  rotate: false
+  xy: 876, 9
+  size: 281, 352
+  orig: 543, 543
+  offset: 129, 43
+  index: -1
+BuckMatthews/BuckMatthews_head_3_happy
+  rotate: false
+  xy: 582, 9
+  size: 292, 352
+  orig: 543, 543
+  offset: 122, 35
+  index: -1
+BuckMatthews/BuckMatthews_head_4_wideEyes
+  rotate: false
+  xy: 1159, 31
+  size: 284, 336
+  orig: 543, 543
+  offset: 125, 49
+  index: -1
+BuckMatthews/BuckMatthews_head_5_sad
+  rotate: false
+  xy: 294, 4
+  size: 286, 336
+  orig: 543, 543
+  offset: 123, 50
+  index: -1
+BuckMatthews/BuckMatthews_leg_lower_far
+  rotate: false
+  xy: 1626, 60
+  size: 105, 187
+  orig: 194, 325
+  offset: 46, 77
+  index: -1
+BuckMatthews/BuckMatthews_leg_lower_near_2
+  rotate: false
+  xy: 1626, 60
+  size: 105, 187
+  orig: 194, 325
+  offset: 46, 77
+  index: -1
+BuckMatthews/BuckMatthews_leg_lower_near_1
+  rotate: false
+  xy: 1634, 620
+  size: 106, 178
+  orig: 194, 325
+  offset: 43, 73
+  index: -1
+BuckMatthews/BuckMatthews_leg_upper_far
+  rotate: false
+  xy: 1843, 628
+  size: 98, 170
+  orig: 177, 271
+  offset: 38, 51
+  index: -1
+BuckMatthews/BuckMatthews_leg_upper_near
+  rotate: false
+  xy: 1742, 628
+  size: 99, 170
+  orig: 177, 271
+  offset: 38, 51
+  index: -1
+BuckMatthews/BuckMatthews_machineGun
+  rotate: false
+  xy: 1445, 249
+  size: 437, 161
+  orig: 656, 420
+  offset: 75, 111
+  index: -1
+BuckMatthews/BuckMatthews_machineGun_clip
+  rotate: true
+  xy: 1443, 709
+  size: 89, 92
+  orig: 234, 206
+  offset: 75, 53
+  index: -1
+BuckMatthews/BuckMatthews_machineGun_shoot
+  rotate: true
+  xy: 1004, 439
+  size: 538, 161
+  orig: 656, 420
+  offset: 75, 111
+  index: -1
+BuckMatthews/BuckMatthews_neck
+  rotate: true
+  xy: 1117, 369
+  size: 68, 59
+  orig: 68, 59
+  offset: 0, 0
+  index: -1
+BuckMatthews/BuckMatthews_pistol
+  rotate: false
+  xy: 1167, 802
+  size: 232, 175
+  orig: 457, 319
+  offset: 116, 52
+  index: -1
+BuckMatthews/BuckMatthews_pistol_shoot
+  rotate: true
+  xy: 1340, 412
+  size: 293, 192
+  orig: 457, 319
+  offset: 116, 52
+  index: -1
+BuckMatthews/BuckMatthews_sword_1
+  rotate: false
+  xy: 334, 352
+  size: 73, 625
+  orig: 508, 875
+  offset: 218, 104
+  index: -1
+BuckMatthews/BuckMatthews_sword_2_swing
+  rotate: false
+  xy: 2, 342
+  size: 330, 635
+  orig: 767, 873
+  offset: 219, 102
+  index: -1
+BuckMatthews/BuckMatthews_sword_3_bigSwing
+  rotate: true
+  xy: 409, 363
+  size: 614, 593
+  orig: 1010, 875
+  offset: 174, 105
+  index: -1
+BuckMatthews/BuckMatthews_torso
+  rotate: false
+  xy: 1445, 48
+  size: 179, 199
+  orig: 512, 452
+  offset: 169, 110
+  index: -1
+BuckMatthews/BuckMatthews_waist
+  rotate: false
+  xy: 1733, 2
+  size: 136, 145
+  orig: 283, 216
+  offset: 75, 37
+  index: -1

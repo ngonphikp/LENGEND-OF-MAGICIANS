@@ -79,14 +79,14 @@ public class FightingGame : MonoBehaviour
     }    
 
     [Obsolete]
-    private void Start()
+    private void OnEnable()
     {
         if (Application.platform != RuntimePlatform.Android)
         {
             Application.runInBackground = true;
         }
 
-        SoundManager.instance.PlayLoop(acFighting);
+        if(SoundManager.instance) SoundManager.instance.PlayLoop(acFighting);
 
         LoadData();
         Scenario();
@@ -129,6 +129,25 @@ public class FightingGame : MonoBehaviour
 
     private void Init()
     {
+        lstObj.ForEach(x => Destroy(x.gameObject));
+
+        lstObj.Clear();
+        Objs.Clear();
+
+        isEndGame = C_Enum.EndGame.NOT;
+        starEndGame = 0;
+
+        idTargets.Clear();
+        targets.Clear();
+        Beaten = 0;
+
+        actions.Clear();
+        turn = true;
+        check = 0;
+        getAction = false;
+
+        isSkip = false;
+
         InitTeam(dataTeamL, posTeamL);
         InitTeam(dataTeamR, posTeamR);
     }
@@ -490,9 +509,13 @@ public class FightingGame : MonoBehaviour
             GameManager.instance.tick_milestones.Add(new M_Milestone(GameManager.instance.idxMilestone + 1, 0));
 
             GameManager.instance.UpdateTickMS();
-        }
 
-        SceneManager.LoadScene("CampaignGame");
+            SceneManager.LoadScene("MainGame");
+        }
+        else
+        {
+            PlayGame.instance.ShowScene(false);
+        }
 
         SoundManager.instance.PlayLoop();
     }
@@ -512,12 +535,10 @@ public class FightingGame : MonoBehaviour
 
     private void CheckTurn()
     {
-        for (int i = 0; i < lstObj.Count; i++)
+        foreach (C_Character obj in lstObj)
         {
-            if (lstObj[i] != null) {
-                if (lstObj[i].nhanvat.isDie || !lstObj[i].gameObject.activeSelf || lstObj[i].isAnim1()) check++;
-                else break;
-            }
+            if (obj != null && obj.IsPlay()) check++;
+            else break;
         }
 
         turn = (check >= lstObj.Count);

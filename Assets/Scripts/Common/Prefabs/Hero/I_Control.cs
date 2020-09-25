@@ -5,4 +5,6 @@ using UnityEngine;
 public interface I_Control
 {
     void Play(int anim);
+
+    bool IsPlay();
 }
