@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.039215688}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -122,6 +123,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2319400632509314629}
+        m_TargetAssemblyTypeName: 
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -192,20 +194,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trigger: {fileID: 7295094962286676295}
-  hero:
+  nhanVat:
     id_nv: -1
     id_cfg: 
     id_tk: 0
-    lv: 0
-    name: 
-    element: 
-    idx: -1
-    type: 0
     def: 1
     hp: 1
     atk: 1
     crit: 1
     dodge: 1
+    lv: 0
+    name: 
+    element: 
+    star: 0
+    skills: []
+    idx: -1
+    isDie: 0
+    current_ep: 0
+    max_ep: 1
+    current_hp: 0
+    max_hp: 1
+    type: 0
+    team: 0
 --- !u!1 &6062084919422618958
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +276,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -341,6 +352,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

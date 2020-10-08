@@ -11,4 +11,6 @@ public class M_Prop
     public bool hpChangeCrit = false;
 
     public int epChange;
+
+    public int turn;
 }

@@ -27,8 +27,6 @@ public class FightingGame : MonoBehaviour
     [SerializeField]
     private Text txtTurn = null;
 
-    private int currentTurn = 0;
-
     [Header("Time Scale")]
     [SerializeField]
     private Text txtTimeScale = null;
@@ -98,7 +96,7 @@ public class FightingGame : MonoBehaviour
     {
         Debug.Log("LoadData");
         milestone = GameManager.instance.milestones[GameManager.instance.idxMilestone];
-        txtTurn.text = currentTurn + " / " + milestone.maxTurn;
+        txtTurn.text = "0 / " + milestone.maxTurn;
 
         dataTeamL.Clear();
         for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
@@ -195,9 +193,12 @@ public class FightingGame : MonoBehaviour
     {
         Debug.Log("Scenario");
 
+        int turnS = 1;
         while (true)
         {
-            if (isEndGame != C_Enum.EndGame.NOT) break;
+            if (CheckEndGame(turnS)) break;
+
+            CountTurn(turnS++);
 
             Attack(dataTeamL, dataTeamR, C_Enum.EndGame.WIN);
 
@@ -205,9 +206,64 @@ public class FightingGame : MonoBehaviour
         }        
     }
 
+    private bool CheckEndGame(int turn) {
+        List<int> idxs = FindTargetNotDie(dataTeamL);
+        if (turn > milestone.maxTurn || idxs.Count == 0)
+        {
+            isEndGame = C_Enum.EndGame.LOSE;
+            starEndGame = 0;
+
+            Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": " + starEndGame + " Star");
+
+            return true;
+        }
+
+        idxs = FindTargetNotDie(dataTeamR);
+        if (idxs.Count == 0)
+        {
+            isEndGame = C_Enum.EndGame.WIN;
+
+            bool isFull = true;
+            bool is3Star = true;
+            for (int j = 0; j < dataTeamR.Count; j++)
+            {
+                if (dataTeamR[j].isDie) isFull = false;
+                else
+                {
+                    if (dataTeamR[j].Current_hp <= (dataTeamR[j].max_hp * 0.2)) is3Star = false;
+                }
+            }
+
+            // Nếu còn đủ team
+            if (isFull)
+            {
+                starEndGame = (is3Star) ? 3 : 2;
+            }
+            else starEndGame = 1;
+
+            Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": " + starEndGame + " Star");
+
+            return true;
+        }        
+
+        return false;
+    }
+
+    private void CountTurn(int turn)
+    {
+        M_Action action = new M_Action();
+        action.type = C_Enum.ActionType.TURN;
+
+        action.prop = new M_Prop();
+        action.prop.turn = turn;
+
+        actions.Add(action);
+        C_Util.GetDumpObject(action);
+    }
+
     [Obsolete]
     private void Attack(List<M_Character> TeamAttack, List<M_Character> TeamAttacked, C_Enum.EndGame rs)
-    {
+    {       
         for (int i = 0; i < TeamAttack.Count; i++)
         {
             M_Character actor = TeamAttack[i];
@@ -219,38 +275,7 @@ public class FightingGame : MonoBehaviour
             int find = 1;
 
             List<int> idxs = FindTargetNotDie(TeamAttacked);
-            if(idxs.Count == 0)
-            {
-                isEndGame = rs;
-
-                // Nếu win thì kiểm tra số sao
-                if (rs == C_Enum.EndGame.WIN)
-                {
-                    bool isFull = true;
-                    bool is3Star = true;
-                    for (int j = 0; j < TeamAttack.Count; j++)
-                    {
-                        if (TeamAttack[j].isDie) isFull = false;
-                        else
-                        {
-                            if (TeamAttack[j].Current_hp <= (TeamAttack[j].max_hp * 0.2)) is3Star = false;
-                        }
-                    }
-
-                    // Nếu còn đủ team
-                    if (isFull)
-                    {                        
-                        starEndGame = (is3Star) ? 3 : 2;
-                    }
-                    else starEndGame = 1;
-                }
-                else starEndGame = 0;
-
-                Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": " + starEndGame + " Star");
-
-                break;
-            }
-            else if (idxs.Count > find)
+            if (idxs.Count > find)
             {                
                 ShuffleArray(ref idxs);                
             }
@@ -552,6 +577,10 @@ public class FightingGame : MonoBehaviour
 
         switch (action.type)
         {
+            case C_Enum.ActionType.TURN:
+                Debug.Log("=========================== TURN: " + action.prop.turn);
+                txtTurn.text = action.prop.turn + " / " + milestone.maxTurn;
+                break;
             case C_Enum.ActionType.SKILL:
                 // Debug.Log("=========================== SKILLING: " + idActor);
                 Timing.RunCoroutine(_SKILLING(actor, action));

@@ -36,6 +36,7 @@ public class C_Enum
         BEATEN = 3,
         DIE = 4,
         DODGE = 5,
+        TURN = 6,
     }
 
     public enum TypeText
