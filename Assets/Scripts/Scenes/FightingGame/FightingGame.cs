@@ -47,7 +47,7 @@ public class FightingGame : MonoBehaviour
     [SerializeField]
     private AudioClip acFighting = null;
     [SerializeField]
-    private AudioClip acEndGame = null;
+    private AudioClip acEndGame = null;    
 
     private C_Enum.EndGame isEndGame = C_Enum.EndGame.NOT;
     private int starEndGame = 0;
@@ -69,7 +69,11 @@ public class FightingGame : MonoBehaviour
     private int check = 0;
     private bool getAction = false;
 
-    private bool isSkip = false;    
+    private bool isSkip = false;
+
+    // Statistical
+    [SerializeField]
+    private SerializableDictionary<int, M_Statistical> statistical = new SerializableDictionary<int, M_Statistical>();
 
     private void Awake()
     {
@@ -127,6 +131,7 @@ public class FightingGame : MonoBehaviour
 
     private void Init()
     {
+        statistical.Clear();
         lstObj.ForEach(x => Destroy(x.gameObject));
 
         lstObj.Clear();
@@ -182,6 +187,8 @@ public class FightingGame : MonoBehaviour
 
                 Objs.Add(datas[i].id_nv, c_obj);
                 lstObj.Add(c_obj);
+
+                statistical.Add(datas[i].id_nv, new M_Statistical());
             }
         }
     }
@@ -395,9 +402,10 @@ public class FightingGame : MonoBehaviour
                 }
             }
             else
-            {                
+            {
                 // Nếu dame chết
-                if (dame >= targets[i].Current_hp)
+                bool isDie = dame >= targets[i].Current_hp;
+                if (isDie)
                 {
                     // target chết
                     {
@@ -445,8 +453,19 @@ public class FightingGame : MonoBehaviour
                     actionC.prop.hpChange = -dame;
                     actionC.prop.hpChangeCrit = isCrit;
 
-                    targets[i].Current_hp += -dame;
+                    int hp = targets[i].Current_hp;
+
+                    targets[i].Current_hp += -dame;                    
+
                     action.actions.Add(actionC);
+
+                    if (isDie) dame = hp;
+                }
+
+                // statistical
+                {
+                    statistical[actor.id_nv].dame += (isDodge) ? 0 : dame;
+                    statistical[targets[i].id_nv].tank += (isDodge) ? 0 : dame;
                 }
             }
         }
@@ -555,6 +574,41 @@ public class FightingGame : MonoBehaviour
         for(int i = 0; i < starEndGame; i++)
         {
             imgResultStars[i].sprite = spStar;
+        }
+
+        int sumDameL = 0;
+        int sumTankL = 0;
+        int sumDameR = 0;
+        int sumTankR = 0;
+
+        foreach (var item in statistical)
+        {           
+            if(Objs[item.Key].nhanvat.team == 0)
+            {
+                sumDameL += item.Value.dame;
+                sumTankL += item.Value.tank;
+            }
+            else if(Objs[item.Key].nhanvat.team == 1)
+            {
+                sumDameR += item.Value.dame;
+                sumTankR += item.Value.tank;
+            }
+        }
+
+        foreach (var item in statistical)
+        {
+            if (Objs[item.Key].nhanvat.team == 0)
+            {
+                float perDame = (sumDameL != 0) ? (item.Value.dame * 1.0f / sumDameL * 100) : 0;
+                float perTank = (sumTankL != 0) ? (item.Value.dame * 1.0f / sumTankL * 100) : 0;
+                Debug.Log(item.Key + ": " + perDame + " / " + perTank);
+            }
+            else if (Objs[item.Key].nhanvat.team == 1)
+            {
+                float perDame = (sumDameR != 0) ? (item.Value.dame * 1.0f / sumDameR * 100) : 0;
+                float perTank = (sumTankR != 0) ? (item.Value.dame * 1.0f / sumTankR * 100) : 0;
+                Debug.Log(item.Key + ": " + perDame + " / " + perTank);
+            }
         }
     }
 
@@ -757,7 +811,6 @@ public class FightingGame : MonoBehaviour
         if (isSkip) return;
 
         isSkip = true;
-        EndGame();
     }
 
     void OnGUI()
