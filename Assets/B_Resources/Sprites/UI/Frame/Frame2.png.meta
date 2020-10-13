@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: bc0fee6d7ff4bb34ebe427ba11cb5ef5
+guid: 490e8b24be9883640acb2cb3cf4abf9d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1861295693703529154
-    second: StartMenu_0
-  - first:
-      213: 5438353645726694902
-    second: StartMenu_1
-  - first:
-      213: 3544002832359069916
-    second: StartMenu_2
-  - first:
-      213: -3039208792826366266
-    second: StartMenu_3
+      213: -5815789002041459027
+    second: Frame2_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,85 +104,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StartMenu_0
+      name: Frame2_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 33
-        width: 1371
-        height: 1261
+        x: 5
+        y: 254
+        width: 1190
+        height: 692
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3d36da9d695b26e0800000000000000
-      internalID: -1861295693703529154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StartMenu_1
-      rect:
-        serializedVersion: 2
-        x: 1421
-        y: 1074
-        width: 130
-        height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fd7d70c3d9e87b40800000000000000
-      internalID: 5438353645726694902
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StartMenu_2
-      rect:
-        serializedVersion: 2
-        x: 1415
-        y: 681
-        width: 600
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd89db19cc3de2130800000000000000
-      internalID: 3544002832359069916
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StartMenu_3
-      rect:
-        serializedVersion: 2
-        x: 1419
-        y: 428
-        width: 600
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 48, y: 67, z: 47, w: 55}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c6375194bf82d5d0800000000000000
-      internalID: -3039208792826366266
+      spriteID: daef1bc47ba2a4fa0800000000000000
+      internalID: -5815789002041459027
       vertices: []
       indices: 
       edges: []
