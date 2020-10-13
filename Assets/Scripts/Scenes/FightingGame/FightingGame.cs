@@ -74,6 +74,12 @@ public class FightingGame : MonoBehaviour
     // Statistical
     [SerializeField]
     private SerializableDictionary<int, M_Statistical> statistical = new SerializableDictionary<int, M_Statistical>();
+    [SerializeField]
+    private GameObject statisticalPrb = null;
+    [SerializeField]
+    private Transform lstStatisticalL = null;
+    [SerializeField]
+    private Transform lstStatisticalR = null;
 
     private void Awake()
     {
@@ -597,17 +603,25 @@ public class FightingGame : MonoBehaviour
 
         foreach (var item in statistical)
         {
-            if (Objs[item.Key].nhanvat.team == 0)
+            M_Character nhanvat = new M_Character(Objs[item.Key].nhanvat);
+
+            if (nhanvat.team == 0)
             {
-                float perDame = (sumDameL != 0) ? (item.Value.dame * 1.0f / sumDameL * 100) : 0;
-                float perTank = (sumTankL != 0) ? (item.Value.dame * 1.0f / sumTankL * 100) : 0;
+                float perDame = (sumDameL != 0) ? (item.Value.dame * 1.0f / sumDameL) : 0;
+                float perTank = (sumTankL != 0) ? (item.Value.tank * 1.0f / sumTankL) : 0;
                 Debug.Log(item.Key + ": " + perDame + " / " + perTank);
+
+                C_Statistical c_Statistical = Instantiate(statisticalPrb, lstStatisticalL).GetComponent<C_Statistical>();
+                c_Statistical.set(nhanvat, perDame, perTank);
             }
-            else if (Objs[item.Key].nhanvat.team == 1)
+            else if (nhanvat.team == 1)
             {
-                float perDame = (sumDameR != 0) ? (item.Value.dame * 1.0f / sumDameR * 100) : 0;
-                float perTank = (sumTankR != 0) ? (item.Value.dame * 1.0f / sumTankR * 100) : 0;
+                float perDame = (sumDameR != 0) ? (item.Value.dame * 1.0f / sumDameR) : 0;
+                float perTank = (sumTankR != 0) ? (item.Value.tank * 1.0f / sumTankR) : 0;
                 Debug.Log(item.Key + ": " + perDame + " / " + perTank);
+
+                C_Statistical c_Statistical = Instantiate(statisticalPrb, lstStatisticalR).GetComponent<C_Statistical>();
+                c_Statistical.set(nhanvat, perDame, perTank);
             }
         }
     }

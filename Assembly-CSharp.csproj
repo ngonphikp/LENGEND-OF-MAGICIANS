@@ -117,6 +117,7 @@
     <Compile Include="Assets\Scripts\Scenes\LoginGame\GameObjects\C_Registry.cs" />
     <Compile Include="Assets\Scripts\Scenes\CampaignGame\Prefabs\C_Milestone.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\I_Control.cs" />
+    <Compile Include="Assets\Scripts\Common\Models\M_Statistical.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\HandleConnect.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\HandleExtension.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1002.cs" />
@@ -127,10 +128,10 @@
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_C1000.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Character.cs" />
     <Compile Include="Assets\Scripts\Scenes\LoginGame\GameObjects\C_Login.cs" />
+    <Compile Include="Assets\Scripts\Common\Enum\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\Scenes\FightingGame\FightingGame.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\ErrorCode.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\SerializableDictionary.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_Statistical.cs" />
+    <Compile Include="Assets\Scripts\Scenes\FightingGame\Prefabs\C_Statistical.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\B_Resources\AudioClips\note.txt" />
@@ -140,8 +141,10 @@
      <None Include="Assets\Scripts\Common\Models\note.txt" />
      <None Include="Assets\Scripts\Scenes\ArrangeGame\GameObjects\note.txt" />
      <None Include="Assets\Scripts\Scenes\TavenrGame\GameObjects\note.txt" />
+     <None Include="Assets\Scripts\Scenes\FightingGame\Prefabs\note.txt" />
      <None Include="Assets\Scripts\Scenes\HomeGame\GameObjects\note.txt" />
      <None Include="Assets\Scripts\Scenes\SelectionGame\GameObjects\note.txt" />
+     <None Include="Assets\Scripts\Scenes\FightingGame\GameObjects\note.txt" />
      <None Include="Assets\Resources\ConfigJSon\note.txt" />
      <None Include="Assets\B_Resources\Videos\note.txt" />
      <None Include="Assets\B_Resources\Tiles\note.txt" />
