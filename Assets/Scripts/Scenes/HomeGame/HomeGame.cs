@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class HomeGame : MonoBehaviour
 {
+    public static HomeGame instance = null;
+
+    [Header("Bag Hero")]
     [SerializeField]
     private Transform listHeroAc = null;
     [SerializeField]
@@ -14,6 +17,8 @@ public class HomeGame : MonoBehaviour
     private Transform bagHero = null;
     [SerializeField]
     private GameObject bagEl = null;
+
+    [Header("Music")]
     [SerializeField]
     private Scrollbar sbVolume = null;
     [SerializeField]
@@ -23,8 +28,17 @@ public class HomeGame : MonoBehaviour
     [SerializeField]
     private GameObject btnMuteOff = null;
 
+    [Header("Find Guild")]
+    [SerializeField]
+    private C_FindGuid findGuid = null;    
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
     public void OutGame()
-    {       
+    {
         if (GameManager.instance.test)
         {
             SceneManager.LoadScene("LoginGame");
@@ -55,9 +69,9 @@ public class HomeGame : MonoBehaviour
         {
             if (GameManager.instance.nhanVats[i].idx != -1)
             {
-                C_CharacterAcEl heroAc = Instantiate(heroAcEl, listHeroAc).GetComponent<C_CharacterAcEl>();               
-                heroAc.set(i);
-            }                
+                C_CharacterAcEl heroAc = Instantiate(heroAcEl, listHeroAc).GetComponent<C_CharacterAcEl>();
+                Timing.RunCoroutine(heroAc._set(i));
+            }
         }
 
         yield return Timing.WaitForOneFrame;
@@ -73,7 +87,7 @@ public class HomeGame : MonoBehaviour
         for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
         {
             C_BagEl heroBag = Instantiate(bagEl, bagHero).GetComponent<C_BagEl>();
-            heroBag.set(i);
+            Timing.RunCoroutine(heroBag._set(i));
         }
 
         yield return Timing.WaitForOneFrame;
@@ -89,5 +103,46 @@ public class HomeGame : MonoBehaviour
     public void ChangeMute()
     {
         SoundManager.instance.ChangeMute();
+    }
+
+    [System.Obsolete]
+    public void SendGetGuilds()
+    {
+        Debug.Log("Get Guilds");
+        if (GameManager.instance.test)
+        {
+            List<M_Guild> guilds = new List<M_Guild>();
+
+            string[] names = { "As", "you", "point", "out", "it", "very", "broad", "question",
+                    "but", "try", "touch", "few", "that", "should", "get", "started", "First", "you", "mention",
+                "when", "loads", "You", "can", "two", "ways", "one", "simply", "place", "component",
+                "that", "scene", "then", "Awake", "Start", "method", "component", "respond", "loading", "scene",
+                "Alternatively", "first", "main", "your", "game", "you", "could", "object", "destroyed", "load",
+                "second", "scene", "have", "script", "register", "SceneManager", "sceneLoaded", "event", "which" };
+
+            for (int i = 0; i < 35; i++)
+            {
+                M_Guild guild = new M_Guild();
+
+                guild.id = i;
+                guild.name = names[Random.RandomRange(0, names.Length)] + i;
+                guild.boss = "Boss: " + i;
+                guild.lv = Random.RandomRange(1, 5);
+                guild.noti = "Noti: " + i;
+                guild.UpdateLevel();
+                guild.currentMember = Random.RandomRange((int) guild.maxMember / 2, guild.maxMember + 1);
+
+                guilds.Add(guild);
+            }
+            RecGuilds(guilds);
+            return;
+        }
+
+        UserSendUtil.sendGetGuilds();
+    }
+
+    public void RecGuilds(List<M_Guild> guilds)
+    {
+        Timing.RunCoroutine(findGuid._set(guilds));
     }
 }

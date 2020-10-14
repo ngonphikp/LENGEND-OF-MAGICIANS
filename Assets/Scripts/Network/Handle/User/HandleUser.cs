@@ -31,6 +31,9 @@ public class HandleUser
             case CmdDefine.ENDGAME:
                 handleEndGame(sfsObject);
                 break;
+            case CmdDefine.GETGUILDS:
+                handleGetGuilds(sfsObject);
+                break;
             default:
 
                 break;
@@ -93,6 +96,24 @@ public class HandleUser
             tick_milestones.Add(new M_Milestone(milestones.Size(), 0));
 
             LoginGame.instance.RecInfo(lstNhanVat, tick_milestones);
+        }
+        else
+        {
+            Debug.Log("ErrorCode: " + ec);
+        }
+    }
+
+    public static void handleGetGuilds(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == ErrorCode.SUCCESS)
+        {
+            List<M_Guild> guilds = new List<M_Guild>();
+
+
+
+            HomeGame.instance.RecGuilds(guilds);
         }
         else
         {

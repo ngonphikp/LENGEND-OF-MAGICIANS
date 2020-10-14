@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class M_TaiKhoan
+public class M_Account
 {
     public int id;
     public string usename;
     public string password;
     public string name;
 
-    public M_TaiKhoan()
+    public M_Account()
     {
 
     }
 
-    public M_TaiKhoan(ISFSObject obj)
+    public M_Account(ISFSObject obj)
     {
         if (obj == null) return;
 

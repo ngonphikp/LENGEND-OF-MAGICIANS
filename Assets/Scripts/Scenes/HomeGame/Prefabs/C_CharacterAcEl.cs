@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MEC;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class C_CharacterAcEl : MonoBehaviour
 
     private int idx;
 
-    public void set(int idx)
+    public IEnumerator<float> _set(int idx)
     {
         M_Character nhanVat = new M_Character(GameManager.instance.nhanVats[idx]);
         nhanVat.Current_ep = nhanVat.max_ep = 100;
@@ -28,6 +29,8 @@ public class C_CharacterAcEl : MonoBehaviour
             C_Character hero = obj.GetComponent<C_Character>();
             hero.Set(nhanVat);
         }
+
+        yield return Timing.WaitForOneFrame;
     }
 
     public void ClickHero()

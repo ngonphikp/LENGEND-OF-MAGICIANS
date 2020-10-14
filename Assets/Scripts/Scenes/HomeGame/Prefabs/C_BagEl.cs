@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MEC;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +26,7 @@ public class C_BagEl : MonoBehaviour
 
     private int idx = 0;
 
-    public void set(int idx)
+    public IEnumerator<float> _set(int idx)
     {
         this.idx = idx;
         M_Character nhanVat = new M_Character(GameManager.instance.nhanVats[idx]);
@@ -43,6 +44,8 @@ public class C_BagEl : MonoBehaviour
         txtEl.text = C_Params.Element[nhanVat.element];
 
         active.SetActive(nhanVat.idx != -1);
+
+        yield return Timing.WaitForOneFrame;
     }
 
     public void Click()

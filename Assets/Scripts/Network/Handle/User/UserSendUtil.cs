@@ -130,4 +130,22 @@ public class UserSendUtil
             SmartFoxConnection.send(packet);
         }
     }
+
+    public static void sendGetGuilds()
+    {
+        Debug.Log("=========================== Get Guilds");
+        ISFSObject isFSObject = new SFSObject();
+        isFSObject.PutInt(CmdDefine.CMDID, CmdDefine.GETGUILDS);
+
+        var packet = new ExtensionRequest(ModuleConfig.USER, isFSObject);
+        if (SmartFoxConnection.isAlready())
+        {
+            SmartFoxConnection.send(packet);
+        }
+        else
+        {
+            SmartFoxConnection.Init();
+            SmartFoxConnection.send(packet);
+        }
+    }
 }

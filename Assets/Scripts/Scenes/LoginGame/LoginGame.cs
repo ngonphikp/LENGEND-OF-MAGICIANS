@@ -19,7 +19,7 @@ public class LoginGame : MonoBehaviour
         SoundManager.instance.PlayLoop(audioClip);
     }
 
-    public void RecLogin(M_TaiKhoan tk)
+    public void RecLogin(M_Account tk)
     {
         Debug.Log("====================RecLogin: " + tk.id);
 
@@ -28,7 +28,7 @@ public class LoginGame : MonoBehaviour
         if(!GameManager.instance.test) UserSendUtil.sendGetInfo(tk.id);
     }
 
-    public void RecRegister(M_TaiKhoan tk)
+    public void RecRegister(M_Account tk)
     {
         Debug.Log("====================RecRegister: " + tk.id);
 

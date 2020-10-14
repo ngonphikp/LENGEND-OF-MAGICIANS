@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, M_Skill> skillsDic = new Dictionary<string, M_Skill>();
 
     // Data User
-    public M_TaiKhoan taikhoan = new M_TaiKhoan();
+    public M_Account taikhoan = new M_Account();
     public List<M_Character> nhanVats = new List<M_Character>();
     public List<M_Milestone> tick_milestones = new List<M_Milestone>();
     public Dictionary<int, M_Milestone> tick_milestonesDic = new Dictionary<int, M_Milestone>();
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
     public void TestPlay()
     {
         test = true;
-        taikhoan = new M_TaiKhoan();
+        taikhoan = new M_Account();
         taikhoan.id = 99;
         taikhoan.usename = "username99";
         taikhoan.password = "password99";

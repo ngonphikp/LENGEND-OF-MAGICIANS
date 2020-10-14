@@ -46,7 +46,7 @@ public class HandleLogin
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
         if (ec == ErrorCode.SUCCESS)
         {           
-            LoginGame.instance.RecLogin(new M_TaiKhoan(data.GetSFSObject("taikhoan")));
+            LoginGame.instance.RecLogin(new M_Account(data.GetSFSObject("taikhoan")));
         }
         else
         {
@@ -60,7 +60,7 @@ public class HandleLogin
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
         if (ec == ErrorCode.SUCCESS)
         {
-            LoginGame.instance.RecRegister(new M_TaiKhoan(data.GetSFSObject("taikhoan")));
+            LoginGame.instance.RecRegister(new M_Account(data.GetSFSObject("taikhoan")));
         }
         else
         {
