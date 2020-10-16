@@ -19,14 +19,16 @@ public class C_CardGuild : MonoBehaviour
     [SerializeField]
     private Button btnPlease = null;
 
-    private M_Guild guild = new M_Guild();
+    private int idx = -1;
 
-    public IEnumerator<float> _set(M_Guild guild)
+    public IEnumerator<float> _set(int idx)
     {
-        this.guild = guild;
+        this.idx = idx;
+        M_Guild guild = HomeGame.instance.guilds[idx];
+
         txtLv.text = guild.lv + "";
         txtName.text = guild.name;
-        txtBoss.text = guild.boss;
+        txtBoss.text = guild.accounts[0].name;
         txtNoti.text = guild.noti;
         txtMember.text = guild.currentMember + " / " + guild.maxMember;
 
@@ -37,6 +39,26 @@ public class C_CardGuild : MonoBehaviour
 
     public void Please()
     {
-        Debug.Log("Please Guid: " + guild.id);
+        Debug.Log("Please Guid: " + HomeGame.instance.guilds[idx].id);
+
+        if (GameManager.instance.test)
+        {
+            M_Guild guild = HomeGame.instance.guilds[idx];
+
+            int size = guild.currentMember - guild.accounts.Count;
+            for (int i = 1; i < size; i++)
+            {
+                M_Account account = new M_Account();
+                account.id = i;
+                account.name = "Name: " + account.id;
+
+                guild.accounts.Add(account);
+            }
+
+            GameManager.instance.taikhoan.id_guilds = guild.id;
+            GameManager.instance.guild = guild;
+            HomeGame.instance.ShowGuild(guild);
+            return;
+        }
     }
 }

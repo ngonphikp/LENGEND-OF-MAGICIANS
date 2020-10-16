@@ -16,9 +16,12 @@ public class C_FindGuid : MonoBehaviour
     [SerializeField]
     private InputField ipfKeyS = null;
 
+    [SerializeField]
+    private InputField ipfNameC = null;
+
     private Dictionary<string, C_CardGuild> cardDic = new Dictionary<string, C_CardGuild>();
 
-    public IEnumerator<float> _set(List<M_Guild> guilds)
+    public IEnumerator<float> _set()
     {
         cardDic.Clear();
         foreach (Transform child in content)
@@ -26,12 +29,12 @@ public class C_FindGuid : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < guilds.Count; i++)
+        for (int i = 0; i < HomeGame.instance.guilds.Count; i++)
         {
             C_CardGuild cardGuild = Instantiate(cardGuildPrb, content).GetComponent<C_CardGuild>();
-            Timing.RunCoroutine(cardGuild._set(guilds[i]));
+            Timing.RunCoroutine(cardGuild._set(i));
 
-            cardDic.Add(guilds[i].name, cardGuild);
+            cardDic.Add(HomeGame.instance.guilds[i].name, cardGuild);
         }
 
         popUp.SetActive(true);
@@ -48,5 +51,10 @@ public class C_FindGuid : MonoBehaviour
             if (item.Key.ToUpper().StartsWith(ipfKeyS.text.ToUpper())) item.Value.gameObject.SetActive(true);
             else item.Value.gameObject.SetActive(false);
         }
+    }
+
+    public void Create()
+    {
+        HomeGame.instance.SendCreateGuild(ipfNameC.text);
     }
 }

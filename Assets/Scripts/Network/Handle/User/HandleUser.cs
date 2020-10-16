@@ -34,6 +34,12 @@ public class HandleUser
             case CmdDefine.GETGUILDS:
                 handleGetGuilds(sfsObject);
                 break;
+            case CmdDefine.CREATEGUILD:
+                handleCreateGuild(sfsObject);
+                break;
+            case CmdDefine.GETGUILD:
+                handleGetGuild(sfsObject);
+                break;
             default:
 
                 break;
@@ -114,6 +120,42 @@ public class HandleUser
 
 
             HomeGame.instance.RecGuilds(guilds);
+        }
+        else
+        {
+            Debug.Log("ErrorCode: " + ec);
+        }
+    }
+
+    public static void handleCreateGuild(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == ErrorCode.SUCCESS)
+        {
+            M_Guild guild = new M_Guild();
+
+
+
+            HomeGame.instance.RecCreateGuild(guild);
+        }
+        else
+        {
+            Debug.Log("ErrorCode: " + ec);
+        }
+    }
+
+    public static void handleGetGuild(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == ErrorCode.SUCCESS)
+        {
+            M_Guild guild = new M_Guild();
+
+
+
+            HomeGame.instance.ShowGuild(guild);
         }
         else
         {

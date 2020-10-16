@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     // Infor
     public int idxCharacter = 0;
 
+    // Guild
+    public M_Guild guild;
+
     // Test
     public bool test = false;
 
@@ -138,10 +141,10 @@ public class GameManager : MonoBehaviour
     {
         test = true;
         taikhoan = new M_Account();
-        taikhoan.id = 99;
+        taikhoan.id = 0;
         taikhoan.usename = "username99";
         taikhoan.password = "password99";
-        taikhoan.name = "name99";
+        taikhoan.name = "Name: 0";
 
         nhanVats.Clear();
 

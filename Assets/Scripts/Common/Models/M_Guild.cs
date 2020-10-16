@@ -9,9 +9,11 @@ public class M_Guild
     public string name;
     public int lv;
     public string noti;
-    public string boss;
+    public int boss;
     public int currentMember;
     public int maxMember = 20;
+
+    public List<M_Account> accounts = new List<M_Account>();
 
     public M_Guild()
     {

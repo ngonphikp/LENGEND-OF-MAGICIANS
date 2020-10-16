@@ -17,5 +17,8 @@ public class CmdDefine
         TAVERN = 1006,
         UPLEVEL = 1007,
         ENDGAME = 1008,
-        GETGUILDS = 1009;
+        GETGUILDS = 1009,
+        CREATEGUILD = 1010,
+        GETGUILD = 1011,
+        OUTGUILD = 1012;
 }
