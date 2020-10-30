@@ -1,7 +1,5 @@
 ﻿using Sfs2X.Core;
 using Sfs2X.Util;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

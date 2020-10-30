@@ -23,6 +23,6 @@ public class GuildGame : MonoBehaviour
         GameManager.instance.taikhoan.id_guilds = -1;
         HomeGame.instance.guilds.Clear();
 
-        if (!GameManager.instance.test) UserSendUtil.sendOutGuild();
+        if (!GameManager.instance.test) GuildSendUtil.sendOutGuild();
     }
 }

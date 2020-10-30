@@ -1,5 +1,4 @@
-﻿using MEC;
-using Sfs2X.Entities.Data;
+﻿using Sfs2X.Entities.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,59 +18,12 @@ public class HandleUser
             case CmdDefine.SELECTION:
                 handleSelection(sfsObject);
                 break;
-            case CmdDefine.ARRANGE:
-                handleArrange(sfsObject);
-                break;
             case CmdDefine.TAVERN:
                 handleTavern(sfsObject);
-                break;
-            case CmdDefine.UPLEVEL:
-                handleUpLevel(sfsObject);
-                break;
-            case CmdDefine.ENDGAME:
-                handleEndGame(sfsObject);
-                break;
-            case CmdDefine.GETGUILDS:
-                handleGetGuilds(sfsObject);
-                break;
-            case CmdDefine.CREATEGUILD:
-                handleCreateGuild(sfsObject);
-                break;
-            case CmdDefine.GETGUILD:
-                handleGetGuild(sfsObject);
                 break;
             default:
 
                 break;
-        }
-    }
-
-
-    public static void handleEndGame(SFSObject packet)
-    {
-        Debug.Log("=========================== HANDLE END GAME\n" + packet.GetDump());
-        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
-        {
-            FightingGame.instance.RecEndGame();
-        }
-        else
-        {
-            Debug.Log("ErrorCode: " + ec);
-        }
-    }
-
-    public static void handleUpLevel(SFSObject packet)
-    {
-        Debug.Log("=========================== HANDLE UP LEVEL\n" + packet.GetDump());
-        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
-        {
-            InforGame.instance.RecUpLevel();
-        }
-        else
-        {
-            Debug.Log("ErrorCode: " + ec);
         }
     }
 
@@ -109,60 +61,6 @@ public class HandleUser
         }
     }
 
-    public static void handleGetGuilds(SFSObject packet)
-    {
-        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
-        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
-        {
-            List<M_Guild> guilds = new List<M_Guild>();
-
-
-
-            HomeGame.instance.RecGuilds(guilds);
-        }
-        else
-        {
-            Debug.Log("ErrorCode: " + ec);
-        }
-    }
-
-    public static void handleCreateGuild(SFSObject packet)
-    {
-        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
-        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
-        {
-            M_Guild guild = new M_Guild();
-
-
-
-            HomeGame.instance.RecCreateGuild(guild);
-        }
-        else
-        {
-            Debug.Log("ErrorCode: " + ec);
-        }
-    }
-
-    public static void handleGetGuild(SFSObject packet)
-    {
-        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
-        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
-        {
-            M_Guild guild = new M_Guild();
-
-
-
-            HomeGame.instance.ShowGuild(guild);
-        }
-        else
-        {
-            Debug.Log("ErrorCode: " + ec);
-        }
-    }
-
     public static void handleSelection(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE SELECTION\n" + packet.GetDump());
@@ -181,20 +79,6 @@ public class HandleUser
             }
 
             SelectionGame.instance.RecSelection(lstNhanVat);
-        }
-        else
-        {
-            Debug.Log("ErrorCode: " + ec);
-        }
-    }
-
-    public static void handleArrange(SFSObject packet)
-    {
-        Debug.Log("=========================== HANDLE ARRANGE\n" + packet.GetDump());
-        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
-        {
-            Timing.RunCoroutine(ArrangeGame.instance._RecArrange());
         }
         else
         {

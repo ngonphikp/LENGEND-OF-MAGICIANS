@@ -1,13 +1,10 @@
 ﻿using Sfs2X.Entities.Data;
 using Sfs2X.Requests;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class LoginSendUtil 
+public class LoginSendUtil
 {
-   public static void sendLogin(string username, string password)
+    public static void sendLogin(string username, string password)
     {
         Debug.Log("----------------------->Login");
         ISFSObject isFSObject = new SFSObject();
@@ -24,7 +21,7 @@ public class LoginSendUtil
             SmartFoxConnection.Init();
             SmartFoxConnection.send(packet);
         }
-    }    
+    }
 
     public static void sendRegister(string username, string password)
     {
@@ -43,11 +40,11 @@ public class LoginSendUtil
             SmartFoxConnection.Init();
             SmartFoxConnection.send(packet);
         }
-    }    
+    }
 
     public static void sendLogout()
     {
-        Debug.Log("----------------------->Logout");        
+        Debug.Log("----------------------->Logout");
         SmartFoxConnection.send(new LogoutRequest());
     }
 }

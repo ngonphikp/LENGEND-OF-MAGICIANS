@@ -86,7 +86,6 @@
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1005.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\MathParabola.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\User\UserSendUtil.cs" />
-    <Compile Include="Assets\Scripts\Common\Enum\ModuleConfig.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Action.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CellAT.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\LoginSendUtil.cs" />
@@ -107,6 +106,7 @@
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CharacterAvEl.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\HandleLogin.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_TimeScaleAnim.cs" />
+    <Compile Include="Assets\Scripts\Scenes\GuildGame\GuildGame.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\CmdDefine.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\C_Enum.cs" />
     <Compile Include="Assets\Scripts\Common\Manager\SoundManager.cs" />
@@ -135,7 +135,12 @@
     <Compile Include="Assets\Scripts\Common\Enum\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\Scenes\FightingGame\FightingGame.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\ErrorCode.cs" />
-    <Compile Include="Assets\Scripts\Scenes\GuildGame\GuildGame.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Character\HandleCharacter.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Character\CharacterSendUtil.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\HandleTickMilestone.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\TickMilestoneSendUtil.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Guild\HandleGuild.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Guild\GuildSendUtil.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\B_Resources\AudioClips\note.txt" />

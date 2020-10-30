@@ -157,7 +157,7 @@ public class HomeGame : MonoBehaviour
                 ShowGuild(guild);
                 return;
             }
-            UserSendUtil.sendGetGuild(GameManager.instance.taikhoan.id_guilds);
+            GuildSendUtil.sendGetGuild(GameManager.instance.taikhoan.id_guilds);
         }
     }
 
@@ -207,7 +207,7 @@ public class HomeGame : MonoBehaviour
             return;
         }
         if (guilds.Count == 0 || isSend)
-            UserSendUtil.sendGetGuilds();
+            GuildSendUtil.sendGetGuilds();
     }
 
     public void RecGuilds(List<M_Guild> guilds)
@@ -247,7 +247,7 @@ public class HomeGame : MonoBehaviour
             return;
         }
 
-        UserSendUtil.sendCreateGuild(name);
+        GuildSendUtil.sendCreateGuild(name);
     }
 
     public void RecCreateGuild(M_Guild guild)
@@ -262,5 +262,10 @@ public class HomeGame : MonoBehaviour
     {        
         GameManager.instance.guild = guild;
         MainGame.instance.ShowScene("GuildScene");
+    }
+
+    public void OutGuild()
+    {
+
     }
 }

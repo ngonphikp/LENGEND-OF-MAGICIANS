@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class HandleLogin 
 {
-    public static string notificationError;
-
     public static void OnLoginSuccess(BaseEvent evt)
     {
         Debug.Log("Login server thành công!");

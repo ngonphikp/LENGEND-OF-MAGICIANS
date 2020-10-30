@@ -1,9 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CmdDefine
+﻿public class CmdDefine
 {
+    public const string
+        //___________________MODULE___________________
+        MODULE_USER = "user",
+        MODULE_CHARACTER = "character",
+        MODULE_TICKMILESTONE = "tickmilestone",
+        MODULE_GUILD = "guild";
+
     public const string
         ERROR_CODE = "ec",
         CMDID = "cmdid";
