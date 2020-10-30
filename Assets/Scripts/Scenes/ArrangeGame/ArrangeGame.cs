@@ -173,7 +173,7 @@ public class ArrangeGame : MonoBehaviour
         GameManager.instance.nhanVats = nhanVats;
 
         if (GameManager.instance.test) Timing.RunCoroutine(_RecArrange());
-        else CharacterSendUtil.sendArrange(nhanVats);
+        else RequestCharacter.Arrange(nhanVats);
     }
 
     public IEnumerator<float> _RecArrange()

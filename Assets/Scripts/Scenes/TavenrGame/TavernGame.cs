@@ -39,7 +39,7 @@ public class TavernGame : MonoBehaviour
 
             RecCard(card.type, nhanvat);
         }
-        else UserSendUtil.sendTavern(card.type);
+        else RequestUser.Tavern(card.type);
     }
 
     public void RecCard(C_Enum.CardType type, M_Character nhanvat)

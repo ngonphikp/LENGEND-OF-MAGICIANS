@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandleChacracter
 {
-    public static void OnMessage(SFSObject sfsObject)
+    public static void OnResponse(SFSObject sfsObject)
     {
         short cmdid = (short)sfsObject.GetInt(CmdDefine.CMDID);
 
@@ -13,10 +13,10 @@ public class HandleChacracter
         switch (cmdid)
         {
             case CmdDefine.ARRANGE:
-                handleArrange(sfsObject);
+                HandleArrange(sfsObject);
                 break;
             case CmdDefine.UPLEVEL:
-                handleUpLevel(sfsObject);
+                HandleUplevel(sfsObject);
                 break;
             default:
 
@@ -24,7 +24,7 @@ public class HandleChacracter
         }
     }
 
-    public static void handleUpLevel(SFSObject packet)
+    public static void HandleUplevel(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE UP LEVEL\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
@@ -38,7 +38,7 @@ public class HandleChacracter
         }
     }
 
-    public static void handleArrange(SFSObject packet)
+    public static void HandleArrange(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE ARRANGE\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);

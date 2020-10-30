@@ -22,10 +22,10 @@ public class HandleLogin
             switch (cmdid)
             {
                 case CmdDefine.LOGIN:
-                    handleLogin(data);
+                    HandleLoginF(data);
                     break;
                 case CmdDefine.REGISTER:
-                    handleRegister(data);
+                    HandleRegister(data);
                     break;
                 default:
 
@@ -38,7 +38,7 @@ public class HandleLogin
         }
     }
 
-    public static void handleLogin(ISFSObject data)
+    public static void HandleLoginF(ISFSObject data)
     {
         Debug.Log("______________HANDLE LOGIN_____________\n" + data.GetDump());
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
@@ -52,7 +52,7 @@ public class HandleLogin
         }        
     }
 
-    public static void handleRegister(ISFSObject data)
+    public static void HandleRegister(ISFSObject data)
     {
         Debug.Log("______________HANDLE REGISTER_____________\n" + data.GetDump());
         short ec = data.GetShort(CmdDefine.ERROR_CODE);

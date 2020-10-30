@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HandleTickMilestone
 {
-    public static void OnMessage(SFSObject sfsObject)
+    public static void OnResponse(SFSObject sfsObject)
     {
         short cmdid = (short)sfsObject.GetInt(CmdDefine.CMDID);
 
@@ -12,7 +12,7 @@ public class HandleTickMilestone
         switch (cmdid)
         {
             case CmdDefine.ENDGAME:
-                handleEndGame(sfsObject);
+                HandleEndGame(sfsObject);
                 break;
             default:
 
@@ -21,7 +21,7 @@ public class HandleTickMilestone
     }
 
 
-    public static void handleEndGame(SFSObject packet)
+    public static void HandleEndGame(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE END GAME\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);

@@ -85,10 +85,9 @@
     <Compile Include="Assets\Scripts\Scenes\InforGame\GameObjects\C_Profile.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1005.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\MathParabola.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\User\UserSendUtil.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Action.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CellAT.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Login\LoginSendUtil.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Login\RequestLogin.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1003.cs" />
     <Compile Include="Assets\Scripts\Common\Manager\PlayGame.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1004.cs" />
@@ -136,11 +135,12 @@
     <Compile Include="Assets\Scripts\Scenes\FightingGame\FightingGame.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\ErrorCode.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\HandleCharacter.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Character\CharacterSendUtil.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Character\RequestCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\HandleTickMilestone.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\TickMilestoneSendUtil.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\RequestTickMilestone.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Guild\HandleGuild.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Guild\GuildSendUtil.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Guild\RequestGuild.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\User\RequestUser.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\B_Resources\AudioClips\note.txt" />

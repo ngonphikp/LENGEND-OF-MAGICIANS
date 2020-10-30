@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        LoginSendUtil.sendLogout();
+        RequestLogin.Logout();
         SmartFoxConnection.Sfs.Disconnect();
         SmartFoxConnection.setNull();
     }

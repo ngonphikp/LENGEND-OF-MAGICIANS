@@ -33,7 +33,7 @@ public class C_Registry : MonoBehaviour
 
         Debug.Log("====================Registry: " + username + " + " + password);
 
-        LoginSendUtil.sendRegister(username, password);
+        RequestLogin.Register(username, password);
     }
 
     public void setNoti(string str)

@@ -87,7 +87,7 @@ public class InforGame : MonoBehaviour
     public void UpLevel()
     {        
         if (GameManager.instance.test) RecUpLevel();
-        else CharacterSendUtil.sendUpLevel(nhanVat.id_nv);
+        else RequestCharacter.Uplevel(nhanVat.id_nv);
     }
 
     public void RecUpLevel()

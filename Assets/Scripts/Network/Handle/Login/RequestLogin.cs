@@ -2,9 +2,9 @@
 using Sfs2X.Requests;
 using UnityEngine;
 
-public class LoginSendUtil
+public class RequestLogin
 {
-    public static void sendLogin(string username, string password)
+    public static void Login(string username, string password)
     {
         Debug.Log("----------------------->Login");
         ISFSObject isFSObject = new SFSObject();
@@ -23,7 +23,7 @@ public class LoginSendUtil
         }
     }
 
-    public static void sendRegister(string username, string password)
+    public static void Register(string username, string password)
     {
         Debug.Log("----------------------->Registry");
         ISFSObject isFSObject = new SFSObject();
@@ -42,7 +42,7 @@ public class LoginSendUtil
         }
     }
 
-    public static void sendLogout()
+    public static void Logout()
     {
         Debug.Log("----------------------->Logout");
         SmartFoxConnection.send(new LogoutRequest());

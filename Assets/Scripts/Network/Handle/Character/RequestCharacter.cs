@@ -3,11 +3,11 @@ using Sfs2X.Requests;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSendUtil 
+public class RequestCharacter 
 {
     private static string MODULE = CmdDefine.MODULE_CHARACTER;
 
-    public static void sendUpLevel(int id_nv)
+    public static void Uplevel(int id_nv)
     {
         Debug.Log("=========================== Up Level");
         ISFSObject isFSObject = new SFSObject();
@@ -26,7 +26,7 @@ public class CharacterSendUtil
         }
     }
 
-    public static void sendArrange(List<M_Character> nhanVats)
+    public static void Arrange(List<M_Character> nhanVats)
     {
         Debug.Log("=========================== Arrange");
         ISFSObject isFSObject = new SFSObject();

@@ -47,7 +47,7 @@ public class HomeGame : MonoBehaviour
             SceneManager.LoadScene("LoginGame");
             GameManager.instance.test = false;
         }
-        else LoginSendUtil.sendLogout();
+        else RequestLogin.Logout();
     }
 
     private void OnEnable()
@@ -157,7 +157,7 @@ public class HomeGame : MonoBehaviour
                 ShowGuild(guild);
                 return;
             }
-            GuildSendUtil.sendGetGuild(GameManager.instance.taikhoan.id_guilds);
+            RequestGuild.GetGuild(GameManager.instance.taikhoan.id_guilds);
         }
     }
 
@@ -207,7 +207,7 @@ public class HomeGame : MonoBehaviour
             return;
         }
         if (guilds.Count == 0 || isSend)
-            GuildSendUtil.sendGetGuilds();
+            RequestGuild.GetGuilds();
     }
 
     public void RecGuilds(List<M_Guild> guilds)
@@ -247,7 +247,7 @@ public class HomeGame : MonoBehaviour
             return;
         }
 
-        GuildSendUtil.sendCreateGuild(name);
+        RequestGuild.CreateGuild(name);
     }
 
     public void RecCreateGuild(M_Guild guild)

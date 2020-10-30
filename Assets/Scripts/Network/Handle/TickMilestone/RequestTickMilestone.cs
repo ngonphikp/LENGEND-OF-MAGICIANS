@@ -2,11 +2,11 @@
 using Sfs2X.Requests;
 using UnityEngine;
 
-public class TickMilestoneSendUtil 
+public class RequestTickMilestone 
 {
     private static string MODULE = CmdDefine.MODULE_TICKMILESTONE;
 
-    public static void sendEndGame(int id_ml, int id_tk, int star, bool isSave = true)
+    public static void EndGame(int id_ml, int id_tk, int star, bool isSave = true)
     {
         Debug.Log("=========================== End Game: Save: " + isSave);
         ISFSObject isFSObject = new SFSObject();

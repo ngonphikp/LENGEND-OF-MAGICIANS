@@ -2,11 +2,11 @@
 using Sfs2X.Requests;
 using UnityEngine;
 
-public class UserSendUtil
+public class RequestUser
 {
     private static string MODULE = CmdDefine.MODULE_USER;
 
-    public static void sendGetInfo(int id)
+    public static void GetInfo(int id)
     {
         Debug.Log("=========================== Get Info: " + id);
         ISFSObject isFSObject = new SFSObject();
@@ -25,7 +25,7 @@ public class UserSendUtil
         }
     }
 
-    public static void sendSelection(string tennhanvat, string id_cfg)
+    public static void Selection(string tennhanvat, string id_cfg)
     {
         Debug.Log("=========================== Selection");
         ISFSObject isFSObject = new SFSObject();
@@ -45,7 +45,7 @@ public class UserSendUtil
         }
     }
 
-    public static void sendTavern(C_Enum.CardType type)
+    public static void Tavern(C_Enum.CardType type)
     {
         Debug.Log("=========================== Tavern");
         ISFSObject isFSObject = new SFSObject();

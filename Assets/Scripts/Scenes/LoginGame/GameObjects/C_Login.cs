@@ -33,7 +33,7 @@ public class C_Login : MonoBehaviour
 
         Debug.Log("=======================Login: " + username + " + " + password);
 
-        LoginSendUtil.sendLogin(username, password);
+        RequestLogin.Login(username, password);
     }
 
     public void setNoti(string str)

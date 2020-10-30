@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandleUser
 {
-    public static void OnMessage(SFSObject sfsObject)
+    public static void OnResponse(SFSObject sfsObject)
     {
         short cmdid = (short)sfsObject.GetInt(CmdDefine.CMDID);
 
@@ -13,13 +13,13 @@ public class HandleUser
         switch (cmdid)
         {
             case CmdDefine.GETINFO:
-                handleGetInfo(sfsObject);
+                HandleGetInfo(sfsObject);
                 break;
             case CmdDefine.SELECTION:
-                handleSelection(sfsObject);
+                HandleSelection(sfsObject);
                 break;
             case CmdDefine.TAVERN:
-                handleTavern(sfsObject);
+                HandleTavern(sfsObject);
                 break;
             default:
 
@@ -27,7 +27,7 @@ public class HandleUser
         }
     }
 
-    public static void handleGetInfo(SFSObject packet)
+    public static void HandleGetInfo(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE GET INFO\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
@@ -61,7 +61,7 @@ public class HandleUser
         }
     }
 
-    public static void handleSelection(SFSObject packet)
+    public static void HandleSelection(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE SELECTION\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
@@ -86,7 +86,7 @@ public class HandleUser
         }
     }
 
-    public static void handleTavern(SFSObject packet)
+    public static void HandleTavern(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE TAVERN\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);

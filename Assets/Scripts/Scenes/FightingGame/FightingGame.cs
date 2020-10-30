@@ -542,7 +542,7 @@ public class FightingGame : MonoBehaviour
     public void SendEndGame()
     {        
         if (GameManager.instance.test) RecEndGame();
-        else TickMilestoneSendUtil.sendEndGame(milestone.id, GameManager.instance.taikhoan.id, starEndGame, (starEndGame > milestone.star));
+        else RequestTickMilestone.EndGame(milestone.id, GameManager.instance.taikhoan.id, starEndGame, (starEndGame > milestone.star));
     }
 
     public void RecEndGame()

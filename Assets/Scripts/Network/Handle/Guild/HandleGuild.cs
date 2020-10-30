@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandleGuild
 {
-    public static void OnMessage(SFSObject sfsObject)
+    public static void OnResponse(SFSObject sfsObject)
     {
         short cmdid = (short)sfsObject.GetInt(CmdDefine.CMDID);
 
@@ -13,16 +13,16 @@ public class HandleGuild
         switch (cmdid)
         {
             case CmdDefine.GETGUILDS:
-                handleGetGuilds(sfsObject);
+                HandleGetGuilds(sfsObject);
                 break;
             case CmdDefine.CREATEGUILD:
-                handleCreateGuild(sfsObject);
+                HandleCreateGuild(sfsObject);
                 break;
             case CmdDefine.GETGUILD:
-                handleGetGuild(sfsObject);
+                HandleGetGuild(sfsObject);
                 break;
             case CmdDefine.OUTGUILD:
-                handleOutGuild(sfsObject);
+                HandleOutGuild(sfsObject);
                 break;
             default:
 
@@ -30,7 +30,7 @@ public class HandleGuild
         }
     }
 
-    public static void handleGetGuilds(SFSObject packet)
+    public static void HandleGetGuilds(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
@@ -48,7 +48,7 @@ public class HandleGuild
         }
     }
 
-    public static void handleCreateGuild(SFSObject packet)
+    public static void HandleCreateGuild(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
@@ -66,7 +66,7 @@ public class HandleGuild
         }
     }
 
-    public static void handleGetGuild(SFSObject packet)
+    public static void HandleGetGuild(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
@@ -84,7 +84,7 @@ public class HandleGuild
         }
     }
 
-    public static void handleOutGuild(SFSObject packet)
+    public static void HandleOutGuild(SFSObject packet)
     {
         Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);

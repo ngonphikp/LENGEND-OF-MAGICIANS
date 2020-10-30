@@ -73,7 +73,7 @@ public class SelectionGame : MonoBehaviour
 
         txtNoti.text = "Vào Game thành công";
 
-        if (!GameManager.instance.test) UserSendUtil.sendSelection(tenNhanVat, idHeros[idxActive]);
+        if (!GameManager.instance.test) RequestUser.Selection(tenNhanVat, idHeros[idxActive]);
     }
 
     public void RecSelection(List<M_Character> lstNhanVat)

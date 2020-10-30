@@ -2,11 +2,11 @@
 using Sfs2X.Requests;
 using UnityEngine;
 
-public class GuildSendUtil
+public class RequestGuild
 {
     private static string MODULE = CmdDefine.MODULE_GUILD;
 
-    public static void sendGetGuilds()
+    public static void GetGuilds()
     {
         Debug.Log("=========================== Get Guilds");
         ISFSObject isFSObject = new SFSObject();
@@ -24,7 +24,7 @@ public class GuildSendUtil
         }
     }
 
-    public static void sendCreateGuild(string name)
+    public static void CreateGuild(string name)
     {
         Debug.Log("=========================== Create Guild");
         ISFSObject isFSObject = new SFSObject();
@@ -43,7 +43,7 @@ public class GuildSendUtil
         }
     }
 
-    public static void sendGetGuild(int id)
+    public static void GetGuild(int id)
     {
         Debug.Log("=========================== Get Guild");
         ISFSObject isFSObject = new SFSObject();
@@ -62,7 +62,7 @@ public class GuildSendUtil
         }
     }
 
-    public static void sendOutGuild()
+    public static void OutGuild()
     {
         Debug.Log("=========================== Out Guild");
         ISFSObject isFSObject = new SFSObject();
