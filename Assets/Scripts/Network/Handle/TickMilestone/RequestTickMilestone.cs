@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RequestTickMilestone 
 {
-    private static string MODULE = CmdDefine.MODULE_TICKMILESTONE;
+    private static string MODULE = CmdDefine.Module.MODULE_TICKMILESTONE;
 
     public static void EndGame(int id_ml, int id_tk, int star, bool isSave = true)
     {
         Debug.Log("=========================== End Game: Save: " + isSave);
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMDID, CmdDefine.ENDGAME);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.ENDGAME);
 
         isFSObject.PutInt("id_ml", id_ml);
         isFSObject.PutInt("id_tk", id_tk);

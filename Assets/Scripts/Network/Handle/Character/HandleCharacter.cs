@@ -6,16 +6,16 @@ public class HandleChacracter
 {
     public static void OnResponse(SFSObject sfsObject)
     {
-        short cmdid = (short)sfsObject.GetInt(CmdDefine.CMDID);
+        int cmdid = (short)sfsObject.GetInt(CmdDefine.CMD_ID);
 
         Debug.Log(sfsObject.GetDump());
 
         switch (cmdid)
         {
-            case CmdDefine.ARRANGE:
+            case CmdDefine.CMD.ARRANGE:
                 HandleArrange(sfsObject);
                 break;
-            case CmdDefine.UPLEVEL:
+            case CmdDefine.CMD.UPLEVEL:
                 HandleUplevel(sfsObject);
                 break;
             default:
@@ -28,7 +28,7 @@ public class HandleChacracter
     {
         Debug.Log("=========================== HANDLE UP LEVEL\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             InforGame.instance.RecUpLevel();
         }
@@ -42,7 +42,7 @@ public class HandleChacracter
     {
         Debug.Log("=========================== HANDLE ARRANGE\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             Timing.RunCoroutine(ArrangeGame.instance._RecArrange());
         }

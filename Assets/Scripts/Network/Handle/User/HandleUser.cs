@@ -6,19 +6,19 @@ public class HandleUser
 {
     public static void OnResponse(SFSObject sfsObject)
     {
-        short cmdid = (short)sfsObject.GetInt(CmdDefine.CMDID);
+        int cmdid = (short)sfsObject.GetInt(CmdDefine.CMD_ID);
 
         Debug.Log(sfsObject.GetDump());
 
         switch (cmdid)
         {
-            case CmdDefine.GETINFO:
+            case CmdDefine.CMD.GETINFO:
                 HandleGetInfo(sfsObject);
                 break;
-            case CmdDefine.SELECTION:
+            case CmdDefine.CMD.SELECTION:
                 HandleSelection(sfsObject);
                 break;
-            case CmdDefine.TAVERN:
+            case CmdDefine.CMD.TAVERN:
                 HandleTavern(sfsObject);
                 break;
             default:
@@ -31,7 +31,7 @@ public class HandleUser
     {
         Debug.Log("=========================== HANDLE GET INFO\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             List<M_Character> lstNhanVat = new List<M_Character>();
             ISFSArray nhanvats = packet.GetSFSArray("nhanvats");
@@ -65,7 +65,7 @@ public class HandleUser
     {
         Debug.Log("=========================== HANDLE SELECTION\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             List<M_Character> lstNhanVat = new List<M_Character>();
             ISFSArray nhanvats = packet.GetSFSArray("nhanvats");
@@ -90,7 +90,7 @@ public class HandleUser
     {
         Debug.Log("=========================== HANDLE TAVERN\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             C_Enum.CardType type = (C_Enum.CardType)packet.GetInt("type_tavern");
 

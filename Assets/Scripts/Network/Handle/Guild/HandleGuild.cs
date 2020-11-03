@@ -6,22 +6,22 @@ public class HandleGuild
 {
     public static void OnResponse(SFSObject sfsObject)
     {
-        short cmdid = (short)sfsObject.GetInt(CmdDefine.CMDID);
+        int cmdid = (short)sfsObject.GetInt(CmdDefine.CMD_ID);
 
         Debug.Log(sfsObject.GetDump());
 
         switch (cmdid)
         {
-            case CmdDefine.GETGUILDS:
+            case CmdDefine.CMD.GETGUILDS:
                 HandleGetGuilds(sfsObject);
                 break;
-            case CmdDefine.CREATEGUILD:
+            case CmdDefine.CMD.CREATEGUILD:
                 HandleCreateGuild(sfsObject);
                 break;
-            case CmdDefine.GETGUILD:
+            case CmdDefine.CMD.GETGUILD:
                 HandleGetGuild(sfsObject);
                 break;
-            case CmdDefine.OUTGUILD:
+            case CmdDefine.CMD.OUTGUILD:
                 HandleOutGuild(sfsObject);
                 break;
             default:
@@ -34,7 +34,7 @@ public class HandleGuild
     {
         Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             List<M_Guild> guilds = new List<M_Guild>();
 
@@ -52,7 +52,7 @@ public class HandleGuild
     {
         Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             M_Guild guild = new M_Guild();
 
@@ -70,7 +70,7 @@ public class HandleGuild
     {
         Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             M_Guild guild = new M_Guild();
 
@@ -88,7 +88,7 @@ public class HandleGuild
     {
         Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             HomeGame.instance.OutGuild();
         }

@@ -5,13 +5,13 @@ public class HandleTickMilestone
 {
     public static void OnResponse(SFSObject sfsObject)
     {
-        short cmdid = (short)sfsObject.GetInt(CmdDefine.CMDID);
+        int cmdid = (short)sfsObject.GetInt(CmdDefine.CMD_ID);
 
         Debug.Log(sfsObject.GetDump());
 
         switch (cmdid)
         {
-            case CmdDefine.ENDGAME:
+            case CmdDefine.CMD.ENDGAME:
                 HandleEndGame(sfsObject);
                 break;
             default:
@@ -25,7 +25,7 @@ public class HandleTickMilestone
     {
         Debug.Log("=========================== HANDLE END GAME\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             FightingGame.instance.RecEndGame();
         }

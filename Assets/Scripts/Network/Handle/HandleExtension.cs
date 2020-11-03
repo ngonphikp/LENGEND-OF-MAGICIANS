@@ -15,16 +15,16 @@ public class HandleExtension
 
         switch (cmd)
         {
-            case CmdDefine.MODULE_USER:
+            case CmdDefine.Module.MODULE_USER:
                 HandleUser.OnResponse(dataObject);
                 break;
-            case CmdDefine.MODULE_CHARACTER:
+            case CmdDefine.Module.MODULE_CHARACTER:
                 HandleChacracter.OnResponse(dataObject);
                 break;
-            case CmdDefine.MODULE_TICKMILESTONE:
+            case CmdDefine.Module.MODULE_TICKMILESTONE:
                 HandleTickMilestone.OnResponse(dataObject);
                 break;
-            case CmdDefine.MODULE_GUILD:
+            case CmdDefine.Module.MODULE_GUILD:
                 HandleGuild.OnResponse(dataObject);
                 break;
             default:

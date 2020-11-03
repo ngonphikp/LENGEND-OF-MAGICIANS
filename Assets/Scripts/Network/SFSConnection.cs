@@ -46,13 +46,6 @@ public class SmartFoxConnection : MonoBehaviour
 
     // Handle disconnection automagically
     // ** Important for Windows users - can cause crashes otherwise
-    public static void OnApplicationQuit()
-    {
-        if (sfs.IsConnected)
-        {
-            sfs.Disconnect();
-        }
-    }
     public static void ListenerEvent()
     {
         if (isAlready())

@@ -17,14 +17,14 @@ public class HandleLogin
             
             ISFSObject data = packet.GetSFSObject("loginOutData");
 
-            short cmdid = (short)data.GetInt(CmdDefine.CMDID);
+            int cmdid = (short)data.GetInt(CmdDefine.CMD_ID);
 
             switch (cmdid)
             {
-                case CmdDefine.LOGIN:
+                case CmdDefine.CMD.LOGIN:
                     HandleLoginF(data);
                     break;
-                case CmdDefine.REGISTER:
+                case CmdDefine.CMD.REGISTER:
                     HandleRegister(data);
                     break;
                 default:
@@ -42,7 +42,7 @@ public class HandleLogin
     {
         Debug.Log("______________HANDLE LOGIN_____________\n" + data.GetDump());
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {           
             LoginGame.instance.RecLogin(new M_Account(data.GetSFSObject("taikhoan")));
         }
@@ -56,7 +56,7 @@ public class HandleLogin
     {
         Debug.Log("______________HANDLE REGISTER_____________\n" + data.GetDump());
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
-        if (ec == ErrorCode.SUCCESS)
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             LoginGame.instance.RecRegister(new M_Account(data.GetSFSObject("taikhoan")));
         }
@@ -75,8 +75,9 @@ public class HandleLogin
         try
         {
             Debug.Log("ErrorCode: " + ec);
+            Debug.Log("Message: " + message);
 
-            string noti = (ErrorCode.Codes.ContainsKey(ec)) ? ErrorCode.Codes[ec] : ("ErrorCode: " + ec);
+            string noti = "Message: " + message;
 
             if (C_Login.instance) C_Login.instance.setNoti(noti);
 

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class RequestUser
 {
-    private static string MODULE = CmdDefine.MODULE_USER;
+    private static string MODULE = CmdDefine.Module.MODULE_USER;
 
     public static void GetInfo(int id)
     {
         Debug.Log("=========================== Get Info: " + id);
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMDID, CmdDefine.GETINFO);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GETINFO);
         isFSObject.PutInt("id", id);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
@@ -29,7 +29,7 @@ public class RequestUser
     {
         Debug.Log("=========================== Selection");
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMDID, CmdDefine.SELECTION);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SELECTION);
         isFSObject.PutInt("id", GameManager.instance.taikhoan.id);
         isFSObject.PutUtfString("name", tennhanvat);
         isFSObject.PutUtfString("id_cfg", id_cfg);
@@ -49,7 +49,7 @@ public class RequestUser
     {
         Debug.Log("=========================== Tavern");
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMDID, CmdDefine.TAVERN);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.TAVERN);
 
         isFSObject.PutInt("type_tavern", (int)type);
         isFSObject.PutInt("id", GameManager.instance.taikhoan.id);

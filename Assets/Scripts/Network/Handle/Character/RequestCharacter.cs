@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class RequestCharacter 
 {
-    private static string MODULE = CmdDefine.MODULE_CHARACTER;
+    private static string MODULE = CmdDefine.Module.MODULE_CHARACTER;
 
     public static void Uplevel(int id_nv)
     {
         Debug.Log("=========================== Up Level");
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMDID, CmdDefine.UPLEVEL);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.UPLEVEL);
 
         isFSObject.PutInt("id_nv", id_nv);
         var packet = new ExtensionRequest(MODULE, isFSObject);
@@ -30,7 +30,7 @@ public class RequestCharacter
     {
         Debug.Log("=========================== Arrange");
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMDID, CmdDefine.ARRANGE);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.ARRANGE);
 
         ISFSArray nvObjs = new SFSArray();
         for (int i = 0; i < nhanVats.Count; i++)
