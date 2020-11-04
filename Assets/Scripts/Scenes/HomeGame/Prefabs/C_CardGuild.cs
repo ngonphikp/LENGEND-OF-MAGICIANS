@@ -55,7 +55,7 @@ public class C_CardGuild : MonoBehaviour
                 guild.accounts.Add(account);
             }
 
-            GameManager.instance.taikhoan.id_guilds = guild.id;
+            GameManager.instance.account.id_guilds = guild.id;
             GameManager.instance.guild = guild;
             HomeGame.instance.ShowGuild(guild);
             return;

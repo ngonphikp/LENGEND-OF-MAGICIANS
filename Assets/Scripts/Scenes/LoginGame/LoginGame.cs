@@ -19,22 +19,22 @@ public class LoginGame : MonoBehaviour
         SoundManager.instance.PlayLoop(audioClip);
     }
 
-    public void RecLogin(M_Account tk)
+    public void RecLogin(M_Account ac)
     {
-        Debug.Log("====================RecLogin: " + tk.id);
+        Debug.Log("====================RecLogin: " + ac.id);
 
-        GameManager.instance.taikhoan = tk;
+        GameManager.instance.account = ac;
 
-        if(!GameManager.instance.test) RequestUser.GetInfo(tk.id);
+        if(!GameManager.instance.test) RequestUser.GetInfo(ac.id);
     }
 
-    public void RecRegister(M_Account tk)
+    public void RecRegister(M_Account ac)
     {
-        Debug.Log("====================RecRegister: " + tk.id);
+        Debug.Log("====================RecRegister: " + ac.id);
 
-        GameManager.instance.taikhoan = tk;
+        GameManager.instance.account = ac;
 
-        if (!GameManager.instance.test) RequestUser.GetInfo(tk.id);
+        if (!GameManager.instance.test) RequestUser.GetInfo(ac.id);
     }
 
     public void RecInfo(List<M_Character> lstNhanVat, List<M_Milestone> tick_milestones)
@@ -47,7 +47,7 @@ public class LoginGame : MonoBehaviour
         GameManager.instance.tick_milestones = tick_milestones;
         GameManager.instance.UpdateTickMS();
 
-        GameManager.instance.nhanVats = lstNhanVat;
+        GameManager.instance.characters = lstNhanVat;
         ScenesManager.instance.ChangeScene("MainGame");
 
         SoundManager.instance.PlayLoop();

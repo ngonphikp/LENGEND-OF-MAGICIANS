@@ -1,7 +1,4 @@
 ﻿using Sfs2X.Entities.Data;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public class M_Account
@@ -22,9 +19,9 @@ public class M_Account
     {
         if (obj == null) return;
 
-        this.id = obj.GetInt("id");
-        this.usename = obj.GetUtfString("username");
-        this.password = obj.GetUtfString("password");
-        this.name = obj.GetUtfString("name");
+        this.id = obj.GetInt(CmdDefine.ModuleUser.ID);
+        this.usename = obj.GetUtfString(CmdDefine.ModuleUser.USERNAME);
+        this.password = obj.GetUtfString(CmdDefine.ModuleUser.PASSWORD);
+        this.name = obj.GetUtfString(CmdDefine.ModuleUser.NAME);
     }
 }

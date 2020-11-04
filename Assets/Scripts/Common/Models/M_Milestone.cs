@@ -21,8 +21,8 @@ public class M_Milestone
     {
         if (obj == null) return;
 
-        this.id = obj.GetInt("id_ml");
-        this.star = obj.GetInt("star");
+        this.id = obj.GetInt(CmdDefine.ModuleMilestone.ID_ML);
+        this.star = obj.GetInt(CmdDefine.ModuleMilestone.STAR);
     }
 
     public M_Milestone(int id, int star)

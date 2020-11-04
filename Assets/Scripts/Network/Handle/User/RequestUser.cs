@@ -11,7 +11,7 @@ public class RequestUser
         Debug.Log("=========================== Get Info: " + id);
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GETINFO);
-        isFSObject.PutInt("id", id);
+        isFSObject.PutInt(CmdDefine.ModuleUser.ID, id);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
@@ -30,7 +30,7 @@ public class RequestUser
         Debug.Log("=========================== Selection");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SELECTION);
-        isFSObject.PutInt("id", GameManager.instance.taikhoan.id);
+        isFSObject.PutInt("id", GameManager.instance.account.id);
         isFSObject.PutUtfString("name", tennhanvat);
         isFSObject.PutUtfString("id_cfg", id_cfg);
         var packet = new ExtensionRequest(MODULE, isFSObject);
@@ -52,7 +52,7 @@ public class RequestUser
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.TAVERN);
 
         isFSObject.PutInt("type_tavern", (int)type);
-        isFSObject.PutInt("id", GameManager.instance.taikhoan.id);
+        isFSObject.PutInt("id", GameManager.instance.account.id);
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
         {

@@ -32,7 +32,7 @@ public class InforGame : MonoBehaviour
 
     private void LoadCharacter()
     {
-        nhanVat = GameManager.instance.nhanVats[index];
+        nhanVat = GameManager.instance.characters[index];
 
         foreach (Transform child in posCharacter)
         {
@@ -73,14 +73,14 @@ public class InforGame : MonoBehaviour
     public void Next()
     {
         index++;
-        if (index >= GameManager.instance.nhanVats.Count) index = 0;
+        if (index >= GameManager.instance.characters.Count) index = 0;
         LoadCharacter();
     }
 
     public void Previous()
     {
         index--;
-        if (index <= -1) index = GameManager.instance.nhanVats.Count - 1;
+        if (index <= -1) index = GameManager.instance.characters.Count - 1;
         LoadCharacter();
     }
 
@@ -92,8 +92,8 @@ public class InforGame : MonoBehaviour
 
     public void RecUpLevel()
     {
-        GameManager.instance.nhanVats[index].lv += 1;
-        GameManager.instance.nhanVats[index].UpLevel();
+        GameManager.instance.characters[index].lv += 1;
+        GameManager.instance.characters[index].UpLevel();
         profile.set(nhanVat);
     }
 }

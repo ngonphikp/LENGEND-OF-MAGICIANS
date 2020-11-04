@@ -112,11 +112,11 @@ public class M_Character
         switch (type)
         {
             case C_Enum.ReadType.SERVER:
-                this.id_nv = obj.GetInt("id_nv");
-                this.id_cfg = obj.GetUtfString("id_cfg");
-                this.id_tk = obj.GetInt("id_tk");
-                this.lv = obj.GetInt("lv");
-                this.idx = obj.GetInt("idx");
+                this.id_nv = obj.GetInt(CmdDefine.ModuleCharacter.ID_NV);
+                this.id_cfg = obj.GetUtfString(CmdDefine.ModuleCharacter.ID_CFG);
+                this.id_tk = obj.GetInt(CmdDefine.ModuleCharacter.ID_AC);
+                this.lv = obj.GetInt(CmdDefine.ModuleCharacter.LV);
+                this.idx = obj.GetInt(CmdDefine.ModuleCharacter.IDX);
                 break;
             case C_Enum.ReadType.CONFIG:
                 this.id_cfg = obj.GetText("id");

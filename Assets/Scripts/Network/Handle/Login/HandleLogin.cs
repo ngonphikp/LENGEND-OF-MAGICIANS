@@ -15,7 +15,7 @@ public class HandleLogin
 
             Debug.Log(packet.GetDump());
             
-            ISFSObject data = packet.GetSFSObject("loginOutData");
+            ISFSObject data = packet.GetSFSObject(CmdDefine.ModuleUser.LOGIN_OUT_DATA);
 
             int cmdid = (short)data.GetInt(CmdDefine.CMD_ID);
 
@@ -44,11 +44,15 @@ public class HandleLogin
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {           
-            LoginGame.instance.RecLogin(new M_Account(data.GetSFSObject("taikhoan")));
+            LoginGame.instance.RecLogin(new M_Account(data.GetSFSObject(CmdDefine.ModuleUser.ACCOUNT)));
         }
         else
         {
-            Debug.Log("ErrorCode: " + ec);
+            string noti = "ErrorCode: " + ec;
+            if (C_Login.instance) C_Login.instance.setNoti(noti);
+            if (C_Registry.instance) C_Registry.instance.setNoti(noti);
+
+            RequestLogin.Logout();
         }        
     }
 
@@ -58,11 +62,15 @@ public class HandleLogin
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            LoginGame.instance.RecRegister(new M_Account(data.GetSFSObject("taikhoan")));
+            LoginGame.instance.RecRegister(new M_Account(data.GetSFSObject(CmdDefine.ModuleUser.ACCOUNT)));
         }
         else
         {
-            Debug.Log("ErrorCode: " + ec);
+            string noti = "ErrorCode: " + ec;
+            if (C_Login.instance) C_Login.instance.setNoti(noti);
+            if (C_Registry.instance) C_Registry.instance.setNoti(noti);
+
+            RequestLogin.Logout();
         }
     }
 
@@ -76,12 +84,6 @@ public class HandleLogin
         {
             Debug.Log("ErrorCode: " + ec);
             Debug.Log("Message: " + message);
-
-            string noti = "Message: " + message;
-
-            if (C_Login.instance) C_Login.instance.setNoti(noti);
-
-            if (C_Registry.instance) C_Registry.instance.setNoti(noti);
         }
         catch (Exception e)
         {
@@ -92,6 +94,6 @@ public class HandleLogin
     {
         Debug.Log("Logout server!");
 
-        SceneManager.LoadScene("LoginGame");
+        if(SceneManager.GetActiveScene().name != "LoginGame") SceneManager.LoadScene("LoginGame");
     }
 }

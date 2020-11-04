@@ -29,7 +29,7 @@ public class C_BagEl : MonoBehaviour
     public IEnumerator<float> _set(int idx)
     {
         this.idx = idx;
-        M_Character nhanVat = new M_Character(GameManager.instance.nhanVats[idx]);
+        M_Character nhanVat = new M_Character(GameManager.instance.characters[idx]);
 
         imgBg.sprite = Resources.Load<Sprite>("Sprites/Avatar/BG" + nhanVat.star);
         imgFr.sprite = Resources.Load<Sprite>("Sprites/Avatar/Frame" + nhanVat.star);

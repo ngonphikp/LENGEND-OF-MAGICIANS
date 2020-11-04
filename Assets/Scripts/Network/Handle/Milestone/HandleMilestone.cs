@@ -1,7 +1,7 @@
 ﻿using Sfs2X.Entities.Data;
 using UnityEngine;
 
-public class HandleTickMilestone
+public class HandleMilestone
 {
     public static void OnResponse(SFSObject sfsObject)
     {

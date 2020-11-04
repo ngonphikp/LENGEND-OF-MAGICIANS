@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, M_Skill> skillsDic = new Dictionary<string, M_Skill>();
 
     // Data User
-    public M_Account taikhoan = new M_Account();
-    public List<M_Character> nhanVats = new List<M_Character>();
+    public M_Account account = new M_Account();
+    public List<M_Character> characters = new List<M_Character>();
     public List<M_Milestone> tick_milestones = new List<M_Milestone>();
     public Dictionary<int, M_Milestone> tick_milestonesDic = new Dictionary<int, M_Milestone>();
 
@@ -140,32 +140,32 @@ public class GameManager : MonoBehaviour
     public void TestPlay()
     {
         test = true;
-        taikhoan = new M_Account();
-        taikhoan.id = 0;
-        taikhoan.usename = "username99";
-        taikhoan.password = "password99";
-        taikhoan.name = "Name: 0";
+        account = new M_Account();
+        account.id = 0;
+        account.usename = "username99";
+        account.password = "password99";
+        account.name = "Name: 0";
 
-        nhanVats.Clear();
+        characters.Clear();
 
         int[] arrIdx = { 0, 2, 4, 6, 8 };
 
         for (int i = 0; i < 5; i++)
         {
-            M_Character nhanVat = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), taikhoan.id, i + 1, arrIdx[i]);
-            nhanVat.type = C_Enum.CharacterType.Hero;
-            nhanVat.UpdateById();
-            nhanVat.UpdateLevel();
-            nhanVats.Add(nhanVat);
+            M_Character character = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), account.id, i + 1, arrIdx[i]);
+            character.type = C_Enum.CharacterType.Hero;
+            character.UpdateById();
+            character.UpdateLevel();
+            characters.Add(character);
         }
 
         for (int i = 5; i < 10; i++)
         {
-            M_Character nhanVat = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), taikhoan.id, UnityEngine.Random.Range(1, 15), -1);
-            nhanVat.type = C_Enum.CharacterType.Hero;
-            nhanVat.UpdateById();
-            nhanVat.UpdateLevel();
-            nhanVats.Add(nhanVat);
+            M_Character character = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), account.id, UnityEngine.Random.Range(1, 15), -1);
+            character.type = C_Enum.CharacterType.Hero;
+            character.UpdateById();
+            character.UpdateLevel();
+            characters.Add(character);
         }
 
         tick_milestones.Clear();

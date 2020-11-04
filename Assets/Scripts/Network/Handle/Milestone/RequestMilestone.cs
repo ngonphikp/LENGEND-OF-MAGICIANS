@@ -2,9 +2,9 @@
 using Sfs2X.Requests;
 using UnityEngine;
 
-public class RequestTickMilestone 
+public class RequestMilestone 
 {
-    private static string MODULE = CmdDefine.Module.MODULE_TICKMILESTONE;
+    private static string MODULE = CmdDefine.Module.MODULE_MILESTONE;
 
     public static void EndGame(int id_ml, int id_tk, int star, bool isSave = true)
     {

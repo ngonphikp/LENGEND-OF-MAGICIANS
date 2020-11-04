@@ -86,11 +86,11 @@
     <Compile Include="Assets\Scripts\Common\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scenes\InforGame\GameObjects\C_Profile.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_M1005.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\HandleTickMilestone.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Milestone\HandleMilestone.cs" />
     <Compile Include="Assets\Scripts\Common\Enum\MathParabola.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Action.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CellAT.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\RequestTickMilestone.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Milestone\RequestMilestone.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\RequestLogin.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\C_Ctl_T1003.cs" />
     <Compile Include="Assets\Scripts\Common\Manager\PlayGame.cs" />

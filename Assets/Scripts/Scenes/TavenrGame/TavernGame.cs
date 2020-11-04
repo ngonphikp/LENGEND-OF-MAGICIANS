@@ -24,9 +24,9 @@ public class TavernGame : MonoBehaviour
         if (GameManager.instance.test)
         {
             M_Character nhanvat = new M_Character();
-            nhanvat.id_nv = GameManager.instance.nhanVats[GameManager.instance.nhanVats.Count - 1].id_nv + Random.RandomRange(99, 9999);
+            nhanvat.id_nv = GameManager.instance.characters[GameManager.instance.characters.Count - 1].id_nv + Random.RandomRange(99, 9999);
             nhanvat.id_cfg = "T100" + UnityEngine.Random.Range(2, 8);
-            nhanvat.id_tk = GameManager.instance.taikhoan.id;
+            nhanvat.id_tk = GameManager.instance.account.id;
 
             nhanvat.idx = -1;
 

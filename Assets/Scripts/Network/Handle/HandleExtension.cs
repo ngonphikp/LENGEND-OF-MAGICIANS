@@ -21,8 +21,8 @@ public class HandleExtension
             case CmdDefine.Module.MODULE_CHARACTER:
                 HandleChacracter.OnResponse(dataObject);
                 break;
-            case CmdDefine.Module.MODULE_TICKMILESTONE:
-                HandleTickMilestone.OnResponse(dataObject);
+            case CmdDefine.Module.MODULE_MILESTONE:
+                HandleMilestone.OnResponse(dataObject);
                 break;
             case CmdDefine.Module.MODULE_GUILD:
                 HandleGuild.OnResponse(dataObject);

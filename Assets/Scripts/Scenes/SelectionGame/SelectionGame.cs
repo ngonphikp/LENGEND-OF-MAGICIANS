@@ -84,9 +84,9 @@ public class SelectionGame : MonoBehaviour
 
         if (lstNhanVat.Count > 0)
         {
-            GameManager.instance.nhanVats = lstNhanVat;
+            GameManager.instance.characters = lstNhanVat;
 
-            GameManager.instance.taikhoan.name = tenNhanVat;
+            GameManager.instance.account.name = tenNhanVat;
 
             ScenesManager.instance.ChangeScene("MainGame");
         }

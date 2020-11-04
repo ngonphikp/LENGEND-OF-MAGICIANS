@@ -12,7 +12,7 @@ public class C_CharacterAcEl : MonoBehaviour
 
     public IEnumerator<float> _set(int idx)
     {
-        M_Character nhanVat = new M_Character(GameManager.instance.nhanVats[idx]);
+        M_Character nhanVat = new M_Character(GameManager.instance.characters[idx]);
         nhanVat.Current_ep = nhanVat.max_ep = 100;
         nhanVat.Current_hp = nhanVat.max_hp = nhanVat.hp;
 

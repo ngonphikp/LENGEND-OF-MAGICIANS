@@ -72,7 +72,7 @@ public class C_TVCard : MonoBehaviour
             character.Set(nhanvat);
         }
 
-        GameManager.instance.nhanVats.Add(nhanvat);
+        GameManager.instance.characters.Add(nhanvat);
     }
 
 }

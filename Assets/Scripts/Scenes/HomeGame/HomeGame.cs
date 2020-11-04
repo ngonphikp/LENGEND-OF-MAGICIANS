@@ -68,9 +68,9 @@ public class HomeGame : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
+        for (int i = 0; i < GameManager.instance.characters.Count; i++)
         {
-            if (GameManager.instance.nhanVats[i].idx != -1)
+            if (GameManager.instance.characters[i].idx != -1)
             {
                 C_CharacterAcEl heroAc = Instantiate(heroAcEl, listHeroAc).GetComponent<C_CharacterAcEl>();
                 Timing.RunCoroutine(heroAc._set(i));
@@ -87,7 +87,7 @@ public class HomeGame : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
+        for (int i = 0; i < GameManager.instance.characters.Count; i++)
         {
             C_BagEl heroBag = Instantiate(bagEl, bagHero).GetComponent<C_BagEl>();
             Timing.RunCoroutine(heroBag._set(i));
@@ -110,7 +110,7 @@ public class HomeGame : MonoBehaviour
 
     public void GetGuild()
     {
-        if(GameManager.instance.taikhoan.id_guilds == -1)
+        if(GameManager.instance.account.id_guilds == -1)
         {
             SendGetGuilds(false);
         }
@@ -120,7 +120,7 @@ public class HomeGame : MonoBehaviour
             {
                 for(int i = 0; i < this.guilds.Count; i++)
                 {
-                    if(GameManager.instance.taikhoan.id_guilds == this.guilds[i].id)
+                    if(GameManager.instance.account.id_guilds == this.guilds[i].id)
                     {
                         ShowGuild(this.guilds[i]);
                         return;
@@ -129,14 +129,14 @@ public class HomeGame : MonoBehaviour
 
                 M_Guild guild = new M_Guild();
 
-                guild.id = GameManager.instance.taikhoan.id_guilds;
-                guild.name = "Name" + GameManager.instance.taikhoan.id_guilds;
-                guild.accounts.Add(GameManager.instance.taikhoan);
-                guild.boss = GameManager.instance.taikhoan.id;
+                guild.id = GameManager.instance.account.id_guilds;
+                guild.name = "Name" + GameManager.instance.account.id_guilds;
+                guild.accounts.Add(GameManager.instance.account);
+                guild.boss = GameManager.instance.account.id;
 #pragma warning disable CS0618 // Type or member is obsolete
                 guild.lv = Random.RandomRange(1, 5);
 #pragma warning restore CS0618 // Type or member is obsolete
-                guild.noti = "Noti: " + GameManager.instance.taikhoan.id_guilds;
+                guild.noti = "Noti: " + GameManager.instance.account.id_guilds;
                 guild.UpdateLevel();
 #pragma warning disable CS0618 // Type or member is obsolete
                 guild.currentMember = Random.RandomRange((int)guild.maxMember / 2, guild.maxMember + 1);
@@ -157,7 +157,7 @@ public class HomeGame : MonoBehaviour
                 ShowGuild(guild);
                 return;
             }
-            RequestGuild.GetGuild(GameManager.instance.taikhoan.id_guilds);
+            RequestGuild.GetGuild(GameManager.instance.account.id_guilds);
         }
     }
 
@@ -240,8 +240,8 @@ public class HomeGame : MonoBehaviour
             guild.lv = 1;
             guild.noti = "Noti: " + this.guilds.Count;
             guild.currentMember = 1;
-            guild.accounts.Add(GameManager.instance.taikhoan);
-            guild.boss = GameManager.instance.taikhoan.id;
+            guild.accounts.Add(GameManager.instance.account);
+            guild.boss = GameManager.instance.account.id;
 
             RecCreateGuild(guild);
             return;
@@ -253,7 +253,7 @@ public class HomeGame : MonoBehaviour
     public void RecCreateGuild(M_Guild guild)
     {
         this.guilds.Add(guild);
-        GameManager.instance.taikhoan.id_guilds = guild.id;
+        GameManager.instance.account.id_guilds = guild.id;
 
         ShowGuild(guild);
     }

@@ -20,7 +20,7 @@ public class GuildGame : MonoBehaviour
     public void OutGuild()
     {
         Debug.Log("Out Guild");
-        GameManager.instance.taikhoan.id_guilds = -1;
+        GameManager.instance.account.id_guilds = -1;
         HomeGame.instance.guilds.Clear();
 
         if (!GameManager.instance.test) RequestGuild.OutGuild();

@@ -109,11 +109,11 @@ public class FightingGame : MonoBehaviour
         txtTurn.text = "0 / " + milestone.maxTurn;
 
         dataTeamL.Clear();
-        for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
+        for (int i = 0; i < GameManager.instance.characters.Count; i++)
         {
-            if (GameManager.instance.nhanVats[i].idx != -1)
+            if (GameManager.instance.characters[i].idx != -1)
             {
-                M_Character nhanVat = new M_Character(GameManager.instance.nhanVats[i]);
+                M_Character nhanVat = new M_Character(GameManager.instance.characters[i]);
                 nhanVat.team = 0;
                 nhanVat.id_nv = i;
                 dataTeamL.Add(new M_Character(nhanVat));
@@ -542,7 +542,7 @@ public class FightingGame : MonoBehaviour
     public void SendEndGame()
     {        
         if (GameManager.instance.test) RecEndGame();
-        else RequestTickMilestone.EndGame(milestone.id, GameManager.instance.taikhoan.id, starEndGame, (starEndGame > milestone.star));
+        else RequestMilestone.EndGame(milestone.id, GameManager.instance.account.id, starEndGame, (starEndGame > milestone.star));
     }
 
     public void RecEndGame()

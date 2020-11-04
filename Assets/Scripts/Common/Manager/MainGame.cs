@@ -17,7 +17,7 @@ public class MainGame : MonoBehaviour
 
     private void Start()
     {
-        ShowScene((GameManager.instance.nhanVats.Count > 0) ? scenes[0] : scenes[1]);
+        ShowScene((GameManager.instance.characters.Count > 0) ? scenes[0] : scenes[1]);
     }
 
     public void ShowScene(GameObject obj)

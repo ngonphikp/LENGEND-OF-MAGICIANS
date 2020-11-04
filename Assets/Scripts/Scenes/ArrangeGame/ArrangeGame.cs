@@ -66,9 +66,9 @@ public class ArrangeGame : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < GameManager.instance.nhanVats.Count; i++)
+        for (int i = 0; i < GameManager.instance.characters.Count; i++)
         {
-            M_Character nhanVat = new M_Character(GameManager.instance.nhanVats[i]);
+            M_Character nhanVat = new M_Character(GameManager.instance.characters[i]);
             nhanVat.Current_ep = nhanVat.max_ep = 100;
             nhanVat.Current_hp = nhanVat.max_hp = nhanVat.hp;
             nhanVat.team = 0;
@@ -170,7 +170,7 @@ public class ArrangeGame : MonoBehaviour
 
         //heros.ForEach(x => Debug.Log(x.id_nv + " / " + x.id_cfg + " / " + x.idx));        
         
-        GameManager.instance.nhanVats = nhanVats;
+        GameManager.instance.characters = nhanVats;
 
         if (GameManager.instance.test) Timing.RunCoroutine(_RecArrange());
         else RequestCharacter.Arrange(nhanVats);

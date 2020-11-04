@@ -33,27 +33,27 @@ public class HandleUser
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            List<M_Character> lstNhanVat = new List<M_Character>();
-            ISFSArray nhanvats = packet.GetSFSArray("nhanvats");
-            for(int i = 0; i < nhanvats.Size(); i++)
+            List<M_Character> lstCharacter = new List<M_Character>();
+            ISFSArray characters = packet.GetSFSArray(CmdDefine.ModuleUser.CHARACTERS);
+            for(int i = 0; i < characters.Size(); i++)
             {
-                M_Character nhanVat = new M_Character(nhanvats.GetSFSObject(i), C_Enum.ReadType.SERVER);
+                M_Character nhanVat = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
                 nhanVat.UpdateById();
                 nhanVat.UpdateLevel();
                 nhanVat.type = C_Enum.CharacterType.Hero;
-                lstNhanVat.Add(nhanVat);
+                lstCharacter.Add(nhanVat);
             }
 
-            List<M_Milestone> tick_milestones = new List<M_Milestone>();
-            ISFSArray milestones = packet.GetSFSArray("tick_milestones");
-            for (int i = 0; i < milestones.Size(); i++)
+            List<M_Milestone> lstTick_milestones = new List<M_Milestone>();
+            ISFSArray tick_milestones = packet.GetSFSArray(CmdDefine.ModuleUser.TICK_MILESTONES);
+            for (int i = 0; i < tick_milestones.Size(); i++)
             {
-                tick_milestones.Add(new M_Milestone(milestones.GetSFSObject(i)));
+                lstTick_milestones.Add(new M_Milestone(tick_milestones.GetSFSObject(i)));
             }
 
-            tick_milestones.Add(new M_Milestone(milestones.Size(), 0));
+            lstTick_milestones.Add(new M_Milestone(tick_milestones.Size(), 0));
 
-            LoginGame.instance.RecInfo(lstNhanVat, tick_milestones);
+            LoginGame.instance.RecInfo(lstCharacter, lstTick_milestones);
         }
         else
         {
