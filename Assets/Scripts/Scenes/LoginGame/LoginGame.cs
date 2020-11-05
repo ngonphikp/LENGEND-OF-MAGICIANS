@@ -37,17 +37,17 @@ public class LoginGame : MonoBehaviour
         if (!GameManager.instance.test) RequestUser.GetInfo(ac.id);
     }
 
-    public void RecInfo(List<M_Character> lstNhanVat, List<M_Milestone> tick_milestones)
+    public void RecInfo(List<M_Character> lstCharacter, List<M_Milestone> lstTick_milestones)
     {
         Debug.Log("====================RecInfo");
 
-        //lstNhanVat.ForEach(x => Debug.Log(x.id_nv + " / " + x.id_cfg + " / " + x.id_tk + " / " + x.lv));
-        //tick_milestones.ForEach(x => Debug.Log(x.id + " / " + x.star));
+        //lstCharacter.ForEach(x => Debug.Log(x.id_nv + " / " + x.id_cfg + " / " + x.id_tk + " / " + x.lv));
+        //lstTick_milestones.ForEach(x => Debug.Log(x.id + " / " + x.star));
 
-        GameManager.instance.tick_milestones = tick_milestones;
+        GameManager.instance.tick_milestones = lstTick_milestones;
         GameManager.instance.UpdateTickMS();
 
-        GameManager.instance.characters = lstNhanVat;
+        GameManager.instance.characters = lstCharacter;
         ScenesManager.instance.ChangeScene("MainGame");
 
         SoundManager.instance.PlayLoop();

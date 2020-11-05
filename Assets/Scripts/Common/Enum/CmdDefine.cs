@@ -53,6 +53,9 @@ public class CmdDefine
         public const string CHARACTERS = "characters";
 
         public const string TICK_MILESTONES = "tick_milestones";
+
+        public const string TYPE_TAVERN = "type_tavern";
+        public const string CHARACTER = "character";
     }
 
     public static class ModuleCharacter

@@ -42,11 +42,11 @@ public class TavernGame : MonoBehaviour
         else RequestUser.Tavern(card.type);
     }
 
-    public void RecCard(C_Enum.CardType type, M_Character nhanvat)
+    public void RecCard(C_Enum.CardType type, M_Character character)
     {
         Debug.Log("RecCard: " + type);        
 
-        cardsDic[type].Rec(nhanvat);
+        cardsDic[type].Rec(character);
         cardsDic.Remove(type);
     }
 }

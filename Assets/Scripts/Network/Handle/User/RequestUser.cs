@@ -25,14 +25,14 @@ public class RequestUser
         }
     }
 
-    public static void Selection(string tennhanvat, string id_cfg)
+    public static void Selection(string name, string id_cfg)
     {
         Debug.Log("=========================== Selection");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SELECTION);
-        isFSObject.PutInt("id", GameManager.instance.account.id);
-        isFSObject.PutUtfString("name", tennhanvat);
-        isFSObject.PutUtfString("id_cfg", id_cfg);
+        isFSObject.PutInt(CmdDefine.ModuleUser.ID, GameManager.instance.account.id);
+        isFSObject.PutUtfString(CmdDefine.ModuleUser.NAME, name);
+        isFSObject.PutUtfString(CmdDefine.ModuleCharacter.ID_CFG, id_cfg);
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
         {
@@ -51,8 +51,8 @@ public class RequestUser
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.TAVERN);
 
-        isFSObject.PutInt("type_tavern", (int)type);
-        isFSObject.PutInt("id", GameManager.instance.account.id);
+        isFSObject.PutInt(CmdDefine.ModuleUser.TYPE_TAVERN, (int)type);
+        isFSObject.PutInt(CmdDefine.ModuleUser.ID, GameManager.instance.account.id);
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
         {

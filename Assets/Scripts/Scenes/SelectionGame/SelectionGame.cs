@@ -23,7 +23,7 @@ public class SelectionGame : MonoBehaviour
 
     private int idxActive = 0;
     private C_Character hero = null;
-    private string tenNhanVat = "";
+    private string nameAc = "";
 
     private void Awake()
     {
@@ -67,28 +67,28 @@ public class SelectionGame : MonoBehaviour
 
     public void VaoGame()
     {
-        tenNhanVat = ipfTenNhanVat.text;
+        nameAc = ipfTenNhanVat.text;
 
-        Debug.Log("====================Vào Game: " + tenNhanVat + " / " + idHeros[idxActive]);
+        Debug.Log("====================Vào Game: " + nameAc + " / " + idHeros[idxActive]);
 
         txtNoti.text = "Vào Game thành công";
 
-        if (!GameManager.instance.test) RequestUser.Selection(tenNhanVat, idHeros[idxActive]);
+        if (!GameManager.instance.test) RequestUser.Selection(nameAc, idHeros[idxActive]);
     }
 
-    public void RecSelection(List<M_Character> lstNhanVat)
+    public void RecSelection(List<M_Character> lstCharacters)
     {
         Debug.Log("====================RecSelection");
 
         //lstNhanVat.ForEach(x => Debug.Log(x.id_nv + " / " + x.id_cfg + " / " + x.id_tk + " / " + x.lv));
 
-        if (lstNhanVat.Count > 0)
+        if (lstCharacters.Count > 0)
         {
-            GameManager.instance.characters = lstNhanVat;
+            GameManager.instance.characters = lstCharacters;
 
-            GameManager.instance.account.name = tenNhanVat;
+            GameManager.instance.account.name = nameAc;
 
-            ScenesManager.instance.ChangeScene("MainGame");
+            MainGame.instance.ShowScene("HomeScene");
         }
     }
 

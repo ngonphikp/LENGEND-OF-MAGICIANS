@@ -48,7 +48,8 @@ public class HandleLogin
         }
         else
         {
-            string noti = "ErrorCode: " + ec;
+            string noti = CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec);
+
             if (C_Login.instance) C_Login.instance.setNoti(noti);
             if (C_Registry.instance) C_Registry.instance.setNoti(noti);
 
@@ -66,7 +67,7 @@ public class HandleLogin
         }
         else
         {
-            string noti = "ErrorCode: " + ec;
+            string noti = CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec);
             if (C_Login.instance) C_Login.instance.setNoti(noti);
             if (C_Registry.instance) C_Registry.instance.setNoti(noti);
 
