@@ -17,7 +17,7 @@ public class InforGame : MonoBehaviour
 
     private int index = 0;
     private C_Character hero;
-    private M_Character nhanVat;
+    private M_Character character;
 
     private void Awake()
     {
@@ -32,14 +32,14 @@ public class InforGame : MonoBehaviour
 
     private void LoadCharacter()
     {
-        nhanVat = GameManager.instance.characters[index];
+        character = GameManager.instance.characters[index];
 
         foreach (Transform child in posCharacter)
         {
             Destroy(child.gameObject);
         }
 
-        GameObject heroAs = Resources.Load("Prefabs/Character/" + nhanVat.id_cfg, typeof(GameObject)) as GameObject;
+        GameObject heroAs = Resources.Load("Prefabs/Character/" + character.id_cfg, typeof(GameObject)) as GameObject;
 
         // Test
         if (heroAs == null) heroAs = Resources.Load("Prefabs/Character/T1004", typeof(GameObject)) as GameObject;
@@ -49,20 +49,20 @@ public class InforGame : MonoBehaviour
             GameObject heroObj = Instantiate(heroAs, posCharacter);
             hero = heroObj.GetComponent<C_Character>();
 
-            nhanVat.Current_ep = nhanVat.max_ep = 100;
-            nhanVat.Current_hp = nhanVat.max_hp = nhanVat.hp;
+            character.Current_ep = character.max_ep = 100;
+            character.Current_hp = character.max_hp = character.hp;
 
-            hero.Set(nhanVat, false);
+            hero.Set(character, false);
         }
 
-        for (int i = 0; i < GameManager.instance.herosDic[nhanVat.id_cfg].skills.Count; i++)
+        for (int i = 0; i < GameManager.instance.herosDic[character.id_cfg].skills.Count; i++)
         {
-            Sprite sprite = Resources.Load<Sprite>("Sprites/Skill/" + GameManager.instance.herosDic[nhanVat.id_cfg].skills[i]);
+            Sprite sprite = Resources.Load<Sprite>("Sprites/Skill/" + GameManager.instance.herosDic[character.id_cfg].skills[i]);
 
-            if(sprite != null) imgSkills[i].sprite = Resources.Load<Sprite>("Sprites/Skill/" + GameManager.instance.herosDic[nhanVat.id_cfg].skills[i]);
+            if(sprite != null) imgSkills[i].sprite = Resources.Load<Sprite>("Sprites/Skill/" + GameManager.instance.herosDic[character.id_cfg].skills[i]);
         }
 
-        profile.set(nhanVat);
+        profile.set(character);
     }
 
     public void SkillHero(int anim)
@@ -87,13 +87,13 @@ public class InforGame : MonoBehaviour
     public void UpLevel()
     {        
         if (GameManager.instance.test) RecUpLevel();
-        else RequestCharacter.Uplevel(nhanVat.id_nv);
+        else RequestCharacter.Uplevel(character.id);
     }
 
     public void RecUpLevel()
     {
         GameManager.instance.characters[index].lv += 1;
         GameManager.instance.characters[index].UpLevel();
-        profile.set(nhanVat);
+        profile.set(character);
     }
 }

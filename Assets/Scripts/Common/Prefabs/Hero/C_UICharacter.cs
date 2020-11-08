@@ -70,9 +70,9 @@ public class C_UICharacter : MonoBehaviour
     public void set(C_Character ctl)
     {
         gameObject.SetActive(true);
-        lvTxt.text = ctl.nhanvat.lv.ToString();
-        elImg.sprite = Resources.Load<Sprite>("Sprites/Element/"+ ctl.nhanvat.element);
-        this.isRight = (ctl.nhanvat.team == 1);
+        lvTxt.text = ctl.character.lv.ToString();
+        elImg.sprite = Resources.Load<Sprite>("Sprites/Element/"+ ctl.character.element);
+        this.isRight = (ctl.character.team == 1);
         if (isRight) UIRight();
     }
 

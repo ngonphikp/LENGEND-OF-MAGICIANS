@@ -2,16 +2,16 @@
 using Sfs2X.Requests;
 using UnityEngine;
 
-public class RequestUser
+public class RequestAccount
 {
-    private static string MODULE = CmdDefine.Module.MODULE_USER;
+    private static string MODULE = CmdDefine.Module.MODULE_ACCOUNT;
 
     public static void GetInfo(int id)
     {
         Debug.Log("=========================== Get Info: " + id);
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GETINFO);
-        isFSObject.PutInt(CmdDefine.ModuleUser.ID, id);
+        isFSObject.PutInt(CmdDefine.ModuleAccount.ID, id);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
@@ -30,8 +30,8 @@ public class RequestUser
         Debug.Log("=========================== Selection");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SELECTION);
-        isFSObject.PutInt(CmdDefine.ModuleUser.ID, GameManager.instance.account.id);
-        isFSObject.PutUtfString(CmdDefine.ModuleUser.NAME, name);
+        isFSObject.PutInt(CmdDefine.ModuleAccount.ID, GameManager.instance.account.id);
+        isFSObject.PutUtfString(CmdDefine.ModuleAccount.NAME, name);
         isFSObject.PutUtfString(CmdDefine.ModuleCharacter.ID_CFG, id_cfg);
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
@@ -51,8 +51,8 @@ public class RequestUser
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.TAVERN);
 
-        isFSObject.PutInt(CmdDefine.ModuleUser.TYPE_TAVERN, (int)type);
-        isFSObject.PutInt(CmdDefine.ModuleUser.ID, GameManager.instance.account.id);
+        isFSObject.PutInt(CmdDefine.ModuleAccount.TYPE_TAVERN, (int)type);
+        isFSObject.PutInt(CmdDefine.ModuleAccount.ID, GameManager.instance.account.id);
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
         {

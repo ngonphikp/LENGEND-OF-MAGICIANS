@@ -6,9 +6,10 @@ using UnityEngine;
 [System.Serializable]
 public class M_Character
 {
-    public int id_nv = -1;
+    public int id = -1;
     public string id_cfg;
-    public int id_tk;
+    public int lv;
+    public int idx = -1;
 
     public int def = 1;
     public int hp = 1;
@@ -16,14 +17,11 @@ public class M_Character
     public float crit = 1.0f;
     public float dodge = 1.0f;
 
-    public int lv;
     public string name;
     public string element;
     public int star;
 
     public List<string> skills = new List<string>();
-
-    public int idx = -1;
 
     public bool isDie = false;
 
@@ -60,22 +58,22 @@ public class M_Character
 
     }
 
-    public M_Character(M_Character nhanVat)
+    public M_Character(M_Character character)
     {
-        this.id_nv = nhanVat.id_nv;
-        this.idx = nhanVat.idx;
-        this.id_cfg = nhanVat.id_cfg;
-        this.name = nhanVat.name;
-        this.element = nhanVat.element;
-        this.star = nhanVat.star;
-        this.def = nhanVat.def;
-        this.hp = nhanVat.hp;
-        this.atk = nhanVat.atk;
-        this.crit = nhanVat.crit;
-        this.dodge = nhanVat.dodge;
-        this.team = nhanVat.team;
-        this.lv = nhanVat.lv;
-        this.type = nhanVat.type;
+        this.id = character.id;
+        this.idx = character.idx;
+        this.id_cfg = character.id_cfg;
+        this.name = character.name;
+        this.element = character.element;
+        this.star = character.star;
+        this.def = character.def;
+        this.hp = character.hp;
+        this.atk = character.atk;
+        this.crit = character.crit;
+        this.dodge = character.dodge;
+        this.team = character.team;
+        this.lv = character.lv;
+        this.type = character.type;
 
         this.current_hp = this.max_hp = this.hp;
         this.current_ep = 0;
@@ -96,11 +94,10 @@ public class M_Character
         dodge = dodge * C_Params.coeUpLv;
     }
 
-    public M_Character(int id_nv, string id_cfg, int id_tk, int lv, int idx)
+    public M_Character(int id, string id_cfg, int lv, int idx)
     {
-        this.id_nv = id_nv;
+        this.id = id;
         this.id_cfg = id_cfg;
-        this.id_tk = id_tk;
         this.lv = lv;
         this.idx = idx;
     }
@@ -112,9 +109,8 @@ public class M_Character
         switch (type)
         {
             case C_Enum.ReadType.SERVER:
-                this.id_nv = obj.GetInt(CmdDefine.ModuleCharacter.ID_NV);
+                this.id = obj.GetInt(CmdDefine.ModuleCharacter.ID);
                 this.id_cfg = obj.GetUtfString(CmdDefine.ModuleCharacter.ID_CFG);
-                this.id_tk = obj.GetInt(CmdDefine.ModuleCharacter.ID_AC);
                 this.lv = obj.GetInt(CmdDefine.ModuleCharacter.LV);
                 this.idx = obj.GetInt(CmdDefine.ModuleCharacter.IDX);
                 break;
@@ -144,11 +140,10 @@ public class M_Character
     {
         ISFSObject obj = new SFSObject();
 
-        obj.PutInt("id_nv", this.id_nv);
-        obj.PutUtfString("id_cfg", this.id_cfg);
-        obj.PutInt("id_tk", this.id_tk);
-        obj.PutInt("lv", this.lv);
-        obj.PutInt("idx", this.idx);
+        obj.PutInt(CmdDefine.ModuleCharacter.ID, this.id);
+        obj.PutUtfString(CmdDefine.ModuleCharacter.ID_CFG, this.id_cfg);
+        obj.PutInt(CmdDefine.ModuleCharacter.LV, this.lv);
+        obj.PutInt(CmdDefine.ModuleCharacter.IDX, this.idx);
 
         return obj;
     }

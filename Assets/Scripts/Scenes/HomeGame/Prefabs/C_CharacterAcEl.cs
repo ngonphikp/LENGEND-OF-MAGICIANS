@@ -12,13 +12,13 @@ public class C_CharacterAcEl : MonoBehaviour
 
     public IEnumerator<float> _set(int idx)
     {
-        M_Character nhanVat = new M_Character(GameManager.instance.characters[idx]);
-        nhanVat.Current_ep = nhanVat.max_ep = 100;
-        nhanVat.Current_hp = nhanVat.max_hp = nhanVat.hp;
+        M_Character character = new M_Character(GameManager.instance.characters[idx]);
+        character.Current_ep = character.max_ep = 100;
+        character.Current_hp = character.max_hp = character.hp;
 
         this.idx = idx;
 
-        GameObject heroAs = Resources.Load("Prefabs/Character/" + nhanVat.id_cfg, typeof(GameObject)) as GameObject;
+        GameObject heroAs = Resources.Load("Prefabs/Character/" + character.id_cfg, typeof(GameObject)) as GameObject;
 
         // Test
         if (heroAs == null) heroAs = Resources.Load("Prefabs/Character/T1004", typeof(GameObject)) as GameObject;
@@ -27,7 +27,7 @@ public class C_CharacterAcEl : MonoBehaviour
         {
             GameObject obj = Instantiate(heroAs, content);
             C_Character hero = obj.GetComponent<C_Character>();
-            hero.Set(nhanVat);
+            hero.Set(character);
         }
 
         yield return Timing.WaitForOneFrame;

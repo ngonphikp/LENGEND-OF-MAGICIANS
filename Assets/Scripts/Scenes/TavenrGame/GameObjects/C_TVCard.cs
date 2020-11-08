@@ -47,18 +47,18 @@ public class C_TVCard : MonoBehaviour
         TavernGame.instance.ReqCard(this);
     }
 
-    public void Rec(M_Character nhanvat)
+    public void Rec(M_Character character)
     {
         btnConfirm.interactable = true;
 
-        Debug.Log("Nhan vat moi: " + nhanvat.id_nv + " / " + nhanvat.id_cfg);
+        Debug.Log("Nhan vat moi: " + character.id + " / " + character.id_cfg);
 
         foreach (Transform child in content)
         {
             Destroy(child.gameObject);
         }
 
-        GameObject nvAs = Resources.Load("Prefabs/Character/" + nhanvat.id_cfg, typeof(GameObject)) as GameObject;
+        GameObject nvAs = Resources.Load("Prefabs/Character/" + character.id_cfg, typeof(GameObject)) as GameObject;
 
         if (nvAs == null)
         {
@@ -68,11 +68,11 @@ public class C_TVCard : MonoBehaviour
         if (nvAs != null)
         {
             GameObject obj = Instantiate(nvAs, content);
-            C_Character character = obj.GetComponent<C_Character>();
-            character.Set(nhanvat);
+            C_Character c_character = obj.GetComponent<C_Character>();
+            c_character.Set(character);
         }
 
-        GameManager.instance.characters.Add(nhanvat);
+        GameManager.instance.characters.Add(character);
     }
 
 }

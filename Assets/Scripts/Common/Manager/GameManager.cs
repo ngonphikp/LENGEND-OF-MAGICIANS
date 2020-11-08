@@ -26,12 +26,12 @@ public class GameManager : MonoBehaviour
     // Data User
     public M_Account account = new M_Account();
     public List<M_Character> characters = new List<M_Character>();
-    public List<M_Milestone> tick_milestones = new List<M_Milestone>();
-    public Dictionary<int, M_Milestone> tick_milestonesDic = new Dictionary<int, M_Milestone>();
+    public List<M_Tick_Milestone> tick_milestones = new List<M_Tick_Milestone>();
+    public Dictionary<int, M_Tick_Milestone> tick_milestonesDic = new Dictionary<int, M_Tick_Milestone>();
 
     // Arrange & Fighting
     public bool isAttack = false;
-    public int idxMilestone = 0;
+    public int idMilestone = 0;
 
     private int idxTimeScale = 0;
     public int IdxTimeScale { 
@@ -127,8 +127,8 @@ public class GameManager : MonoBehaviour
 
     public void UpdateTickMS()
     {
-        tick_milestonesDic = new Dictionary<int, M_Milestone>(tick_milestones.Count);
-        tick_milestones.ForEach(x => tick_milestonesDic.Add(x.id, x));
+        tick_milestonesDic = new Dictionary<int, M_Tick_Milestone>(tick_milestonesDic.Count);
+        tick_milestones.ForEach(x => tick_milestonesDic.Add(x.id_ml, x));
     }
 
     private void Update()
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            M_Character character = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), account.id, i + 1, arrIdx[i]);
+            M_Character character = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), i + 1, arrIdx[i]);
             character.type = C_Enum.CharacterType.Hero;
             character.UpdateById();
             character.UpdateLevel();
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 5; i < 10; i++)
         {
-            M_Character character = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), account.id, UnityEngine.Random.Range(1, 15), -1);
+            M_Character character = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), UnityEngine.Random.Range(1, 15), -1);
             character.type = C_Enum.CharacterType.Hero;
             character.UpdateById();
             character.UpdateLevel();
@@ -170,12 +170,12 @@ public class GameManager : MonoBehaviour
 
         tick_milestones.Clear();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 1; i <= 3; i++)
         {
-            tick_milestones.Add(new M_Milestone(i, UnityEngine.Random.Range(1, 4)));
+            tick_milestones.Add(new M_Tick_Milestone(i, account.id, i, UnityEngine.Random.Range(1, 4)));
         }
 
-        tick_milestones.Add(new M_Milestone(tick_milestones.Count, 0));
+        tick_milestones.Add(new M_Tick_Milestone(tick_milestones.Count + 1, account.id, tick_milestones.Count + 1, 0));
 
         UpdateTickMS();
 

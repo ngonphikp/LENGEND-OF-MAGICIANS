@@ -34,13 +34,13 @@ public class CmdDefine
 
     public static class Module
     {
-        public const string MODULE_USER = "user";
+        public const string MODULE_ACCOUNT = "account";
         public const string MODULE_CHARACTER = "character";
-        public const string MODULE_MILESTONE = "milestone";
+        public const string MODULE_TICK_MILESTONE = "tick_milestone";
         public const string MODULE_GUILD = "guild";
     }
 
-    public static class ModuleUser
+    public static class ModuleAccount
     {
         public const string ID = "id";
         public const string USERNAME = "username";
@@ -60,16 +60,15 @@ public class CmdDefine
 
     public static class ModuleCharacter
     {
-        public const string ID_NV = "id_nv";
+        public const string ID = "id";
         public const string ID_CFG = "id_cfg";
-        public const string ID_AC = "id_ac";
         public const string LV = "lv";
         public const string IDX = "idx";
     }
 
-    public static class ModuleMilestone
+    public static class ModuleTickMilestone
     {
-        public const string ID_TML = "id_tml";
+        public const string ID = "id";
         public const string ID_AC = "id_ac";
         public const string ID_ML = "id_ml";
         public const string STAR = "star";

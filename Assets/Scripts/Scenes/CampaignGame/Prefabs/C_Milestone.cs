@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class C_Milestone : MonoBehaviour
@@ -23,8 +20,7 @@ public class C_Milestone : MonoBehaviour
 
         if (GameManager.instance.tick_milestonesDic.ContainsKey(this.milestone.id))
         {
-            this.milestone.star = GameManager.instance.tick_milestonesDic[milestone.id].star;
-            UpdateStar();
+            UpdateStar(GameManager.instance.tick_milestonesDic[milestone.id].star);
 
             this.GetComponent<Button>().interactable = true;
         }        
@@ -35,16 +31,16 @@ public class C_Milestone : MonoBehaviour
         Debug.Log("Click :" + this.milestone.id);
 
         GameManager.instance.isAttack = true;
-        GameManager.instance.idxMilestone = this.milestone.id;
+        GameManager.instance.idMilestone = this.milestone.id;
 
         ScenesManager.instance.ChangeScene("PlayGame");
     }
 
-    private void UpdateStar()
+    private void UpdateStar(int star)
     {
-        if(this.milestone.star <= spriteStars.Length)
+        if(star <= spriteStars.Length)
         {
-            img.sprite = spriteStars[this.milestone.star];
+            img.sprite = spriteStars[star];
         }
         else
         {

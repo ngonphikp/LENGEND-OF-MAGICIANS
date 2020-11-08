@@ -7,13 +7,13 @@ public class RequestCharacter
 {
     private static string MODULE = CmdDefine.Module.MODULE_CHARACTER;
 
-    public static void Uplevel(int id_nv)
+    public static void Uplevel(int id)
     {
         Debug.Log("=========================== Up Level");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.UPLEVEL);
 
-        isFSObject.PutInt("id_nv", id_nv);
+        isFSObject.PutInt(CmdDefine.ModuleCharacter.ID, id);
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
         {
@@ -26,19 +26,19 @@ public class RequestCharacter
         }
     }
 
-    public static void Arrange(List<M_Character> nhanVats)
+    public static void Arrange(List<M_Character> characters)
     {
         Debug.Log("=========================== Arrange");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.ARRANGE);
 
-        ISFSArray nvObjs = new SFSArray();
-        for (int i = 0; i < nhanVats.Count; i++)
+        ISFSArray objs = new SFSArray();
+        for (int i = 0; i < characters.Count; i++)
         {
-            nvObjs.AddSFSObject(nhanVats[i].parse());
+            objs.AddSFSObject(characters[i].parse());
         }
 
-        isFSObject.PutSFSArray("nhanvats", nvObjs);
+        isFSObject.PutSFSArray(CmdDefine.ModuleAccount.CHARACTERS, objs);
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
         {

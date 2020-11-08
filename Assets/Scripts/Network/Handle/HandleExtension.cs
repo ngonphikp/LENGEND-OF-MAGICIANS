@@ -11,18 +11,18 @@ public class HandleExtension
         string cmd = (string)evt.Params["cmd"];
         SFSObject dataObject = (SFSObject)evt.Params["params"];
 
-        Debug.Log(dataObject.GetDump());
+        //Debug.Log(dataObject.GetDump());
 
         switch (cmd)
         {
-            case CmdDefine.Module.MODULE_USER:
-                HandleUser.OnResponse(dataObject);
+            case CmdDefine.Module.MODULE_ACCOUNT:
+                HandleAccount.OnResponse(dataObject);
                 break;
             case CmdDefine.Module.MODULE_CHARACTER:
                 HandleChacracter.OnResponse(dataObject);
                 break;
-            case CmdDefine.Module.MODULE_MILESTONE:
-                HandleMilestone.OnResponse(dataObject);
+            case CmdDefine.Module.MODULE_TICK_MILESTONE:
+                HandleTickMilestone.OnResponse(dataObject);
                 break;
             case CmdDefine.Module.MODULE_GUILD:
                 HandleGuild.OnResponse(dataObject);

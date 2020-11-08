@@ -121,7 +121,7 @@ public class C_Bullet : MonoBehaviour
         timet = Vector2.Distance(startPos, finish) / speed;
 
         prevPoint = this.transform.position;
-        if (!(target.nhanvat.team == 1)) rotateOffset = 0;
+        if (!(target.character.team == 1)) rotateOffset = 0;
 
         // Delay di chuyển bullet
         yield return Timing.WaitForSeconds(timeDlMove / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
@@ -186,7 +186,7 @@ public class C_Bullet : MonoBehaviour
                                 for (int i = 0; i < targets.Count; i++)
                                 {
                                     Vector3 offs = offsetlmH;
-                                    if (!(targets[i].nhanvat.team == 1))
+                                    if (!(targets[i].character.team == 1))
                                         offs.x *= -1;
                                     Vector3 srt = this.transform.position + offs;
 
@@ -204,7 +204,7 @@ public class C_Bullet : MonoBehaviour
 
                 if (isComback)
                 {
-                    Timing.RunCoroutine(_Comback(!(target.nhanvat.team == 1)));
+                    Timing.RunCoroutine(_Comback(!(target.character.team == 1)));
                 }
                 else
                 {

@@ -9,7 +9,7 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     [SerializeField]
     private GameObject Trigger = null;
 
-    public M_Character nhanVat = new M_Character();
+    public M_Character character = new M_Character();
 
     private Canvas canvas;
     private C_DD other;
@@ -17,10 +17,10 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private bool isOnBeginDrag = false;
     private bool isDD = true;
 
-    public void Init(M_Character nhanVat, Canvas canvas, bool isDD = true)
+    public void Init(M_Character character, Canvas canvas, bool isDD = true)
     {
         this.isActive = true;
-        this.nhanVat = nhanVat;
+        this.character = character;
         this.canvas = canvas;
         this.isDD = isDD;
 
@@ -41,11 +41,11 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
         if (this.isActive)
         {
-            GameObject nvAs = Resources.Load("Prefabs/Character/" + nhanVat.id_cfg, typeof(GameObject)) as GameObject;
+            GameObject nvAs = Resources.Load("Prefabs/Character/" + character.id_cfg, typeof(GameObject)) as GameObject;
 
             if (nvAs == null)
             {
-                switch (nhanVat.type)
+                switch (character.type)
                 {
                     case C_Enum.CharacterType.Hero:
                         nvAs = Resources.Load("Prefabs/Character/T1004", typeof(GameObject)) as GameObject;
@@ -64,15 +64,15 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             {
                 GameObject obj = Instantiate(nvAs, this.gameObject.transform);
                 C_Character hero = obj.GetComponent<C_Character>();
-                hero.Set(nhanVat);
+                hero.Set(character);
             }
         }
     }
 
-    public void ReLoad(M_Character nhanVat, bool isActive, Canvas canvas = null)
+    public void ReLoad(M_Character character, bool isActive, Canvas canvas = null)
     {
         this.isActive = isActive;
-        this.nhanVat = nhanVat;        
+        this.character = character;        
 
         if (this.canvas == null) this.canvas = canvas;
 
@@ -82,7 +82,7 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!isActive || !ArrangeGame.instance || !isDD) return;
-        Debug.Log("OnBeginDrag: " + nhanVat.id_nv);
+        Debug.Log("OnBeginDrag: " + character.id);
 
         this.isOnBeginDrag = true;
     }
@@ -90,24 +90,24 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnDrag(PointerEventData eventData)
     {
         if (!isActive || !ArrangeGame.instance || !isDD) return;
-        //Debug.Log("OnDrag: " + parent.nhanVat.id_nv);
+        //Debug.Log("OnDrag: " + parent.character.id);
         this.GetComponent<RectTransform>().anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!isActive || !ArrangeGame.instance || !isDD) return;
-        Debug.Log("OnEndDrag: " + nhanVat.id_nv);
+        Debug.Log("OnEndDrag: " + character.id);
 
         if (other != null)
         {
-            Debug.Log("Other: " + other.nhanVat.id_nv);
+            Debug.Log("Other: " + other.character.id);
 
-            M_Character nhanVat = this.nhanVat;
+            M_Character character = this.character;
             bool isActive = this.isActive;
 
-            this.ReLoad(other.nhanVat, other.isActive, this.canvas);
-            other.ReLoad(nhanVat, isActive, this.canvas);
+            this.ReLoad(other.character, other.isActive, this.canvas);
+            other.ReLoad(character, isActive, this.canvas);
 
             this.setTrigger(false);
             other.setTrigger(false);            
@@ -122,9 +122,9 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnClick()
     {
         if (!isActive || isOnBeginDrag || !ArrangeGame.instance || !isDD) return;
-        Debug.Log("OnClick: " + nhanVat.id_nv);
+        Debug.Log("OnClick: " + character.id);
 
-        ArrangeGame.instance.Objs[nhanVat.id_nv].UnActive();
+        ArrangeGame.instance.Objs[character.id].UnActive();
         ArrangeGame.instance.countActive--;
 
         this.ReLoad(new M_Character(), false);        

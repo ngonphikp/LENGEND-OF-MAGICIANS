@@ -26,7 +26,7 @@ public class C_Character : MonoBehaviour
 
     [SerializeField]
     private I_Control ctl = null;
-    public M_Character nhanvat = new M_Character();
+    public M_Character character = new M_Character();
 
     private List<M_Prop> propHPs = new List<M_Prop>(); // Mảng diễn thay đổi hp
     private List<M_Prop> propEPs = new List<M_Prop>(); // Mảng diễn thay đổi ep
@@ -42,8 +42,8 @@ public class C_Character : MonoBehaviour
     {
         if (UICharacter != null)
         {
-            UICharacter.hp = nhanvat.Current_hp * 1.0f / nhanvat.max_hp;
-            UICharacter.ep = nhanvat.Current_ep * 1.0f / nhanvat.max_ep;
+            UICharacter.hp = character.Current_hp * 1.0f / character.max_hp;
+            UICharacter.ep = character.Current_ep * 1.0f / character.max_ep;
         }
 
         preUpdate = Timing.RunCoroutine(_preUpdate());
@@ -117,9 +117,9 @@ public class C_Character : MonoBehaviour
         }
     }
 
-    public void Set(M_Character nhanvat, bool isUI = true)
+    public void Set(M_Character character, bool isUI = true)
     {
-        this.nhanvat = nhanvat;
+        this.character = character;
 
         if(isUI)
         {
@@ -133,7 +133,7 @@ public class C_Character : MonoBehaviour
 
     public void Play(int i)
     {
-        Debug.Log("=========================== " + this.nhanvat.id_nv + " Play:" + i);
+        Debug.Log("=========================== " + this.character.id + " Play:" + i);
 
         if (isAnim1())
         {
@@ -161,7 +161,7 @@ public class C_Character : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("=========================== " + this.nhanvat.id_nv + " Not Anim 1");
+            Debug.LogWarning("=========================== " + this.character.id + " Not Anim 1");
             Timing.RunCoroutine(_FAnim(i));
         }
     }
@@ -187,7 +187,7 @@ public class C_Character : MonoBehaviour
                 while (true)
                 {
                     Debug.Log("=========================== Loop F Anim");
-                    if (this == null || this.gameObject == null || isAnim1() || nhanvat.isDie) break;
+                    if (this == null || this.gameObject == null || isAnim1() || character.isDie) break;
                     yield return Timing.WaitForSeconds(0.01f);
                 }
                 isAnim6 = true;
@@ -196,7 +196,7 @@ public class C_Character : MonoBehaviour
                 while (true)
                 {
                     Debug.Log("=========================== Loop F Anim");
-                    if (this == null || this.gameObject == null || isAnim1() || nhanvat.isDie) break;
+                    if (this == null || this.gameObject == null || isAnim1() || character.isDie) break;
                     yield return Timing.WaitForSeconds(0.01f);
                 }
                 isAnim7 = true;
@@ -206,11 +206,11 @@ public class C_Character : MonoBehaviour
 
     public void Beaten()
     {
-        if (nhanvat.isDie)
+        if (character.isDie)
         {
             Play(6);
         }
-        if (!nhanvat.isDie && isHit) Play(7);
+        if (!character.isDie && isHit) Play(7);
         if (!isHit && UICharacter != null)
         {
             UICharacter.CreateText(C_Enum.TypeText.DG);
@@ -224,14 +224,14 @@ public class C_Character : MonoBehaviour
 
     public void ChangeHp()
     {
-        //Debug.Log("ChangeHp: " + this.nhanvat.id_nv);
+        //Debug.Log("ChangeHp: " + this.character.id);
         while (propHPs.Count > 0)
         {
             M_Prop prop = propHPs[0];
-            nhanvat.Current_hp += prop.hpChange;
+            character.Current_hp += prop.hpChange;
             if (UICharacter != null)
             {
-                UICharacter.hp = nhanvat.Current_hp * 1.0f / nhanvat.max_hp;
+                UICharacter.hp = character.Current_hp * 1.0f / character.max_hp;
 
                 if (prop.hpChange >= 0)
                 {
@@ -255,14 +255,14 @@ public class C_Character : MonoBehaviour
 
     public void ChangeEp()
     {
-        //Debug.Log("ChangeEp: " + this.nhanvat.id_nv);
+        //Debug.Log("ChangeEp: " + this.character.id);
         while (propEPs.Count > 0)
         {
             M_Prop prop = propEPs[0];
-            nhanvat.Current_ep += prop.epChange;
+            character.Current_ep += prop.epChange;
             if (UICharacter != null)
             {
-                UICharacter.ep = nhanvat.Current_ep * 1.0f / nhanvat.max_ep;
+                UICharacter.ep = character.Current_ep * 1.0f / character.max_ep;
 
                 if (prop.epChange >= 0)
                 {
@@ -289,7 +289,7 @@ public class C_Character : MonoBehaviour
 
     public bool IsPlay()
     {
-        return (this.isAnim1() || this.nhanvat.isDie || !this.gameObject.activeSelf);
+        return (this.isAnim1() || this.character.isDie || !this.gameObject.activeSelf);
     }
 
     public bool isAnim1()

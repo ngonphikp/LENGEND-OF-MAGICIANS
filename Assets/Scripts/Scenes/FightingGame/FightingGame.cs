@@ -105,7 +105,7 @@ public class FightingGame : MonoBehaviour
     private void LoadData()
     {
         Debug.Log("LoadData");
-        milestone = GameManager.instance.milestones[GameManager.instance.idxMilestone];
+        milestone = GameManager.instance.milestonesDic[GameManager.instance.idMilestone];
         txtTurn.text = "0 / " + milestone.maxTurn;
 
         dataTeamL.Clear();
@@ -113,20 +113,20 @@ public class FightingGame : MonoBehaviour
         {
             if (GameManager.instance.characters[i].idx != -1)
             {
-                M_Character nhanVat = new M_Character(GameManager.instance.characters[i]);
-                nhanVat.team = 0;
-                nhanVat.id_nv = i;
-                dataTeamL.Add(new M_Character(nhanVat));
+                M_Character character = new M_Character(GameManager.instance.characters[i]);
+                character.team = 0;
+                character.id = i;
+                dataTeamL.Add(new M_Character(character));
             }
         }
         dataTeamR.Clear();
         for (int i = 0; i < milestone.listCreep.Count; i++)
         {
-            M_Character nhanVat = new M_Character(milestone.listCreep[i]);
-            nhanVat.team = 1;
-            nhanVat.id_nv = i + dataTeamL.Count;
-            nhanVat.UpdateLevel();
-            dataTeamR.Add(new M_Character(nhanVat));
+            M_Character character = new M_Character(milestone.listCreep[i]);
+            character.team = 1;
+            character.id = i + dataTeamL.Count;
+            character.UpdateLevel();
+            dataTeamR.Add(new M_Character(character));
         }
 
         Init();
@@ -189,12 +189,12 @@ public class FightingGame : MonoBehaviour
                 C_Character c_obj = obj.GetComponent<C_Character>();
                 c_obj.Set(new M_Character(datas[i]));
                 c_obj.isCombat = true;
-                c_obj.nhanvat.isDie = false;
+                c_obj.character.isDie = false;
 
-                Objs.Add(datas[i].id_nv, c_obj);
+                Objs.Add(datas[i].id, c_obj);
                 lstObj.Add(c_obj);
 
-                statistical.Add(datas[i].id_nv, new M_Statistical());
+                statistical.Add(datas[i].id, new M_Statistical());
             }
         }
     }
@@ -238,12 +238,12 @@ public class FightingGame : MonoBehaviour
 
             bool isFull = true;
             bool is3Star = true;
-            for (int j = 0; j < dataTeamR.Count; j++)
+            for (int j = 0; j < dataTeamL.Count; j++)
             {
-                if (dataTeamR[j].isDie) isFull = false;
+                if (dataTeamL[j].isDie) isFull = false;
                 else
                 {
-                    if (dataTeamR[j].Current_hp <= (dataTeamR[j].max_hp * 0.2)) is3Star = false;
+                    if (dataTeamL[j].Current_hp <= (dataTeamL[j].max_hp * 0.2)) is3Star = false;
                 }
             }
 
@@ -336,7 +336,7 @@ public class FightingGame : MonoBehaviour
     {
         M_Action action = new M_Action();
 
-        action.idActor = actor.id_nv;
+        action.idActor = actor.id;
         action.type = C_Enum.ActionType.SKILL;
         action.prop = new M_Prop();
         action.prop.idSkill = idSkill;
@@ -344,7 +344,7 @@ public class FightingGame : MonoBehaviour
         action.prop.idTargets.Clear();
         for (int i = 0; i < targets.Count; i++)
         {
-            action.prop.idTargets.Add(targets[i].id_nv);
+            action.prop.idTargets.Add(targets[i].id);
         }
 
         action.actions = new List<M_Action>();
@@ -355,7 +355,7 @@ public class FightingGame : MonoBehaviour
             // Actor tăng -100 ep
             {
                 M_Action actionC = new M_Action();
-                actionC.idActor = actor.id_nv;
+                actionC.idActor = actor.id;
                 actionC.type = C_Enum.ActionType.CHANGE_EP;
 
                 actionC.prop = new M_Prop();
@@ -370,7 +370,7 @@ public class FightingGame : MonoBehaviour
             // Actor tăng 20 ep
             {
                 M_Action actionC = new M_Action();
-                actionC.idActor = actor.id_nv;
+                actionC.idActor = actor.id;
                 actionC.type = C_Enum.ActionType.CHANGE_EP;
 
                 actionC.prop = new M_Prop();
@@ -401,7 +401,7 @@ public class FightingGame : MonoBehaviour
                 // target né đòn
                 {
                     M_Action actionC = new M_Action();
-                    actionC.idActor = targets[i].id_nv;
+                    actionC.idActor = targets[i].id;
                     actionC.type = C_Enum.ActionType.DODGE;
 
                     action.actions.Add(actionC);
@@ -416,7 +416,7 @@ public class FightingGame : MonoBehaviour
                     // target chết
                     {
                         M_Action actionC = new M_Action();
-                        actionC.idActor = targets[i].id_nv;
+                        actionC.idActor = targets[i].id;
                         actionC.type = C_Enum.ActionType.DIE;
 
                         targets[i].isDie = true;
@@ -428,7 +428,7 @@ public class FightingGame : MonoBehaviour
                     // target trúng đòn
                     {
                         M_Action actionC = new M_Action();
-                        actionC.idActor = targets[i].id_nv;
+                        actionC.idActor = targets[i].id;
                         actionC.type = C_Enum.ActionType.BEATEN;
 
                         action.actions.Add(actionC);
@@ -437,7 +437,7 @@ public class FightingGame : MonoBehaviour
                     // target tăng 10 ep        
                     {
                         M_Action actionC = new M_Action();
-                        actionC.idActor = targets[i].id_nv;
+                        actionC.idActor = targets[i].id;
                         actionC.type = C_Enum.ActionType.CHANGE_EP;
 
                         actionC.prop = new M_Prop();
@@ -451,7 +451,7 @@ public class FightingGame : MonoBehaviour
                 // target giảm hp
                 {
                     M_Action actionC = new M_Action();
-                    actionC.idActor = targets[i].id_nv;
+                    actionC.idActor = targets[i].id;
                     actionC.type = C_Enum.ActionType.CHANGE_HP;
 
                     actionC.prop = new M_Prop();
@@ -470,8 +470,8 @@ public class FightingGame : MonoBehaviour
 
                 // statistical
                 {
-                    statistical[actor.id_nv].dame += (isDodge) ? 0 : dame;
-                    statistical[targets[i].id_nv].tank += (isDodge) ? 0 : dame;
+                    statistical[actor.id].dame += (isDodge) ? 0 : dame;
+                    statistical[targets[i].id].tank += (isDodge) ? 0 : dame;
                 }
             }
         }
@@ -542,21 +542,16 @@ public class FightingGame : MonoBehaviour
     public void SendEndGame()
     {        
         if (GameManager.instance.test) RecEndGame();
-        else RequestMilestone.EndGame(milestone.id, GameManager.instance.account.id, starEndGame, (starEndGame > milestone.star));
+        else RequestTickMilestone.EndGame(GameManager.instance.account.id, milestone.id, starEndGame, (starEndGame > GameManager.instance.tick_milestonesDic[GameManager.instance.idMilestone].star));
     }
 
     public void RecEndGame()
     {
-        milestone.star = Math.Max(milestone.star, starEndGame);
+        GameManager.instance.tick_milestonesDic[milestone.id].star = Math.Max(GameManager.instance.tick_milestonesDic[GameManager.instance.idMilestone].star, starEndGame);
 
-        GameManager.instance.tick_milestonesDic[milestone.id].star = milestone.star;
-
-        // Mở khóa ải tiếp theo
-        //Debug.Log(GameManager.instance.idxMilestone);
-        //C_Util.GetDumpObject(GameManager.instance.tick_milestonesDic.Values);
-        if(isEndGame == C_Enum.EndGame.WIN && GameManager.instance.idxMilestone == GameManager.instance.tick_milestones.Count - 1)
+        if(isEndGame == C_Enum.EndGame.WIN && GameManager.instance.idMilestone == GameManager.instance.tick_milestones.Count)
         {
-            GameManager.instance.tick_milestones.Add(new M_Milestone(GameManager.instance.idxMilestone + 1, 0));
+            GameManager.instance.tick_milestones.Add(new M_Tick_Milestone(GameManager.instance.idMilestone + 1, GameManager.instance.account.id, GameManager.instance.idMilestone + 1, 0));
 
             GameManager.instance.UpdateTickMS();
 
@@ -589,12 +584,12 @@ public class FightingGame : MonoBehaviour
 
         foreach (var item in statistical)
         {           
-            if(Objs[item.Key].nhanvat.team == 0)
+            if(Objs[item.Key].character.team == 0)
             {
                 sumDameL += item.Value.dame;
                 sumTankL += item.Value.tank;
             }
-            else if(Objs[item.Key].nhanvat.team == 1)
+            else if(Objs[item.Key].character.team == 1)
             {
                 sumDameR += item.Value.dame;
                 sumTankR += item.Value.tank;
@@ -603,25 +598,25 @@ public class FightingGame : MonoBehaviour
 
         foreach (var item in statistical)
         {
-            M_Character nhanvat = new M_Character(Objs[item.Key].nhanvat);
+            M_Character character = new M_Character(Objs[item.Key].character);
 
-            if (nhanvat.team == 0)
+            if (character.team == 0)
             {
                 float perDame = (sumDameL != 0) ? (item.Value.dame * 1.0f / sumDameL) : 0;
                 float perTank = (sumTankL != 0) ? (item.Value.tank * 1.0f / sumTankL) : 0;
                 Debug.Log(item.Key + ": " + perDame + " / " + perTank);
 
                 C_Statistical c_Statistical = Instantiate(statisticalPrb, lstStatisticalL).GetComponent<C_Statistical>();
-                c_Statistical.set(nhanvat, perDame, perTank);
+                c_Statistical.set(character, perDame, perTank);
             }
-            else if (nhanvat.team == 1)
+            else if (character.team == 1)
             {
                 float perDame = (sumDameR != 0) ? (item.Value.dame * 1.0f / sumDameR) : 0;
                 float perTank = (sumTankR != 0) ? (item.Value.tank * 1.0f / sumTankR) : 0;
                 Debug.Log(item.Key + ": " + perDame + " / " + perTank);
 
                 C_Statistical c_Statistical = Instantiate(statisticalPrb, lstStatisticalR).GetComponent<C_Statistical>();
-                c_Statistical.set(nhanvat, perDame, perTank);
+                c_Statistical.set(character, perDame, perTank);
             }
         }
     }
@@ -665,12 +660,12 @@ public class FightingGame : MonoBehaviour
                 break;
             case C_Enum.ActionType.DIE:
                 Debug.LogWarning("=========================== DIE: " + idActor);
-                actor.nhanvat.isDie = true;
+                actor.character.isDie = true;
 
                 while (true)
                 {
                     if (actor.isAnim1()) break;
-                    Debug.Log("=========================== Loop " + actor.nhanvat.id_nv + " Anim1");
+                    Debug.Log("=========================== Loop " + actor.character.id + " Anim1");
                     yield return Timing.WaitForSeconds(0.01f);
                 }
                 actor.Play(6);
@@ -706,7 +701,7 @@ public class FightingGame : MonoBehaviour
             while (true)
             {
                 if (actor.isAnim1()) break;
-                Debug.Log("=========================== Loop " + actor.nhanvat.id_nv + " Anim1");
+                Debug.Log("=========================== Loop " + actor.character.id + " Anim1");
                 yield return Timing.WaitForSeconds(0.01f);
             }
             actor.Play(action.prop.idSkill);
@@ -714,12 +709,12 @@ public class FightingGame : MonoBehaviour
         actor.ChangeEp();
         actor.ChangeHp();
 
-        if (actor.nhanvat.isDie)
+        if (actor.character.isDie)
         {
             while (true)
             {
                 if (actor.isAnim1()) break;
-                Debug.Log("=========================== Loop " + actor.nhanvat.id_nv + " Anim1");
+                Debug.Log("=========================== Loop " + actor.character.id + " Anim1");
                 yield return Timing.WaitForSeconds(0.01f);
             }
             actor.Play(6);
@@ -756,7 +751,7 @@ public class FightingGame : MonoBehaviour
                         actionCs.RemoveAt(i--);
                         break;
                     case C_Enum.ActionType.DIE:
-                        target.nhanvat.isDie = true;
+                        target.character.isDie = true;
                         actionCs.RemoveAt(i--);
                         break;
                 }
@@ -778,7 +773,7 @@ public class FightingGame : MonoBehaviour
     {
         for (int i = 0; i < this.targets.Count; i++)
         {
-            if (this.targets[i].nhanvat.id_nv == id_target) return i;
+            if (this.targets[i].character.id == id_target) return i;
         }
         return -1;
     }
@@ -790,7 +785,7 @@ public class FightingGame : MonoBehaviour
             M_Action actionC = actionCs[i];
             int idActorC = actionC.idActor;
 
-            if (actor.nhanvat.id_nv == idActorC)
+            if (actor.character.id == idActorC)
             {
                 switch (actionC.type)
                 {
@@ -803,7 +798,7 @@ public class FightingGame : MonoBehaviour
                         actionCs.RemoveAt(i--);
                         break;
                     case C_Enum.ActionType.DIE:
-                        actor.nhanvat.isDie = true;
+                        actor.character.isDie = true;
                         actionCs.RemoveAt(i--);
                         break;
                 }

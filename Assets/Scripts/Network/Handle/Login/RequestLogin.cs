@@ -9,8 +9,8 @@ public class RequestLogin
         Debug.Log("----------------------->Login");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.LOGIN);
-        isFSObject.PutUtfString(CmdDefine.ModuleUser.USERNAME, username);
-        isFSObject.PutUtfString(CmdDefine.ModuleUser.PASSWORD, password);
+        isFSObject.PutUtfString(CmdDefine.ModuleAccount.USERNAME, username);
+        isFSObject.PutUtfString(CmdDefine.ModuleAccount.PASSWORD, password);
         var packet = new LoginRequest("", "", ConfigConnection.Zone, isFSObject);
         if (SmartFoxConnection.isAlready())
         {

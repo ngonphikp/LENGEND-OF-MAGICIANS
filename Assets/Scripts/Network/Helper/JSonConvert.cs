@@ -100,7 +100,6 @@ public class JSonConvert
             M_Milestone milestone = new M_Milestone();
             milestone.id = obj.GetInt("id");
             milestone.name = obj.GetText("name");
-            milestone.star = obj.GetInt("star");
 
             milestone.listCreep.Clear();
 

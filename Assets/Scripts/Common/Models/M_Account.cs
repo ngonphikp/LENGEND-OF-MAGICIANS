@@ -19,9 +19,9 @@ public class M_Account
     {
         if (obj == null) return;
 
-        this.id = obj.GetInt(CmdDefine.ModuleUser.ID);
-        this.usename = obj.GetUtfString(CmdDefine.ModuleUser.USERNAME);
-        this.password = obj.GetUtfString(CmdDefine.ModuleUser.PASSWORD);
-        this.name = obj.GetUtfString(CmdDefine.ModuleUser.NAME);
+        this.id = obj.GetInt(CmdDefine.ModuleAccount.ID);
+        this.usename = obj.GetUtfString(CmdDefine.ModuleAccount.USERNAME);
+        this.password = obj.GetUtfString(CmdDefine.ModuleAccount.PASSWORD);
+        this.name = obj.GetUtfString(CmdDefine.ModuleAccount.NAME);
     }
 }

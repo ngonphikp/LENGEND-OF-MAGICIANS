@@ -84,7 +84,7 @@ public class C_LibSkill : MonoBehaviour
         // DeLay anim trúng đòn
         yield return Timing.WaitForSeconds(time / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
         targets[index].Beaten();
-        //Debug.Log("===========================Hit: " + targets[index].nhanvat.id_nv);
+        //Debug.Log("===========================Hit: " + targets[index].character.id);
     }
 
     public static void Shoot(GameObject bullet, Transform parent, List<C_Character> targets = null, bool isRotate = false, float timeInit = 0.0f, float timeDlMove = 0.0f, Vector3 offset = new Vector3())
@@ -106,7 +106,7 @@ public class C_LibSkill : MonoBehaviour
 
         // Lấy vị trí kết thúc        
         Vector3 offs = offset;
-        if (!(target.nhanvat.team == 1))
+        if (!(target.character.team == 1))
             offs.x *= -1;
         Vector3 fsh = finish + offs;
 
@@ -115,7 +115,7 @@ public class C_LibSkill : MonoBehaviour
             Vector3 A = start;
             Vector3 B = fsh;
             float angle = Mathf.Rad2Deg * Mathf.Atan((B.y - A.y) / (B.x - A.x));
-            if (!(target.nhanvat.team == 1))
+            if (!(target.character.team == 1))
                 angle *= -1;
             bl.transform.Rotate(0, 0, angle);
         }

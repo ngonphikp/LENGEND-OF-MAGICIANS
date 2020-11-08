@@ -23,23 +23,22 @@ public class TavernGame : MonoBehaviour
         
         if (GameManager.instance.test)
         {
-            M_Character nhanvat = new M_Character();
-            nhanvat.id_nv = GameManager.instance.characters[GameManager.instance.characters.Count - 1].id_nv + Random.RandomRange(99, 9999);
-            nhanvat.id_cfg = "T100" + UnityEngine.Random.Range(2, 8);
-            nhanvat.id_tk = GameManager.instance.account.id;
+            M_Character character = new M_Character();
+            character.id = GameManager.instance.characters[GameManager.instance.characters.Count - 1].id + Random.RandomRange(99, 9999);
+            character.id_cfg = "T100" + UnityEngine.Random.Range(2, 8);
 
-            nhanvat.idx = -1;
+            character.idx = -1;
 
-            nhanvat.lv = 1;
-            nhanvat.UpdateById();
-            nhanvat.Current_ep = nhanvat.max_ep = 100;
-            nhanvat.Current_hp = nhanvat.max_hp = nhanvat.hp;
-            nhanvat.UpdateLevel();
-            nhanvat.type = C_Enum.CharacterType.Hero;
+            character.lv = 1;
+            character.UpdateById();
+            character.Current_ep = character.max_ep = 100;
+            character.Current_hp = character.max_hp = character.hp;
+            character.UpdateLevel();
+            character.type = C_Enum.CharacterType.Hero;
 
-            RecCard(card.type, nhanvat);
+            RecCard(card.type, character);
         }
-        else RequestUser.Tavern(card.type);
+        else RequestAccount.Tavern(card.type);
     }
 
     public void RecCard(C_Enum.CardType type, M_Character character)

@@ -15,7 +15,7 @@ public class HandleLogin
 
             Debug.Log(packet.GetDump());
             
-            ISFSObject data = packet.GetSFSObject(CmdDefine.ModuleUser.LOGIN_OUT_DATA);
+            ISFSObject data = packet.GetSFSObject(CmdDefine.ModuleAccount.LOGIN_OUT_DATA);
 
             int cmdid = (short)data.GetInt(CmdDefine.CMD_ID);
 
@@ -44,7 +44,7 @@ public class HandleLogin
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {           
-            LoginGame.instance.RecLogin(new M_Account(data.GetSFSObject(CmdDefine.ModuleUser.ACCOUNT)));
+            LoginGame.instance.RecLogin(new M_Account(data.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT)));
         }
         else
         {
@@ -63,7 +63,7 @@ public class HandleLogin
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            LoginGame.instance.RecRegister(new M_Account(data.GetSFSObject(CmdDefine.ModuleUser.ACCOUNT)));
+            LoginGame.instance.RecRegister(new M_Account(data.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT)));
         }
         else
         {

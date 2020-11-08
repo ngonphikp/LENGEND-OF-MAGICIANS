@@ -25,7 +25,7 @@ public class LoginGame : MonoBehaviour
 
         GameManager.instance.account = ac;
 
-        if(!GameManager.instance.test) RequestUser.GetInfo(ac.id);
+        if(!GameManager.instance.test) RequestAccount.GetInfo(ac.id);
     }
 
     public void RecRegister(M_Account ac)
@@ -34,10 +34,10 @@ public class LoginGame : MonoBehaviour
 
         GameManager.instance.account = ac;
 
-        if (!GameManager.instance.test) RequestUser.GetInfo(ac.id);
+        if (!GameManager.instance.test) RequestAccount.GetInfo(ac.id);
     }
 
-    public void RecInfo(List<M_Character> lstCharacter, List<M_Milestone> lstTick_milestones)
+    public void RecInfo(List<M_Character> lstCharacter, List<M_Tick_Milestone> lstTick_milestones)
     {
         Debug.Log("====================RecInfo");
 

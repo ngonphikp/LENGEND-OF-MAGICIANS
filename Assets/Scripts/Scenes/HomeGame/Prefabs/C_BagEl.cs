@@ -29,21 +29,21 @@ public class C_BagEl : MonoBehaviour
     public IEnumerator<float> _set(int idx)
     {
         this.idx = idx;
-        M_Character nhanVat = new M_Character(GameManager.instance.characters[idx]);
+        M_Character character = new M_Character(GameManager.instance.characters[idx]);
 
-        imgBg.sprite = Resources.Load<Sprite>("Sprites/Avatar/BG" + nhanVat.star);
-        imgFr.sprite = Resources.Load<Sprite>("Sprites/Avatar/Frame" + nhanVat.star);
+        imgBg.sprite = Resources.Load<Sprite>("Sprites/Avatar/BG" + character.star);
+        imgFr.sprite = Resources.Load<Sprite>("Sprites/Avatar/Frame" + character.star);
 
-        Sprite sprite = Resources.Load<Sprite>("Sprites/Avatar/" + nhanVat.id_cfg);
+        Sprite sprite = Resources.Load<Sprite>("Sprites/Avatar/" + character.id_cfg);
 
         if (sprite != null) imgAv.sprite = sprite;
         
-        txtTen.text = nhanVat.name + "";
-        txtLv.text = nhanVat.lv + "";
-        txtStar.text = nhanVat.star + "";
-        txtEl.text = C_Params.Element[nhanVat.element];
+        txtTen.text = character.name + "";
+        txtLv.text = character.lv + "";
+        txtStar.text = character.star + "";
+        txtEl.text = C_Params.Element[character.element];
 
-        active.SetActive(nhanVat.idx != -1);
+        active.SetActive(character.idx != -1);
 
         yield return Timing.WaitForOneFrame;
     }

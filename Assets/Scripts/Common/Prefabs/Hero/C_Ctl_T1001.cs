@@ -68,12 +68,12 @@ public class C_Ctl_T1001 : MonoBehaviour, I_Control
 
     private void Anim2()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 2");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 2");
     }
 
     private IEnumerator<float> _Anim3()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 3");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 3");
         isPlay = false;
 
         C_LibSkill.Shoot(bl3d0, posB3, FightingGame.instance.targets, true, time3d0, time3db, offset3);
@@ -84,7 +84,7 @@ public class C_Ctl_T1001 : MonoBehaviour, I_Control
 
     private IEnumerator<float> _Anim4()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 4");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 4");
         isPlay = false;
 
         yield return Timing.WaitForSeconds(timeAn4 / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
@@ -93,7 +93,7 @@ public class C_Ctl_T1001 : MonoBehaviour, I_Control
 
     private IEnumerator<float> _Anim5()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 5");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 5");
         isPlay = false;
 
         C_LibSkill.Shoot(bl5d0, posB5, FightingGame.instance.targets, true, time5d0, time5db, offset5);
@@ -104,11 +104,11 @@ public class C_Ctl_T1001 : MonoBehaviour, I_Control
 
     private void Anim6()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 6");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 6");
     }
 
     private void Anim7()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 7");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 7");
     }
 }

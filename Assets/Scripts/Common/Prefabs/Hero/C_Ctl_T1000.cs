@@ -72,15 +72,15 @@ public class C_Ctl_T1000 : MonoBehaviour, I_Control
 
     private void Anim2()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 2");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 2");
     }
 
     private IEnumerator<float> _Anim3()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 3");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 3");
         isPlay = false;
 
-        Vector3 finish = C_LibSkill.DisX(FightingGame.instance.targets[0].transform.position, dis3d0, FightingGame.instance.targets[0].nhanvat.team == 1);
+        Vector3 finish = C_LibSkill.DisX(FightingGame.instance.targets[0].transform.position, dis3d0, FightingGame.instance.targets[0].character.team == 1);
         Timing.RunCoroutine(C_LibSkill._MoveTo(this.transform, finish, time3ds, time3df, time3dm));
 
         Timing.RunCoroutine(C_LibSkill._FxHit(FightingGame.instance.targets, fx3d0, time3d0));
@@ -91,7 +91,7 @@ public class C_Ctl_T1000 : MonoBehaviour, I_Control
 
     private IEnumerator<float> _Anim4()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 4");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 4");
         isPlay = false;
 
         yield return Timing.WaitForSeconds(timeAn4 / ((FightingGame.instance) ? FightingGame.instance.myTimeScale : 1));
@@ -100,10 +100,10 @@ public class C_Ctl_T1000 : MonoBehaviour, I_Control
 
     private IEnumerator<float> _Anim5()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 5");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 5");
         isPlay = false;
 
-        Vector3 finish = C_LibSkill.DisX(FightingGame.instance.targets[0].transform.position, dis5d0, FightingGame.instance.targets[0].nhanvat.team == 1);
+        Vector3 finish = C_LibSkill.DisX(FightingGame.instance.targets[0].transform.position, dis5d0, FightingGame.instance.targets[0].character.team == 1);
         Timing.RunCoroutine(C_LibSkill._MoveTo(this.transform, finish, time5ds, time5df, time5dm));
 
         Timing.RunCoroutine(C_LibSkill._FxHit(FightingGame.instance.targets, fx5d0, time5d0));
@@ -114,11 +114,11 @@ public class C_Ctl_T1000 : MonoBehaviour, I_Control
 
     private void Anim6()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 6");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 6");
     }
 
     private void Anim7()
     {
-        Debug.Log(this.gameObject.GetComponent<C_Character>().nhanvat.id_nv + " Anim 7");
+        Debug.Log(this.gameObject.GetComponent<C_Character>().character.id + " Anim 7");
     }
 }

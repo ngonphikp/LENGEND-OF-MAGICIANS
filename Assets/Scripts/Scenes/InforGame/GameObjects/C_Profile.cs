@@ -26,18 +26,18 @@ public class C_Profile : MonoBehaviour
     [SerializeField]
     private Text txtDefUp = null;
 
-    public void set(M_Character nhanVat)
+    public void set(M_Character character)
     {
-        imgEl.sprite = Resources.Load<Sprite>("Sprites/Element/" + nhanVat.element);
-        txtName.text = nhanVat.name + "";
+        imgEl.sprite = Resources.Load<Sprite>("Sprites/Element/" + character.element);
+        txtName.text = character.name + "";
 
-        txtLv.text = nhanVat.lv + "";
-        txtHp.text = nhanVat.hp + "";
-        txtAtk.text = nhanVat.atk + "";
-        txtDef.text = nhanVat.def + "";
+        txtLv.text = character.lv + "";
+        txtHp.text = character.hp + "";
+        txtAtk.text = character.atk + "";
+        txtDef.text = character.def + "";
 
-        txtHpUp.text = " + " + Mathf.RoundToInt(nhanVat.hp * (C_Params.coeUpLv - 1));
-        txtAtkUp.text = " + " + Mathf.RoundToInt(nhanVat.atk * (C_Params.coeUpLv - 1));
-        txtDefUp.text = " + " + Mathf.RoundToInt(nhanVat.def * (C_Params.coeUpLv - 1));
+        txtHpUp.text = " + " + Mathf.RoundToInt(character.hp * (C_Params.coeUpLv - 1));
+        txtAtkUp.text = " + " + Mathf.RoundToInt(character.atk * (C_Params.coeUpLv - 1));
+        txtDefUp.text = " + " + Mathf.RoundToInt(character.def * (C_Params.coeUpLv - 1));
     }
 }

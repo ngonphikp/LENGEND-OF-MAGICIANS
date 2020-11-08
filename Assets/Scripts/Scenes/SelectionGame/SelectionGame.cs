@@ -48,14 +48,14 @@ public class SelectionGame : MonoBehaviour
         {
             GameObject heroObj = Instantiate(heroAs, posMagician);
             hero = heroObj.GetComponent<C_Character>();
-            M_Character nhanVat = new M_Character();
+            M_Character character = new M_Character();
 
-            nhanVat.Current_ep = nhanVat.max_ep = 100;
-            nhanVat.Current_hp = nhanVat.max_hp = nhanVat.hp;
-            nhanVat.id_cfg = id;
-            nhanVat.UpdateById();
-            nhanVat.lv = 1;
-            hero.Set(nhanVat);
+            character.Current_ep = character.max_ep = 100;
+            character.Current_hp = character.max_hp = character.hp;
+            character.id_cfg = id;
+            character.UpdateById();
+            character.lv = 1;
+            hero.Set(character);
         }
 
         for(int i = 0; i < GameManager.instance.herosDic[id].skills.Count; i++)
@@ -73,7 +73,7 @@ public class SelectionGame : MonoBehaviour
 
         txtNoti.text = "Vào Game thành công";
 
-        if (!GameManager.instance.test) RequestUser.Selection(nameAc, idHeros[idxActive]);
+        if (!GameManager.instance.test) RequestAccount.Selection(nameAc, idHeros[idxActive]);
     }
 
     public void RecSelection(List<M_Character> lstCharacters)

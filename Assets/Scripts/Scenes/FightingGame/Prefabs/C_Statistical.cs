@@ -21,12 +21,12 @@ public class C_Statistical : MonoBehaviour
     [SerializeField]
     private Text txtTank = null;
 
-    public void set(M_Character nhanVat, float perDame, float perTank)
+    public void set(M_Character character, float perDame, float perTank)
     {
-        imgBg.sprite = Resources.Load<Sprite>("Sprites/Avatar/BG" + nhanVat.star);
-        imgFr.sprite = Resources.Load<Sprite>("Sprites/Avatar/Frame" + nhanVat.star);
+        imgBg.sprite = Resources.Load<Sprite>("Sprites/Avatar/BG" + character.star);
+        imgFr.sprite = Resources.Load<Sprite>("Sprites/Avatar/Frame" + character.star);
 
-        Sprite sprite = Resources.Load<Sprite>("Sprites/Avatar/" + nhanVat.id_cfg);
+        Sprite sprite = Resources.Load<Sprite>("Sprites/Avatar/" + character.id_cfg);
 
         if (sprite != null) imgAv.sprite = sprite;
 
