@@ -37,8 +37,14 @@ public class HandleGuild
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             List<M_Guild> guilds = new List<M_Guild>();
+            ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleGuild.GUILDS);
 
-
+            for (int i = 0; i < arr.Count; i++)
+            {
+                M_Guild guild = new M_Guild(arr.GetSFSObject(i));
+                guild.UpdateLevel();
+                guilds.Add(guild);
+            }
 
             HomeGame.instance.RecGuilds(guilds);
         }
@@ -54,9 +60,8 @@ public class HandleGuild
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_Guild guild = new M_Guild();
-
-
+            M_Guild guild = new M_Guild(packet.GetSFSObject(CmdDefine.ModuleGuild.GUILD));
+            guild.UpdateLevel();
 
             HomeGame.instance.RecCreateGuild(guild);
         }

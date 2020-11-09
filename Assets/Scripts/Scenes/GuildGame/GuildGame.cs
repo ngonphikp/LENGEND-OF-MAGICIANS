@@ -13,7 +13,7 @@ public class GuildGame : MonoBehaviour
     
     private void OnEnable()
     {
-        Debug.Log("Guid: " + GameManager.instance.guild.id + " / " + GameManager.instance.guild.name + " / " + GameManager.instance.guild.boss + " / " + GameManager.instance.guild.currentMember);
+        Debug.Log("Guid: " + GameManager.instance.guild.id + " / " + GameManager.instance.guild.name + " / " + GameManager.instance.guild.master + " / " + GameManager.instance.guild.accounts.Count);
         GameManager.instance.guild.accounts.ForEach(x => Debug.Log(x.id + " / " + x.name));
     }
 

@@ -30,9 +30,9 @@ public class C_CardGuild : MonoBehaviour
         txtName.text = guild.name;
         txtBoss.text = guild.accounts[0].name;
         txtNoti.text = guild.noti;
-        txtMember.text = guild.currentMember + " / " + guild.maxMember;
+        txtMember.text = guild.accounts.Count + " / " + guild.maxMember;
 
-        if (guild.currentMember >= guild.maxMember) btnPlease.interactable = false;
+        if (guild.accounts.Count >= guild.maxMember) btnPlease.interactable = false;
 
         yield return Timing.WaitForOneFrame;
     }
@@ -45,7 +45,7 @@ public class C_CardGuild : MonoBehaviour
         {
             M_Guild guild = HomeGame.instance.guilds[idx];
 
-            int size = guild.currentMember - guild.accounts.Count;
+            int size = guild.accounts.Count - guild.accounts.Count;
             for (int i = 1; i < size; i++)
             {
                 M_Account account = new M_Account();

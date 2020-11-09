@@ -75,4 +75,17 @@ public class CmdDefine
 
         public const string IS_SAVE = "is_save";
     }
+
+    public static class ModuleGuild
+    {
+        public const string GUILD = "guild";
+        public const string GUILDS = "guilds";
+
+        public const string ID = "id";
+        public const string NAME = "name";
+        public const string MASTER = "master";
+        public const string LV = "lv";
+        public const string NOTI = "noti";
+        public const string ACCOUNTS = "accounts";
+    }
 }

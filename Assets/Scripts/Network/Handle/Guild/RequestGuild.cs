@@ -29,7 +29,8 @@ public class RequestGuild
         Debug.Log("=========================== Create Guild");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.CREATEGUILD);
-        isFSObject.PutUtfString("name", name);
+        isFSObject.PutUtfString(CmdDefine.ModuleGuild.NAME, name);
+        isFSObject.PutInt(CmdDefine.ModuleGuild.MASTER, GameManager.instance.account.id);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
@@ -48,7 +49,7 @@ public class RequestGuild
         Debug.Log("=========================== Get Guild");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GETGUILD);
-        isFSObject.PutInt("id", id);
+        isFSObject.PutInt(CmdDefine.ModuleGuild.ID, id);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
@@ -67,6 +68,7 @@ public class RequestGuild
         Debug.Log("=========================== Out Guild");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.OUTGUILD);
+        isFSObject.PutInt(CmdDefine.ModuleAccount.ID, GameManager.instance.account.id);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())

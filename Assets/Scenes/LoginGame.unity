@@ -1919,8 +1919,7 @@ MonoBehaviour:
     name: 
     lv: 0
     noti: 
-    boss: 0
-    currentMember: 0
+    master: 0
     maxMember: 20
     accounts: []
   test: 0

@@ -132,18 +132,14 @@ public class HomeGame : MonoBehaviour
                 guild.id = GameManager.instance.account.id_guilds;
                 guild.name = "Name" + GameManager.instance.account.id_guilds;
                 guild.accounts.Add(GameManager.instance.account);
-                guild.boss = GameManager.instance.account.id;
+                guild.master = GameManager.instance.account.id;
 #pragma warning disable CS0618 // Type or member is obsolete
                 guild.lv = Random.RandomRange(1, 5);
 #pragma warning restore CS0618 // Type or member is obsolete
-                guild.noti = "Noti: " + GameManager.instance.account.id_guilds;
+                guild.noti = "Please add notice!";
                 guild.UpdateLevel();
 #pragma warning disable CS0618 // Type or member is obsolete
-                guild.currentMember = Random.RandomRange((int)guild.maxMember / 2, guild.maxMember + 1);
-#pragma warning restore CS0618 // Type or member is obsolete
-
-                int size = guild.currentMember - guild.accounts.Count;
-                for (int i = 1; i < size; i++)
+                for (int i = 1; i < Random.RandomRange((int)guild.maxMember / 2, guild.maxMember + 1); i++)
                 {
                     M_Account account = new M_Account();
                     account.id = i;
@@ -188,16 +184,22 @@ public class HomeGame : MonoBehaviour
                     M_Account boss = new M_Account();
                     boss.id = 0;
                     boss.name = "Name: " + boss.id;
-                    guild.boss = boss.id;
+                    guild.master = boss.id;
                     guild.accounts.Add(boss);
 #pragma warning disable CS0618 // Type or member is obsolete
                     guild.lv = Random.RandomRange(1, 5);
 #pragma warning restore CS0618 // Type or member is obsolete
-                    guild.noti = "Noti: " + i;
+                    guild.noti = "Please add notice!";
                     guild.UpdateLevel();
-#pragma warning disable CS0618 // Type or member is obsolete
-                    guild.currentMember = Random.RandomRange((int)guild.maxMember / 2, guild.maxMember + 1);
-#pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning disable CS0618
+                    for (int j = 1; j < Random.RandomRange((int)guild.maxMember / 2, guild.maxMember + 1); j++)
+                    {
+                        M_Account account = new M_Account();
+                        account.id = j;
+                        account.name = "Name: " + account.id;
+
+                        guild.accounts.Add(account);
+                    }
 
                     guilds.Add(guild);
                 }
@@ -237,11 +239,10 @@ public class HomeGame : MonoBehaviour
 
             guild.id = this.guilds.Count;
             guild.name = name;
+            guild.master = GameManager.instance.account.id;
             guild.lv = 1;
-            guild.noti = "Noti: " + this.guilds.Count;
-            guild.currentMember = 1;
-            guild.accounts.Add(GameManager.instance.account);
-            guild.boss = GameManager.instance.account.id;
+            guild.noti = "Please add notice!";
+            guild.accounts.Add(GameManager.instance.account);            
 
             RecCreateGuild(guild);
             return;
