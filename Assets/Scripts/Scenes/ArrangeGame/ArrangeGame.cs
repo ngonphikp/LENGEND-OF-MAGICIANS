@@ -172,8 +172,7 @@ public class ArrangeGame : MonoBehaviour
         
         GameManager.instance.characters = characters;
 
-        if (GameManager.instance.test) Timing.RunCoroutine(_RecArrange());
-        else RequestCharacter.Arrange(characters);
+        RequestCharacter.Arrange(characters);
     }
 
     public IEnumerator<float> _RecArrange()

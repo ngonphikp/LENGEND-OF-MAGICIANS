@@ -33,6 +33,8 @@ public class HandleAccount
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
+            int id_guild = packet.GetInt(CmdDefine.ModuleAccount.ID_GUILD);
+
             List<M_Character> lstCharacter = new List<M_Character>();
             ISFSArray characters = packet.GetSFSArray(CmdDefine.ModuleAccount.CHARACTERS);
             for(int i = 0; i < characters.Size(); i++)
@@ -53,7 +55,7 @@ public class HandleAccount
 
             lstTick_milestones.Add(new M_Tick_Milestone(tick_milestones.Size() + 1, GameManager.instance.account.id, tick_milestones.Size() + 1, 0));
 
-            LoginGame.instance.RecInfo(lstCharacter, lstTick_milestones);
+            LoginGame.instance.RecInfo(id_guild, lstCharacter, lstTick_milestones);
         }
         else
         {

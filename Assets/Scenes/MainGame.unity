@@ -1511,6 +1511,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuildScene
       objectReference: {fileID: 0}
+    - target: {fileID: 2532877037169121525, guid: be8ff976135368648a494ae5ec726843, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2532877037169121526, guid: be8ff976135368648a494ae5ec726843, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -18,14 +18,6 @@ public class RequestTickMilestone
 
         isFSObject.PutBool(CmdDefine.ModuleTickMilestone.IS_SAVE, isSave);
         var packet = new ExtensionRequest(MODULE, isFSObject);
-        if (SmartFoxConnection.isAlready())
-        {
-            SmartFoxConnection.send(packet);
-        }
-        else
-        {
-            SmartFoxConnection.Init();
-            SmartFoxConnection.send(packet);
-        }
+        SmartFoxConnection.send(packet);
     }
 }

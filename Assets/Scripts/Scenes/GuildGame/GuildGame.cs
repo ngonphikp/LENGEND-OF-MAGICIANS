@@ -19,10 +19,18 @@ public class GuildGame : MonoBehaviour
 
     public void OutGuild()
     {
-        Debug.Log("Out Guild");
-        GameManager.instance.account.id_guilds = -1;
-        HomeGame.instance.guilds.Clear();
+        Debug.Log("Out Guild");        
 
-        if (!GameManager.instance.test) RequestGuild.OutGuild();
+        RequestGuild.OutGuild();
+    }
+
+    public void RecOutGuild()
+    {
+        GameManager.instance.account.id_guild = -1;
+    }
+
+    public void ChangeMaster(int master)
+    {
+        RequestGuild.ChangeMaster(master);
     }
 }

@@ -8,7 +8,7 @@ public class M_Account
     public string password;
     public string name;
 
-    public int id_guilds = -1;
+    public int id_guild = -1;
 
     public M_Account()
     {

@@ -48,9 +48,6 @@ public class GameManager : MonoBehaviour
     // Guild
     public M_Guild guild;
 
-    // Test
-    public bool test = false;
-
     private void Awake()
     {
         MakeSingleInstance();
@@ -133,54 +130,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (test) return;
         SmartFoxConnection.ListenerEvent();
-    }
-
-    public void TestPlay()
-    {
-        test = true;
-        account = new M_Account();
-        account.id = 0;
-        account.usename = "username99";
-        account.password = "password99";
-        account.name = "Name: 0";
-
-        characters.Clear();
-
-        int[] arrIdx = { 0, 2, 4, 6, 8 };
-
-        for (int i = 0; i < 5; i++)
-        {
-            M_Character character = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), i + 1, arrIdx[i]);
-            character.type = C_Enum.CharacterType.Hero;
-            character.UpdateById();
-            character.UpdateLevel();
-            characters.Add(character);
-        }
-
-        for (int i = 5; i < 10; i++)
-        {
-            M_Character character = new M_Character(i, "T100" + UnityEngine.Random.Range(2, 8), UnityEngine.Random.Range(1, 15), -1);
-            character.type = C_Enum.CharacterType.Hero;
-            character.UpdateById();
-            character.UpdateLevel();
-            characters.Add(character);
-        }
-
-        tick_milestones.Clear();
-
-        for (int i = 1; i <= 3; i++)
-        {
-            tick_milestones.Add(new M_Tick_Milestone(i, account.id, i, UnityEngine.Random.Range(1, 4)));
-        }
-
-        tick_milestones.Add(new M_Tick_Milestone(tick_milestones.Count + 1, account.id, tick_milestones.Count + 1, 0));
-
-        UpdateTickMS();
-
-        ScenesManager.instance.ChangeScene("MainGame");
-        SoundManager.instance.PlayLoop();
     }
 
     public void OnApplicationQuit()

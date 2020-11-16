@@ -25,7 +25,7 @@ public class LoginGame : MonoBehaviour
 
         GameManager.instance.account = ac;
 
-        if(!GameManager.instance.test) RequestAccount.GetInfo(ac.id);
+        RequestAccount.GetInfo(ac.id);
     }
 
     public void RecRegister(M_Account ac)
@@ -34,15 +34,14 @@ public class LoginGame : MonoBehaviour
 
         GameManager.instance.account = ac;
 
-        if (!GameManager.instance.test) RequestAccount.GetInfo(ac.id);
+        RequestAccount.GetInfo(ac.id);
     }
 
-    public void RecInfo(List<M_Character> lstCharacter, List<M_Tick_Milestone> lstTick_milestones)
+    public void RecInfo(int id_guild, List<M_Character> lstCharacter, List<M_Tick_Milestone> lstTick_milestones)
     {
         Debug.Log("====================RecInfo");
 
-        //lstCharacter.ForEach(x => Debug.Log(x.id_nv + " / " + x.id_cfg + " / " + x.id_tk + " / " + x.lv));
-        //lstTick_milestones.ForEach(x => Debug.Log(x.id + " / " + x.star));
+        GameManager.instance.account.id_guild = id_guild;
 
         GameManager.instance.tick_milestones = lstTick_milestones;
         GameManager.instance.UpdateTickMS();
@@ -51,11 +50,6 @@ public class LoginGame : MonoBehaviour
         ScenesManager.instance.ChangeScene("MainGame");
 
         SoundManager.instance.PlayLoop();
-    }
-
-    public void TestPlay()
-    {
-        GameManager.instance.TestPlay();
     }
 
     public void QuitGame()

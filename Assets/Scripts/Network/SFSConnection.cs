@@ -131,14 +131,20 @@ public class SmartFoxConnection : MonoBehaviour
 
     public static void send(LoginRequest request)
     {
+        if (!isAlready()) Init();
+
         sfs.Send(request);
     }
     public static void send(ExtensionRequest request)
     {
+        if (!isAlready()) Init();
+
         sfs.Send(request);
     }
     public static void send(LogoutRequest request)
     {
+        if (!isAlready()) Init();
+
         sfs.Send(request);
     }
 }

@@ -19,6 +19,8 @@ public class CmdDefine
         public const int CREATEGUILD = 1010;
         public const int GETGUILD = 1011;
         public const int OUTGUILD = 1012;
+        public const int PLEASEGUILD = 1013;
+        public const int CHANGEMASTER = 1014;
     }
 
     public static class ErrorCode
@@ -42,10 +44,12 @@ public class CmdDefine
 
     public static class ModuleAccount
     {
-        public const string ID = "id";
-        public const string USERNAME = "username";
-        public const string PASSWORD = "password";
-        public const string NAME = "name";
+        public const string ID = "id_ac";
+        public const string USERNAME = "username_ac";
+        public const string PASSWORD = "password_ac";
+        public const string NAME = "name_ac";
+
+        public const string ID_GUILD = "id_guild";
 
         public const string ACCOUNT = "account";
         public const string LOGIN_OUT_DATA = "loginoutdata";
@@ -60,32 +64,34 @@ public class CmdDefine
 
     public static class ModuleCharacter
     {
-        public const string ID = "id";
-        public const string ID_CFG = "id_cfg";
-        public const string LV = "lv";
-        public const string IDX = "idx";
+        public const string ID = "id_char";
+        public const string ID_CFG = "id_cfg_char";
+        public const string LV = "lv_char";
+        public const string IDX = "idx_char";
     }
 
     public static class ModuleTickMilestone
     {
-        public const string ID = "id";
+        public const string ID = "id_tms";
+        public const string STAR = "star_tms";
         public const string ID_AC = "id_ac";
         public const string ID_ML = "id_ml";
-        public const string STAR = "star";
 
         public const string IS_SAVE = "is_save";
     }
 
     public static class ModuleGuild
     {
+        public const string ID = "id_guild";
+        public const string NAME = "name_guild";
+        public const string LV = "lv_guild";
+        public const string NOTI = "noti_guild";
+
+        public const string ACCOUNTS = "accounts";
+
+        public const string MASTER = "master";
+
         public const string GUILD = "guild";
         public const string GUILDS = "guilds";
-
-        public const string ID = "id";
-        public const string NAME = "name";
-        public const string MASTER = "master";
-        public const string LV = "lv";
-        public const string NOTI = "noti";
-        public const string ACCOUNTS = "accounts";
     }
 }

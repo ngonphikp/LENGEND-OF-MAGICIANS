@@ -19,12 +19,12 @@ public class C_CardGuild : MonoBehaviour
     [SerializeField]
     private Button btnPlease = null;
 
-    private int idx = -1;
+    private int id = -1;
 
-    public IEnumerator<float> _set(int idx)
+    public IEnumerator<float> _set(int id)
     {
-        this.idx = idx;
-        M_Guild guild = HomeGame.instance.guilds[idx];
+        this.id = id;
+        M_Guild guild = HomeGame.instance.dicGuid[id];
 
         txtLv.text = guild.lv + "";
         txtName.text = guild.name;
@@ -39,26 +39,7 @@ public class C_CardGuild : MonoBehaviour
 
     public void Please()
     {
-        Debug.Log("Please Guid: " + HomeGame.instance.guilds[idx].id);
-
-        if (GameManager.instance.test)
-        {
-            M_Guild guild = HomeGame.instance.guilds[idx];
-
-            int size = guild.accounts.Count - guild.accounts.Count;
-            for (int i = 1; i < size; i++)
-            {
-                M_Account account = new M_Account();
-                account.id = i;
-                account.name = "Name: " + account.id;
-
-                guild.accounts.Add(account);
-            }
-
-            GameManager.instance.account.id_guilds = guild.id;
-            GameManager.instance.guild = guild;
-            HomeGame.instance.ShowGuild(guild);
-            return;
-        }
+        Debug.Log("Please Guid: " + id);
+        RequestGuild.PleaseGuild(id);
     }
 }

@@ -29,12 +29,12 @@ public class C_FindGuid : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < HomeGame.instance.guilds.Count; i++)
+        foreach (M_Guild guild in HomeGame.instance.dicGuid.Values)
         {
             C_CardGuild cardGuild = Instantiate(cardGuildPrb, content).GetComponent<C_CardGuild>();
-            Timing.RunCoroutine(cardGuild._set(i));
+            Timing.RunCoroutine(cardGuild._set(guild.id));
 
-            cardDic.Add(HomeGame.instance.guilds[i].name, cardGuild);
+            cardDic.Add(guild.name, cardGuild);
         }
 
         popUp.SetActive(true);

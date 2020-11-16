@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <script>
+    var obj = {};
+    obj.list = [];
+
+    // for (let index = 0; index < 30; index++) {
+    //     let hero = {};
+    //     hero.id = "T" + (index + 1000) + "";
+
+    //     hero.name = hero.id;
+    //     hero.element = "K" + (index % 5 + 1);
+    //     hero.level = 1;
+    //     hero.star = (Math.floor(index / 5) + 1);
+
+    //     hero.atk = 1000 + Math.floor(Math.random() * 1000 / 4);
+    //     hero.def = 250 + Math.floor(Math.random() * 250 / 4);
+    //     hero.hp = 5000 + Math.floor(Math.random() * 5000 / 4);        
+    //     hero.crit = 5 + 1.25 * Math.random();
+    //     hero.dodge = 5 + 1.25 * Math.random();
+
+    //     let roe = (100 + (hero.star - 1) * 10) / 100;
+
+    //     hero.atk = Math.round(hero.atk * roe);
+    //     hero.def = Math.round(hero.def * roe);
+    //     hero.hp = Math.round(hero.hp * roe);
+    //     hero.crit = hero.crit * roe;
+    //     hero.dodge = hero.dodge * roe;
+
+    //     hero.skill = [];
+    //     for(let i = 1; i < 5; i++)
+    //       hero.skill.push(hero.id + "S" + i);
+
+    //     obj.list.push(hero);
+    // }
+
+    for (let index = 0; index < 10; index++) {
+      let hero = {};
+        hero.id = "M" + (index + 1000) + "";
+
+        hero.name = hero.id;
+        hero.element = "K" + (index % 5 + 1);
+        hero.level = 1;
+        hero.star = (Math.floor(index / 5) + 1);
+
+        hero.atk = 950 + Math.floor(Math.random() * 950 / 4);
+        hero.def = 240 + Math.floor(Math.random() * 240 / 4);
+        hero.hp = 4750 + Math.floor(Math.random() * 4750 / 4);        
+        hero.crit = 4 + 1.25 * Math.random();
+        hero.dodge = 4 + 1.25 * Math.random();
+
+        let roe = (100 + (hero.star - 1) * 10) / 100;
+
+        hero.atk = Math.round(hero.atk * roe);
+        hero.def = Math.round(hero.def * roe);
+        hero.hp = Math.round(hero.hp * roe);
+        hero.crit = hero.crit * roe;
+        hero.dodge = hero.dodge * roe;
+
+        hero.skill = [];
+        for(let i = 1; i < 5; i++)
+          hero.skill.push(hero.id + "S" + i);
+
+        obj.list.push(hero);
+    }
+      
+    // obj.list.forEach(element => {
+    //   console.log(JSON.stringify(element) + ",");
+    // });
+
+    console.log(JSON.stringify(obj));
+    </script>
+</body>
+</html>

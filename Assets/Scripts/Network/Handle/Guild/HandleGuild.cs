@@ -24,8 +24,10 @@ public class HandleGuild
             case CmdDefine.CMD.OUTGUILD:
                 HandleOutGuild(sfsObject);
                 break;
+            case CmdDefine.CMD.PLEASEGUILD:
+                HandlePleaseGuild(sfsObject);
+                break;
             default:
-
                 break;
         }
     }
@@ -56,7 +58,7 @@ public class HandleGuild
 
     public static void HandleCreateGuild(SFSObject packet)
     {
-        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
+        Debug.Log("=========================== HANDLE CREATE GUILD\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
@@ -71,15 +73,31 @@ public class HandleGuild
         }
     }
 
-    public static void HandleGetGuild(SFSObject packet)
+    public static void HandlePleaseGuild(SFSObject packet)
     {
-        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
+        Debug.Log("=========================== HANDLE PLEASE GUILD\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_Guild guild = new M_Guild();
+            M_Guild guild = new M_Guild(packet.GetSFSObject(CmdDefine.ModuleGuild.GUILD));
+            guild.UpdateLevel();
 
+            HomeGame.instance.RecPleaseGuild(guild);
+        }
+        else
+        {
+            Debug.Log("ErrorCode: " + ec);
+        }
+    }
 
+    public static void HandleGetGuild(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE GET GUILD\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            M_Guild guild = new M_Guild(packet.GetSFSObject(CmdDefine.ModuleGuild.GUILD));
+            guild.UpdateLevel();
 
             HomeGame.instance.ShowGuild(guild);
         }
@@ -91,11 +109,11 @@ public class HandleGuild
 
     public static void HandleOutGuild(SFSObject packet)
     {
-        Debug.Log("=========================== HANDLE GET GUILDS\n" + packet.GetDump());
+        Debug.Log("=========================== HANDLE OUT GUILD\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            HomeGame.instance.OutGuild();
+            GuildGame.instance.RecOutGuild();
         }
         else
         {

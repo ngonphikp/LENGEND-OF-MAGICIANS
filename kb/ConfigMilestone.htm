@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <script>
+    var obj = {};
+    obj.list = [];
+    
+    for (let index = 1; index <= 30; index++) {
+        let milestone = {};
+        
+        milestone.id = index;
+        milestone.name = "Ải " + index;
+        milestone.star = 0;  
+
+        milestone.listCreep = [];
+
+        let size = Math.floor(index / 3) + 1;        
+        if (size > 5) size = 5;
+
+        var poss = [];
+
+        for (let i = 0; i < size; i++) {
+            let creep = {};
+
+            let id = Math.floor((index + 1) / 10) * 5;
+            if (id  > 5) id = 5;
+            creep.id = "M" + (1000 + Math.floor(Math.random() * 4) + id);
+            
+            creep.lv = (Math.floor(index / 3) + 1) + Math.floor(Math.random() * 2);
+
+            var pos = 0;
+            var isLoop = true;
+            while(isLoop){
+              pos = Math.floor(Math.random() * 9);
+              isLoop = false;
+              for (let j = 0; j < poss.length; j++) {
+                if(pos == poss[j]){
+                  isLoop = true;
+                  break;
+                }
+              }
+            }                    
+            poss.push(pos);
+            
+            creep.idx = pos;            
+            
+            milestone.listCreep.push(creep);
+        }        
+        obj.list.push(milestone);
+    }    
+      
+    // obj.list.forEach(element => {
+    //   console.log(JSON.stringify(element) + ",");
+    // });
+
+    console.log(JSON.stringify(obj));  
+    </script>
+</body>
+</html>
