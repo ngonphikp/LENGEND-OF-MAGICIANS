@@ -117,9 +117,10 @@ public class HomeGame : MonoBehaviour
 
     public void SendGetGuilds(bool isSend = false)
     {
-        Debug.Log("Get Guilds");        
+        Debug.Log("Get Guilds");
         if (dicGuid.Count == 0 || isSend)
             RequestGuild.GetGuilds();
+        else findGuid.Open();
     }
 
     public void RecGuilds(List<M_Guild> guilds)
@@ -140,6 +141,7 @@ public class HomeGame : MonoBehaviour
     {
         dicGuid.Add(guild.id, guild);
         GameManager.instance.account.id_guild = guild.id;
+        GameManager.instance.account.SetJob(C_Enum.JobGuild.Master);
 
         ShowGuild(guild);
     }
@@ -148,6 +150,7 @@ public class HomeGame : MonoBehaviour
     {
         dicGuid[guild.id] = guild;
         GameManager.instance.account.id_guild = guild.id;
+        GameManager.instance.account.SetJob(C_Enum.JobGuild.Normal);
 
         ShowGuild(guild);
     }

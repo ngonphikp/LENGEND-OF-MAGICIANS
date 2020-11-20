@@ -55,4 +55,11 @@ public class C_Enum
         WIN = 1,
         LOSE = 2,
     }
+
+    public enum JobGuild
+    {
+        None = -1,
+        Normal = 0,
+        Master = 1,
+    }
 }

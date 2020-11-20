@@ -8801,7 +8801,6 @@ MonoBehaviour:
   btnMuteOn: {fileID: 3696579151100878946}
   btnMuteOff: {fileID: 3696579150832079203}
   findGuid: {fileID: 8531156611002471104}
-  guilds: []
 --- !u!1 &3696579152253897517
 GameObject:
   m_ObjectHideFlags: 0

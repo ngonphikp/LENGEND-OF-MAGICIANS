@@ -14,13 +14,17 @@ public class CmdDefine
         public const int ARRANGE = 1005;
         public const int TAVERN = 1006;
         public const int UPLEVEL = 1007;
-        public const int ENDGAME = 1008;
-        public const int GETGUILDS = 1009;
-        public const int CREATEGUILD = 1010;
-        public const int GETGUILD = 1011;
-        public const int OUTGUILD = 1012;
-        public const int PLEASEGUILD = 1013;
-        public const int CHANGEMASTER = 1014;
+        public const int END_GAME = 1008;
+        public const int GET_GUILDS = 1009;
+        public const int CREATE_GUILD = 1010;
+        public const int GET_GUILD = 1011;
+        public const int OUT_GUILD = 1012;
+        public const int PLEASE_GUILD = 1013;
+        public const int FIX_MASTER_GUILD = 1014;
+        public const int GET_NOTI_GUILD = 1015;
+        public const int GET_EVENT_GUILD = 1016;
+        public const int GET_MEMBER_GUID = 1017;
+        public const int FIX_NOTI_GUILD = 1018;
     }
 
     public static class ErrorCode
@@ -47,7 +51,15 @@ public class CmdDefine
         public const string ID = "id_ac";
         public const string USERNAME = "username_ac";
         public const string PASSWORD = "password_ac";
+
         public const string NAME = "name_ac";
+
+        public const string LV = "lv_ac";
+        public const string POWER = "power_ac";
+
+        public const string JOB = "job_ac";
+        public const string DEDITOTAL = "dedication_total_ac";
+        public const string DEDIWEEK = "dedication_week_ac";
 
         public const string ID_GUILD = "id_guild";
 
@@ -86,6 +98,7 @@ public class CmdDefine
         public const string NAME = "name_guild";
         public const string LV = "lv_guild";
         public const string NOTI = "noti_guild";
+        public const string EVT = "event_guild";
 
         public const string ACCOUNTS = "accounts";
 

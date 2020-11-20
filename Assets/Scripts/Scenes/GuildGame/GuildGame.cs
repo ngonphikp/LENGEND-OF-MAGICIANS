@@ -6,6 +6,15 @@ public class GuildGame : MonoBehaviour
 {
     public static GuildGame instance = null;
 
+    [SerializeField]
+    private C_ProfileGuild profile = null;    
+
+    [SerializeField]
+    private C_TabGuild tab = null;
+
+    public bool isMaster = false;
+    public M_Guild guild = null;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -13,24 +22,68 @@ public class GuildGame : MonoBehaviour
     
     private void OnEnable()
     {
-        Debug.Log("Guid: " + GameManager.instance.guild.id + " / " + GameManager.instance.guild.name + " / " + GameManager.instance.guild.master + " / " + GameManager.instance.guild.accounts.Count);
-        GameManager.instance.guild.accounts.ForEach(x => Debug.Log(x.id + " / " + x.name));
+        guild = GameManager.instance.guild;
+        isMaster = GameManager.instance.account.job == C_Enum.JobGuild.Master;
+
+        profile.set(guild);
+        tab.SetNoti(guild.noti);
     }
 
     public void OutGuild()
     {
-        Debug.Log("Out Guild");        
+        if(isMaster)
+        {
+            Debug.Log("Bạn là hội trưởng, cần nhường chức vụ cho thành viên khác trước khi rời hội");
+            return;
+        }
+
+        Debug.Log("Out Guild");
 
         RequestGuild.OutGuild();
     }
 
     public void RecOutGuild()
     {
-        GameManager.instance.account.id_guild = -1;
+        GameManager.instance.account.SetJob(C_Enum.JobGuild.None);
+        MainGame.instance.ShowScene("HomeScene");
     }
 
     public void ChangeMaster(int master)
     {
         RequestGuild.ChangeMaster(master);
     }
+
+    public void GetNoti()
+    {
+        RequestGuild.GetNoti();
+    }
+
+    public void RecNoti(string noti)
+    {
+        guild.noti = noti;
+        tab.SetNoti(noti);
+    }
+
+    public void GetEvent()
+    {
+        RequestGuild.GetEvent();
+    }
+
+    public void RecEvent(string evt)
+    {
+        guild.evt = evt;
+        tab.SetEvent(evt);
+    }
+
+    public void GetMember()
+    {
+        RequestGuild.GetMember();
+    }
+
+    public void RecMember(List<M_Account> accounts)
+    {
+        guild.accounts = accounts;
+        tab.SetAccounts(accounts);
+        profile.set(guild);
+    }    
 }

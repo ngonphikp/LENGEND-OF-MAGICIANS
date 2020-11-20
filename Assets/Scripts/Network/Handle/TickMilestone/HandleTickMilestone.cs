@@ -11,7 +11,7 @@ public class HandleTickMilestone
 
         switch (cmdid)
         {
-            case CmdDefine.CMD.ENDGAME:
+            case CmdDefine.CMD.END_GAME:
                 HandleEndGame(sfsObject);
                 break;
             default:

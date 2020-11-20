@@ -9,7 +9,10 @@ public class M_Guild
     public int id;
     public string name;
     public int lv;
+    public int asset;
+    public int rank;
     public string noti;
+    public string evt;
     public int master;
     public int maxMember = 20;
 
@@ -35,6 +38,15 @@ public class M_Guild
         {
             accounts.Add(new M_Account(arr.GetSFSObject(i)));
         }
+    }
+
+    public M_Account GetMaster()
+    {
+        foreach (M_Account  acc in accounts)
+        {
+            if (acc.id == master) return acc;
+        }
+        return null;
     }
 
     public void UpdateLevel()

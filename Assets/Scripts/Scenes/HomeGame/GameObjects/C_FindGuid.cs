@@ -21,6 +21,16 @@ public class C_FindGuid : MonoBehaviour
 
     private Dictionary<string, C_CardGuild> cardDic = new Dictionary<string, C_CardGuild>();
 
+    public void Open()
+    {
+        popUp.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        popUp.SetActive(false);
+    }
+
     public IEnumerator<float> _set()
     {
         cardDic.Clear();

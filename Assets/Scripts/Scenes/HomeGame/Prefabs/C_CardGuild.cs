@@ -28,7 +28,7 @@ public class C_CardGuild : MonoBehaviour
 
         txtLv.text = guild.lv + "";
         txtName.text = guild.name;
-        txtBoss.text = guild.accounts[0].name;
+        txtBoss.text = guild.GetMaster().name;
         txtNoti.text = guild.noti;
         txtMember.text = guild.accounts.Count + " / " + guild.maxMember;
 

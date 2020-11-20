@@ -10,7 +10,7 @@ public class RequestTickMilestone
     {
         Debug.Log("=========================== End Game: Save: " + isSave);
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.ENDGAME);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.END_GAME);
 
         isFSObject.PutInt(CmdDefine.ModuleTickMilestone.ID_AC, id_ac);
         isFSObject.PutInt(CmdDefine.ModuleTickMilestone.ID_ML, id_ml);

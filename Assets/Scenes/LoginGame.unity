@@ -1907,7 +1907,12 @@ MonoBehaviour:
     usename: 
     password: 
     name: 
+    lv: 1
+    power: 0
     id_guild: -1
+    job: 0
+    dediTotal: 0
+    dediWeek: 0
   characters: []
   tick_milestones: []
   isAttack: 0
@@ -1917,7 +1922,10 @@ MonoBehaviour:
     id: 0
     name: 
     lv: 0
+    asset: 0
+    rank: 0
     noti: 
+    evt: 
     master: 0
     maxMember: 20
     accounts: []

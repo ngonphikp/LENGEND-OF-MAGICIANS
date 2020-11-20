@@ -12,20 +12,32 @@ public class HandleGuild
 
         switch (cmdid)
         {
-            case CmdDefine.CMD.GETGUILDS:
+            case CmdDefine.CMD.GET_GUILDS:
                 HandleGetGuilds(sfsObject);
                 break;
-            case CmdDefine.CMD.CREATEGUILD:
+            case CmdDefine.CMD.CREATE_GUILD:
                 HandleCreateGuild(sfsObject);
                 break;
-            case CmdDefine.CMD.GETGUILD:
+            case CmdDefine.CMD.GET_GUILD:
                 HandleGetGuild(sfsObject);
                 break;
-            case CmdDefine.CMD.OUTGUILD:
+            case CmdDefine.CMD.OUT_GUILD:
                 HandleOutGuild(sfsObject);
                 break;
-            case CmdDefine.CMD.PLEASEGUILD:
+            case CmdDefine.CMD.PLEASE_GUILD:
                 HandlePleaseGuild(sfsObject);
+                break;
+            case CmdDefine.CMD.GET_NOTI_GUILD:
+                HandleGetNoti(sfsObject);
+                break;
+            case CmdDefine.CMD.GET_EVENT_GUILD:
+                HandleGetEvent(sfsObject);
+                break;
+            case CmdDefine.CMD.GET_MEMBER_GUID:
+                HandleGetMember(sfsObject);
+                break;
+            case CmdDefine.CMD.FIX_NOTI_GUILD:
+                HandleFixNoti(sfsObject);
                 break;
             default:
                 break;
@@ -114,6 +126,70 @@ public class HandleGuild
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             GuildGame.instance.RecOutGuild();
+        }
+        else
+        {
+            Debug.Log("ErrorCode: " + ec);
+        }
+    }
+
+    public static void HandleGetNoti(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE GET NOTI\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            string noti = packet.GetUtfString(CmdDefine.ModuleGuild.NOTI);
+            GuildGame.instance.RecNoti(noti);
+        }
+        else
+        {
+            Debug.Log("ErrorCode: " + ec);
+        }
+    }
+
+    public static void HandleGetEvent(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE GET EVENT\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            string evt = packet.GetUtfString(CmdDefine.ModuleGuild.EVT);
+            GuildGame.instance.RecEvent(evt);
+        }
+        else
+        {
+            Debug.Log("ErrorCode: " + ec);
+        }
+    }
+
+    public static void HandleGetMember(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE MEMBER\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            List<M_Account> accounts = new List<M_Account>();
+            ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleGuild.ACCOUNTS);
+            for (int i = 0; i < arr.Count; i++)
+            {
+                accounts.Add(new M_Account(arr.GetSFSObject(i)));
+            }
+            GuildGame.instance.RecMember(accounts);
+        }
+        else
+        {
+            Debug.Log("ErrorCode: " + ec);
+        }
+    }
+
+    public static void HandleFixNoti(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE FIX NOTI\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            Debug.Log("SUCCESS");
         }
         else
         {
