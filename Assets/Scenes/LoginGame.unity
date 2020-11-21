@@ -1911,10 +1911,10 @@ MonoBehaviour:
     asset: 0
     rank: 0
     noti: 
-    evt: 
     master: 0
     maxMember: 20
     accounts: []
+    events: []
 --- !u!4 &582768019
 Transform:
   m_ObjectHideFlags: 0

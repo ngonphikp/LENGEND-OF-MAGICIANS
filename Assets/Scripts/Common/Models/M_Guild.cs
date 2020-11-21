@@ -12,11 +12,12 @@ public class M_Guild
     public int asset;
     public int rank;
     public string noti;
-    public string evt;
     public int master;
     public int maxMember = 20;
 
     public List<M_Account> accounts = new List<M_Account>();
+
+    public List<M_EventGuild> events = new List<M_EventGuild>();
 
     public M_Guild()
     {

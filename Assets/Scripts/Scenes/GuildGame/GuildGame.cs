@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MEC;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ public class GuildGame : MonoBehaviour
 
         profile.set(guild);
         tab.SetNoti(guild.noti);
+        Timing.RunCoroutine(tab._SetEvent(guild.events, true));
     }
 
     public void OutGuild()
@@ -69,10 +71,13 @@ public class GuildGame : MonoBehaviour
         RequestGuild.GetEvent();
     }
 
-    public void RecEvent(string evt)
+    public void RecEvent(List<M_EventGuild> events)
     {
-        guild.evt = evt;
-        tab.SetEvent(evt);
+        for (int i = 0; i < events.Count; i++)
+        {
+            guild.events.Add(events[i]);
+        }
+        Timing.RunCoroutine(tab._SetEvent(events));
     }
 
     public void GetMember()

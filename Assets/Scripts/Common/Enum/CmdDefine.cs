@@ -44,6 +44,7 @@ public class CmdDefine
         public const string MODULE_CHARACTER = "character";
         public const string MODULE_TICK_MILESTONE = "tick_milestone";
         public const string MODULE_GUILD = "guild";
+        public const string MODULE_EVENT_GUILD = "event_guild";
     }
 
     public static class ModuleAccount
@@ -98,7 +99,6 @@ public class CmdDefine
         public const string NAME = "name_guild";
         public const string LV = "lv_guild";
         public const string NOTI = "noti_guild";
-        public const string EVT = "event_guild";
 
         public const string ACCOUNTS = "accounts";
 
@@ -106,5 +106,16 @@ public class CmdDefine
 
         public const string GUILD = "guild";
         public const string GUILDS = "guilds";
+
+        public const string EVENTS = "events";
+    }
+
+    public static class ModuleEventGuild
+    {
+        public const string ID = "id_evt_guild";
+        public const string CONTENT = "content_evt_guild";
+        public const string TIME = "time_evt_guild";
+
+        public const string COUNT = "count_evt_guild";
     }
 }

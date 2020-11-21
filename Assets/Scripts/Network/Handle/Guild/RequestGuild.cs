@@ -99,6 +99,7 @@ public class RequestGuild
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.FIX_NOTI_GUILD);
 
         isFSObject.PutInt(CmdDefine.ModuleGuild.ID, GameManager.instance.guild.id);
+        isFSObject.PutInt(CmdDefine.ModuleAccount.ID, GameManager.instance.account.id);
         isFSObject.PutUtfString(CmdDefine.ModuleGuild.NOTI, noti);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
@@ -112,6 +113,7 @@ public class RequestGuild
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_EVENT_GUILD);
 
         isFSObject.PutInt(CmdDefine.ModuleGuild.ID, GameManager.instance.guild.id);
+        isFSObject.PutInt(CmdDefine.ModuleEventGuild.COUNT, GameManager.instance.guild.events.Count);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);

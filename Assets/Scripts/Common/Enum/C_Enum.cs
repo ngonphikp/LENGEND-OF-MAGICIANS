@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class C_Enum
 {
-    public enum MoneyType
+    public enum Scrolltype
     {
-        
+        VerDown = 0,
+        VerUp = 1,
+        HozLeft = 2,
+        HozRight = 3,
     }
 
     public enum ReadType

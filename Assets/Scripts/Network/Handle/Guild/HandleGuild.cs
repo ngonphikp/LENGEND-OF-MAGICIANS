@@ -154,8 +154,13 @@ public class HandleGuild
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            string evt = packet.GetUtfString(CmdDefine.ModuleGuild.EVT);
-            GuildGame.instance.RecEvent(evt);
+            List<M_EventGuild> events = new List<M_EventGuild>();
+            ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleGuild.EVENTS);
+            for (int i = 0; i < arr.Count; i++)
+            {
+                events.Add(new M_EventGuild(arr.GetSFSObject(i)));
+            }
+            GuildGame.instance.RecEvent(events);
         }
         else
         {
