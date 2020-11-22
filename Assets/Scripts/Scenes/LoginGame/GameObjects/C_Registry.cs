@@ -31,8 +31,6 @@ public class C_Registry : MonoBehaviour
         string username = ipfUsername.text;
         string password = ipfPassword.text;
 
-        Debug.Log("====================Registry: " + username + " + " + password);
-
         RequestLogin.Register(username, password);
     }
 

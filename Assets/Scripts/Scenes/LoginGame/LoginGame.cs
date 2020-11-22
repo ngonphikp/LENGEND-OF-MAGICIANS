@@ -21,8 +21,6 @@ public class LoginGame : MonoBehaviour
 
     public void RecLogin(M_Account ac)
     {
-        Debug.Log("====================RecLogin: " + ac.id);
-
         GameManager.instance.account = ac;
 
         RequestAccount.GetInfo(ac.id);
@@ -30,8 +28,6 @@ public class LoginGame : MonoBehaviour
 
     public void RecRegister(M_Account ac)
     {
-        Debug.Log("====================RecRegister: " + ac.id);
-
         GameManager.instance.account = ac;
 
         RequestAccount.GetInfo(ac.id);
@@ -39,8 +35,6 @@ public class LoginGame : MonoBehaviour
 
     public void RecInfo(int id_guild, List<M_Character> lstCharacter, List<M_Tick_Milestone> lstTick_milestones)
     {
-        Debug.Log("====================RecInfo");
-
         GameManager.instance.account.id_guild = id_guild;
 
         GameManager.instance.tick_milestones = lstTick_milestones;

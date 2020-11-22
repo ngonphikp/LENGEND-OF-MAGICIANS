@@ -13,6 +13,10 @@ public class GuildGame : MonoBehaviour
     [SerializeField]
     private C_TabGuild tab = null;
 
+    [Header("UI Master")]
+    [SerializeField]
+    private GameObject[] uis = null;
+
     public bool isMaster = false;
     public M_Guild guild = null;
 
@@ -25,6 +29,8 @@ public class GuildGame : MonoBehaviour
     {
         guild = GameManager.instance.guild;
         isMaster = GameManager.instance.account.job == C_Enum.JobGuild.Master;
+
+        foreach (GameObject ui in uis) ui.SetActive(isMaster);
 
         profile.set(guild);
         tab.SetNoti(guild.noti);

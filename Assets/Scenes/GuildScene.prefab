@@ -2266,6 +2266,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile: {fileID: 1782296918314855102}
   tab: {fileID: 1389407726864039670}
+  uis:
+  - {fileID: 891738527126259183}
+  - {fileID: 1053283915513880709}
+  - {fileID: 4473042210678646074}
   isMaster: 0
   guild:
     id: 0

@@ -6,13 +6,12 @@ public class RequestTickMilestone
 {
     private static string MODULE = CmdDefine.Module.MODULE_TICK_MILESTONE;
 
-    public static void EndGame(int id_ac, int id_ml, int star, bool isSave = true)
+    public static void EndGame(int id_ml, int star, bool isSave = true)
     {
         Debug.Log("=========================== End Game: Save: " + isSave);
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.END_GAME);
 
-        isFSObject.PutInt(CmdDefine.ModuleTickMilestone.ID_AC, id_ac);
         isFSObject.PutInt(CmdDefine.ModuleTickMilestone.ID_ML, id_ml);
         isFSObject.PutInt(CmdDefine.ModuleTickMilestone.STAR, star);
 

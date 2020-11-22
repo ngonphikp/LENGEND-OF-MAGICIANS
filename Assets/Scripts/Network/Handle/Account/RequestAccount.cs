@@ -24,7 +24,6 @@ public class RequestAccount
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SELECTION);
 
-        isFSObject.PutInt(CmdDefine.ModuleAccount.ID, GameManager.instance.account.id);
         isFSObject.PutUtfString(CmdDefine.ModuleAccount.NAME, name);
         isFSObject.PutUtfString(CmdDefine.ModuleCharacter.ID_CFG, id_cfg);
 
@@ -39,7 +38,6 @@ public class RequestAccount
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.TAVERN);
 
         isFSObject.PutInt(CmdDefine.ModuleAccount.TYPE_TAVERN, (int)type);
-        isFSObject.PutInt(CmdDefine.ModuleAccount.ID, GameManager.instance.account.id);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);

@@ -541,7 +541,7 @@ public class FightingGame : MonoBehaviour
 
     public void SendEndGame()
     {        
-        RequestTickMilestone.EndGame(GameManager.instance.account.id, milestone.id, starEndGame, (starEndGame > GameManager.instance.tick_milestonesDic[GameManager.instance.idMilestone].star));
+        RequestTickMilestone.EndGame(milestone.id, starEndGame, (starEndGame > GameManager.instance.tick_milestonesDic[GameManager.instance.idMilestone].star));
     }
 
     public void RecEndGame()
