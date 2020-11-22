@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: -3039208792826366266
     second: StartMenu_3
+  - first:
+      213: 7921190636010016859
+    second: StartMenu_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -35,7 +38,6 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -70,7 +72,6 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -192,6 +193,27 @@ TextureImporter:
       bones: []
       spriteID: 6c6375194bf82d5d0800000000000000
       internalID: -3039208792826366266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenu_4
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 693
+        width: 582
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5017894ae8bded60800000000000000
+      internalID: 7921190636010016859
       vertices: []
       indices: 
       edges: []
