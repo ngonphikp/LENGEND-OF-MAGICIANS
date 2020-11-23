@@ -9,12 +9,19 @@ public class CmdDefine
     {
         public const int REGISTER = 1001;
         public const int LOGIN = 1002;
+
         public const int GETINFO = 1003;
+
         public const int SELECTION = 1004;
+
         public const int ARRANGE = 1005;
+
         public const int TAVERN = 1006;
+
         public const int UPLEVEL = 1007;
+
         public const int END_GAME = 1008;
+
         public const int GET_GUILDS = 1009;
         public const int CREATE_GUILD = 1010;
         public const int GET_GUILD = 1011;
@@ -25,6 +32,8 @@ public class CmdDefine
         public const int GET_EVENT_GUILD = 1016;
         public const int GET_MEMBER_GUID = 1017;
         public const int FIX_NOTI_GUILD = 1018;
+
+        public const int GET_ACCOUNT_GLOBAL = 1019;
     }
 
     public static class ErrorCode
@@ -45,6 +54,7 @@ public class CmdDefine
         public const string MODULE_TICK_MILESTONE = "tick_milestone";
         public const string MODULE_GUILD = "guild";
         public const string MODULE_EVENT_GUILD = "event_guild";
+        public const string MODULE_CHAT_AND_FRIEND = "chat_and_friend";
     }
 
     public static class ModuleAccount
@@ -117,5 +127,11 @@ public class CmdDefine
         public const string TIME = "time_evt_guild";
 
         public const string COUNT = "count_evt_guild";
+    }
+
+    public static class MouduleCF
+    {
+        public const string ACCOUNTS_ONLINE = "accounts_online";
+        public const string ACCOUNTS_OFFLINE = "accounts_offline";
     }
 }

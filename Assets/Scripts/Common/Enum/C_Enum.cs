@@ -65,4 +65,11 @@ public class C_Enum
         Normal = 0,
         Master = 1,
     }
+
+    public enum StatusAccount
+    {
+        None = -1,
+        Off = 0,
+        On = 1,
+    }
 }

@@ -68,20 +68,13 @@ public class SelectionGame : MonoBehaviour
     public void VaoGame()
     {
         nameAc = ipfTenNhanVat.text;
-
-        Debug.Log("====================Vào Game: " + nameAc + " / " + idHeros[idxActive]);
-
-        txtNoti.text = "Vào Game thành công";
+        txtNoti.text = "Vào game thành công!";
 
         RequestAccount.Selection(nameAc, idHeros[idxActive]);
     }
 
     public void RecSelection(List<M_Character> lstCharacters)
     {
-        Debug.Log("====================RecSelection");
-
-        //lstNhanVat.ForEach(x => Debug.Log(x.id_nv + " / " + x.id_cfg + " / " + x.id_tk + " / " + x.lv));
-
         if (lstCharacters.Count > 0)
         {
             GameManager.instance.characters = lstCharacters;

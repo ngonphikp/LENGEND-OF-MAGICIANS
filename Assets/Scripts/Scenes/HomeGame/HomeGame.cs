@@ -9,6 +9,10 @@ public class HomeGame : MonoBehaviour
 {
     public static HomeGame instance = null;
 
+    [Header("Profile")]
+    [SerializeField]
+    private C_ProfileAcc profileAcc = null;
+
     [Header("Bag Hero")]
     [SerializeField]
     private Transform listHeroAc = null;
@@ -54,6 +58,13 @@ public class HomeGame : MonoBehaviour
 
         Timing.RunCoroutine(_FilterListHero());
         Timing.RunCoroutine(_LoadBagHero());
+
+        LoadProfileAcc();
+    }
+
+    private void LoadProfileAcc()
+    {
+        profileAcc.set(GameManager.instance.account);
     }
 
     private IEnumerator<float> _FilterListHero()

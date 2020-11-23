@@ -27,6 +27,9 @@ public class HandleExtension
             case CmdDefine.Module.MODULE_GUILD:
                 HandleGuild.OnResponse(dataObject);
                 break;
+            case CmdDefine.Module.MODULE_CHAT_AND_FRIEND:
+                HandleCF.OnResponse(dataObject);
+                break;
             default:
 
                 break;

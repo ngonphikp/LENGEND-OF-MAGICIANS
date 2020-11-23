@@ -6,7 +6,7 @@ public class RequestLogin
 {
     public static void Login(string username, string password)
     {
-        Debug.Log("----------------------->Login");
+        Debug.Log("=========================== Login");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.LOGIN);
 
@@ -19,7 +19,7 @@ public class RequestLogin
 
     public static void Register(string username, string password)
     {
-        Debug.Log("----------------------->Registry");
+        Debug.Log("=========================== Registry");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.REGISTER);
 
@@ -32,7 +32,7 @@ public class RequestLogin
 
     public static void Logout()
     {
-        Debug.Log("----------------------->Logout");
+        Debug.Log("=========================== Logout");
         SmartFoxConnection.send(new LogoutRequest());
     }
 }

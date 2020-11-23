@@ -5,14 +5,21 @@ public class HandleRoom
 {
     public static void OnRoomJoin(BaseEvent evt)
     {
-        Debug.Log("Vào room !");
+        Debug.Log("Vào room thành công!");
     }
+
     public static void OnRoomJoinError(BaseEvent evt)
     {
-        Debug.LogWarning("Join Room không thành công!");
+        Debug.LogWarning("Vào room không thành công!");
     }
+
     public static void OnUserExitRoom(BaseEvent evt)
     {
-        Debug.Log("OnUserExitRoom");
+        Debug.Log("Người chơi thoát room!");
+    }
+
+    public static void OnUserEnterRoom(BaseEvent evt)
+    {
+        Debug.Log("Người chơi vào room!");
     }
 }

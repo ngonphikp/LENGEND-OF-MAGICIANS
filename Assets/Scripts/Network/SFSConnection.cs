@@ -96,6 +96,7 @@ public class SmartFoxConnection : MonoBehaviour
 
             sfs.AddEventListener(SFSEvent.ROOM_JOIN, HandleRoom.OnRoomJoin);
             sfs.AddEventListener(SFSEvent.ROOM_JOIN_ERROR, HandleRoom.OnRoomJoinError);
+            sfs.AddEventListener(SFSEvent.USER_ENTER_ROOM, HandleRoom.OnUserEnterRoom);
             sfs.AddEventListener(SFSEvent.USER_EXIT_ROOM, HandleRoom.OnUserExitRoom);
 
             // Gán cfg cho sfs

@@ -113,6 +113,8 @@
     <Compile Include="Assets\Scripts\Network\Handle\Account\RequestAccount.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\HandleCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\RequestCharacter.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\ChatAndFriend\HandleCF.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\ChatAndFriend\RequestCF.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Guild\HandleGuild.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Guild\RequestGuild.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\HandleConnect.cs" />
@@ -140,6 +142,9 @@
     <Compile Include="Assets\Scripts\Scenes\GuildGame\Prefabs\C_MemberG.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_BtnArrange.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FindGuid.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_LstProfileAcc.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ProfileAcc.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\ChatAndFriend.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\HomeGame.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\Prefabs\C_BagEl.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\Prefabs\C_CardGuild.cs" />
@@ -749,14 +754,14 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>D:/NPS/LENGEND-OF-MAGICIANS/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>D:/NPS/LENGEND-OF-MAGICIANS/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/NPS/LENGEND-OF-MAGICIANS/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/NPS/LENGEND-OF-MAGICIANS/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>D:/NPS/LENGEND-OF-MAGICIANS/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -44,7 +44,7 @@ public class HandleLogin
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {           
-            LoginGame.instance.RecLogin(new M_Account(data.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT)));
+            LoginGame.instance.RecLogin(new M_Account(data.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT), C_Enum.StatusAccount.On));
         }
         else
         {
@@ -63,7 +63,7 @@ public class HandleLogin
         short ec = data.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            LoginGame.instance.RecRegister(new M_Account(data.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT)));
+            LoginGame.instance.RecRegister(new M_Account(data.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT), C_Enum.StatusAccount.On));
         }
         else
         {
