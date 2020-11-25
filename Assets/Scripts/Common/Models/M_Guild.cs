@@ -58,5 +58,7 @@ public class M_Guild
     public void UpLevel()
     {
         maxMember += 5;
+
+        if (maxMember > 50) maxMember = 50;
     }
 }

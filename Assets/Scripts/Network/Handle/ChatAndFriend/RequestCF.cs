@@ -17,4 +17,38 @@ public class RequestCF : MonoBehaviour
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);
     }
+
+    public static void SendMessageGlobal(string message)
+    {
+        Debug.Log("=========================== Send Message Global");
+        ISFSObject isFSObject = new SFSObject();
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SEND_MESSAGE_GLOBAL);
+
+        isFSObject.PutUtfString(CmdDefine.MouduleCF.MESSAGE, message);
+
+        var packet = new ExtensionRequest(MODULE, isFSObject);
+        SmartFoxConnection.send(packet);
+    }
+
+    public static void GetAccountGuild()
+    {
+        Debug.Log("=========================== Get Account Guild");
+        ISFSObject isFSObject = new SFSObject();
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_ACCOUNT_GUILD);
+
+        var packet = new ExtensionRequest(MODULE, isFSObject);
+        SmartFoxConnection.send(packet);
+    }
+
+    public static void SendMessageGuild(string message)
+    {
+        Debug.Log("=========================== Send Message Guild");
+        ISFSObject isFSObject = new SFSObject();
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SEND_MESSAGE_GUILD);
+
+        isFSObject.PutUtfString(CmdDefine.MouduleCF.MESSAGE, message);
+
+        var packet = new ExtensionRequest(MODULE, isFSObject);
+        SmartFoxConnection.send(packet);
+    }
 }

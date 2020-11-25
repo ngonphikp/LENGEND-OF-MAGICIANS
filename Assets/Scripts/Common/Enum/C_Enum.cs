@@ -72,4 +72,12 @@ public class C_Enum
         Off = 0,
         On = 1,
     }
+
+    public enum CFType
+    {
+        None = -1,
+        Global = 0,
+        Guild = 1,
+        Friend = 2,
+    }
 }

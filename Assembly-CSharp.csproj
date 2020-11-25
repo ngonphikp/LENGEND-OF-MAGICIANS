@@ -141,9 +141,11 @@
     <Compile Include="Assets\Scripts\Scenes\GuildGame\GuildGame.cs" />
     <Compile Include="Assets\Scripts\Scenes\GuildGame\Prefabs\C_MemberG.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_BtnArrange.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ChatCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FindGuid.cs" />
-    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_LstProfileAcc.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FriendCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ProfileAcc.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_TextMessageCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\ChatAndFriend.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\HomeGame.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\Prefabs\C_BagEl.cs" />

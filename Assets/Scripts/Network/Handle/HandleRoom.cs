@@ -1,25 +1,26 @@
 ﻿using Sfs2X.Core;
+using Sfs2X.Entities.Data;
 using UnityEngine;
 
 public class HandleRoom 
 {
     public static void OnRoomJoin(BaseEvent evt)
     {
-        Debug.Log("Vào room thành công!");
+        Debug.Log("On Room Join: \n " + evt.Params["room"].ToString());
     }
 
     public static void OnRoomJoinError(BaseEvent evt)
     {
-        Debug.LogWarning("Vào room không thành công!");
+        Debug.LogWarning("On Room Join Error: \n" + evt.Params["room"].ToString());
     }
 
     public static void OnUserExitRoom(BaseEvent evt)
     {
-        Debug.Log("Người chơi thoát room!");
+        Debug.Log("On User Exit Room: \n" + evt.Params["room"].ToString());
     }
 
     public static void OnUserEnterRoom(BaseEvent evt)
     {
-        Debug.Log("Người chơi vào room!");
+        Debug.Log("On User Enter Room: \n" + evt.Params["room"].ToString());
     }
 }

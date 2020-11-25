@@ -1,4 +1,5 @@
-﻿using Sfs2X;
+﻿using MEC;
+using Sfs2X;
 using Sfs2X.Core;
 using Sfs2X.Requests;
 using Sfs2X.Util;
@@ -132,20 +133,47 @@ public class SmartFoxConnection : MonoBehaviour
 
     public static void send(LoginRequest request)
     {
-        if (!isAlready()) Init();
-
-        sfs.Send(request);
+        Timing.RunCoroutine(_send(request));
     }
+
     public static void send(ExtensionRequest request)
     {
-        if (!isAlready()) Init();
-
-        sfs.Send(request);
+        Timing.RunCoroutine(_send(request));
     }
+
     public static void send(LogoutRequest request)
     {
-        if (!isAlready()) Init();
+        Timing.RunCoroutine(_send(request));
+    }
 
+    private static IEnumerator<float> _send(LoginRequest request)
+    {
+        if (!isAlready()) Init();
+        while (true)
+        {
+            if (isAlready()) break;
+            yield return Timing.WaitForOneFrame;
+        }
+        sfs.Send(request);
+    }
+    private static IEnumerator<float> _send(ExtensionRequest request)
+    {
+        if (!isAlready()) Init();
+        while (true)
+        {
+            if (isAlready()) break;
+            yield return Timing.WaitForOneFrame;
+        }
+        sfs.Send(request);
+    }
+    private static IEnumerator<float> _send(LogoutRequest request)
+    {
+        if (!isAlready()) Init();
+        while (true)
+        {
+            if (isAlready()) break;
+            yield return Timing.WaitForOneFrame;
+        }
         sfs.Send(request);
     }
 }

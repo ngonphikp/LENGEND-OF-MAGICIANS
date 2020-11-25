@@ -117,11 +117,6 @@ public class GameManager : MonoBehaviour
         milestones.ForEach(x => milestonesDic.Add(x.id, x));
     }
 
-    private void Start()
-    {        
-        SmartFoxConnection.Connect();
-    }
-
     public void UpdateTickMS()
     {
         tick_milestonesDic = new Dictionary<int, M_Tick_Milestone>(tick_milestonesDic.Count);

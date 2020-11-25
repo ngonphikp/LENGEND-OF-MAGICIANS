@@ -34,6 +34,9 @@ public class CmdDefine
         public const int FIX_NOTI_GUILD = 1018;
 
         public const int GET_ACCOUNT_GLOBAL = 1019;
+        public const int SEND_MESSAGE_GLOBAL = 1020;
+        public const int GET_ACCOUNT_GUILD = 1021;
+        public const int SEND_MESSAGE_GUILD = 1022;
     }
 
     public static class ErrorCode
@@ -44,6 +47,7 @@ public class CmdDefine
         {
             {1, "WRONG_USERNAME_OR_PASSWORD"},
             {2, "EXIT_ACCOUNT"},
+            {3, "ACCOUNT_LOGON" }
        };
     }
 
@@ -133,5 +137,8 @@ public class CmdDefine
     {
         public const string ACCOUNTS_ONLINE = "accounts_online";
         public const string ACCOUNTS_OFFLINE = "accounts_offline";
+
+        public const string ACCOUNT = "account_cf";
+        public const string MESSAGE = "message_cf";        
     }
 }

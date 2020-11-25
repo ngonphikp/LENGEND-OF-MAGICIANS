@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class C_LstProfileAcc : MonoBehaviour
+public class C_FriendCF : MonoBehaviour
 {
+    [SerializeField]
+    private ScrollRect sc = null;
     [SerializeField]
     private GameObject prb = null;
     [SerializeField]
     private Transform content = null;
 
     private List<C_ProfileAcc> lstObjs = new List<C_ProfileAcc>();
+    
 
     public void set(List<M_Account> data)
     {
@@ -36,5 +40,7 @@ public class C_LstProfileAcc : MonoBehaviour
         }
 
         lstObjs = news;
+
+        sc.verticalNormalizedPosition = 1;
     }
 }

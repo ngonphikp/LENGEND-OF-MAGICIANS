@@ -31,8 +31,6 @@ public class C_Login : MonoBehaviour
         string username = ipfUsername.text;
         string password = ipfPassword.text;
 
-        Debug.Log("=======================Login: " + username + " + " + password);
-
         RequestLogin.Login(username, password);
     }
 
