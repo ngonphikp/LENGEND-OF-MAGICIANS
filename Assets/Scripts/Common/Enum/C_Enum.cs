@@ -75,9 +75,8 @@ public class C_Enum
 
     public enum CFType
     {
-        None = -1,
         Global = 0,
         Guild = 1,
-        Friend = 2,
+        Private = 2,
     }
 }

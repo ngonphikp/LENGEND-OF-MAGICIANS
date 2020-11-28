@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Common\Models\M_Account.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Action.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Character.cs" />
+    <Compile Include="Assets\Scripts\Common\Models\M_Details.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_EventGuild.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Guild.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Milestone.cs" />
@@ -142,8 +143,11 @@
     <Compile Include="Assets\Scripts\Scenes\GuildGame\Prefabs\C_MemberG.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_BtnArrange.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ChatCF.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_Details.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FindAcc.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FindGuid.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FriendCF.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_LstCharacter.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ProfileAcc.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_TextMessageCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\ChatAndFriend.cs" />

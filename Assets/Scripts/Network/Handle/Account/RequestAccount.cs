@@ -10,7 +10,7 @@ public class RequestAccount
     {
         Debug.Log("=========================== Get Info: " + id);
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GETINFO);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_INFO);
 
         isFSObject.PutInt(CmdDefine.ModuleAccount.ID, id);
 

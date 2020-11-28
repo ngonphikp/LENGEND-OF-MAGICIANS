@@ -18,8 +18,12 @@ public class C_ChangeHost : MonoBehaviour
         string host = ipfHost.text;
         GameManager.instance.host = host;
 
-        SmartFoxConnection.Sfs.Disconnect();
-        SmartFoxConnection.setNull();
+        if (SmartFoxConnection.IsInitialized)
+        {
+            SmartFoxConnection.Sfs.Disconnect();
+            SmartFoxConnection.setNull();
+        }
+        
         SmartFoxConnection.Init();
     }
 }

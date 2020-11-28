@@ -12,8 +12,12 @@ public class ChatAndFriend : MonoBehaviour
     private C_FriendCF friendCF = null;
     [SerializeField]
     private C_ChatCF chatCF = null;
+    [SerializeField]
+    private C_Details c_details = null;
+    [SerializeField]
+    private GameObject FindObj = null;
 
-    private C_Enum.CFType type = C_Enum.CFType.None;
+    private C_Enum.CFType type = C_Enum.CFType.Global;
 
     private int id_guild = -5;
 
@@ -26,31 +30,34 @@ public class ChatAndFriend : MonoBehaviour
     {
         switch (type)
         {
-            case C_Enum.CFType.None:
-                Global();
-                break;
             case C_Enum.CFType.Global:
                 Global();
                 break;
             case C_Enum.CFType.Guild:
                 Guild();
                 break;
-            case C_Enum.CFType.Friend:
-                break;
             default:
+                Global();
                 break;
         }
         popUp.SetActive(true);
     }
 
-    public void Global()
+    public void btnReset()
     {
         RequestCF.GetAccountGlobal();
     }
 
-    public void RecAccount(C_Enum.CFType type, List<M_Account> accounts)
+    public void Global()
     {
-        this.type = type;
+        this.type = C_Enum.CFType.Global;
+        C_Util.ActiveGO(true, FindObj);
+
+        RequestCF.GetAccountGlobal();
+    }
+
+    public void RecAccount(List<M_Account> accounts)
+    {
         friendCF.set(accounts);
         chatCF.set(type);
     }
@@ -62,6 +69,10 @@ public class ChatAndFriend : MonoBehaviour
 
     public void Guild()
     {
+        this.type = C_Enum.CFType.Guild;
+
+        C_Util.ActiveGO(false, FindObj);
+
         if (id_guild != GameManager.instance.account.id_guild) chatCF.SetContentGuild("");
 
         id_guild = GameManager.instance.account.id_guild;
@@ -73,5 +84,33 @@ public class ChatAndFriend : MonoBehaviour
         }
 
         RequestCF.GetAccountGuild();
+    }
+
+    public void Friend()
+    {
+        C_Util.ActiveGO(false, FindObj);
+
+        RequestCF.GetAccountFriend();
+    }
+
+    public void RecDetails(M_Details details)
+    {
+        c_details.set(details);
+    }
+
+    public void RecMakeFriend()
+    {
+        c_details.RecMakeFriend();
+    }
+
+    public void RecRemoveFriend()
+    {
+        c_details.RecRemoveFriend();
+    }
+
+    public void ChatPrivate(int id, string name)
+    {
+        this.type = C_Enum.CFType.Private;
+        chatCF.set(type, id, name);
     }
 }

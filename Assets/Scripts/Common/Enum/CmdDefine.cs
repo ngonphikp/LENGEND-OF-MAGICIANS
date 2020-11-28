@@ -10,7 +10,7 @@ public class CmdDefine
         public const int REGISTER = 1001;
         public const int LOGIN = 1002;
 
-        public const int GETINFO = 1003;
+        public const int GET_INFO = 1003;
 
         public const int SELECTION = 1004;
 
@@ -37,6 +37,14 @@ public class CmdDefine
         public const int SEND_MESSAGE_GLOBAL = 1020;
         public const int GET_ACCOUNT_GUILD = 1021;
         public const int SEND_MESSAGE_GUILD = 1022;
+
+        public const int GET_DETAILS = 1023;
+        public const int MAKE_FRIEND = 1024;
+        public const int REMOVE_FRIEND = 1025;
+        public const int GET_ACCOUNT_FRIEND = 1026;
+        public const int FIND_ACCOUNT_GLOBAL = 1027;
+
+        public const int SEND_MESSAGE_PRIVATE = 1028;
     }
 
     public static class ErrorCode
@@ -135,10 +143,15 @@ public class CmdDefine
 
     public static class MouduleCF
     {
-        public const string ACCOUNTS_ONLINE = "accounts_online";
-        public const string ACCOUNTS_OFFLINE = "accounts_offline";
+        public const string ACCOUNTS = "accounts";
+        public const string ID_ONLINES = "id_onlines";
 
         public const string ACCOUNT = "account_cf";
-        public const string MESSAGE = "message_cf";        
+        public const string MESSAGE = "message_cf";    
+        
+        public const string IS_FRIEND = "is_friend";
+
+        public const string CONTENT = "content";
+        public const string IS_CHECK_ID = "is_check_id";
     }
 }

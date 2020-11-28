@@ -12,7 +12,7 @@ public class HandleAccount
 
         switch (cmdid)
         {
-            case CmdDefine.CMD.GETINFO:
+            case CmdDefine.CMD.GET_INFO:
                 HandleGetInfo(sfsObject);
                 break;
             case CmdDefine.CMD.SELECTION:

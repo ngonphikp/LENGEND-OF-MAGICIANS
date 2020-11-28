@@ -11,5 +11,13 @@ public static class C_Util
     {
         Debug.Log(Newtonsoft.Json.JsonConvert.SerializeObject(obj));
     }
+
+    public static void ActiveGO(bool isActive, params GameObject[] objs)
+    {
+        for (int i = 0; i < objs.Length; i++)
+        {
+            objs[i].SetActive(isActive);
+        }
+    }
 }
 

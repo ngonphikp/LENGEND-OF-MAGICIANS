@@ -1,22 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class C_FriendCF : MonoBehaviour
+public class C_LstCharacter : MonoBehaviour
 {
-    [SerializeField]
-    private ScrollRect sc = null;
     [SerializeField]
     private GameObject prb = null;
     [SerializeField]
     private Transform content = null;
 
-    private List<C_ProfileAcc> lstObjs = new List<C_ProfileAcc>();
-    
-    public void set(List<M_Account> data)
+    private List<C_Avatar> lstObjs = new List<C_Avatar>();
+
+    public void set(List<M_Character> data)
     {
-        List<C_ProfileAcc> news = new List<C_ProfileAcc>();
+        List<C_Avatar> news = new List<C_Avatar>();
         int i;
         for (i = 0; i < data.Count; i++)
         {
@@ -27,11 +24,8 @@ public class C_FriendCF : MonoBehaviour
             }
             else
             {
-                C_ProfileAcc obj = Instantiate(prb, content).GetComponent<C_ProfileAcc>();
+                C_Avatar obj = Instantiate(prb, content).GetComponent<C_Avatar>();
                 obj.set(data[i]);
-
-                if (data[i].status == C_Enum.StatusAccount.On) obj.transform.SetSiblingIndex(0);
-
                 news.Add(obj);
             }
         }
@@ -42,7 +36,5 @@ public class C_FriendCF : MonoBehaviour
         }
 
         lstObjs = news;
-
-        sc.verticalNormalizedPosition = 1;
     }
 }

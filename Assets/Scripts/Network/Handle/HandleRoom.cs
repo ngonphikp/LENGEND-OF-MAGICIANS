@@ -17,10 +17,12 @@ public class HandleRoom
     public static void OnUserExitRoom(BaseEvent evt)
     {
         Debug.Log("On User Exit Room: \n" + evt.Params["room"].ToString());
+        Debug.Log("On User Enter Room: \n" + evt.Params["user"].ToString());
     }
 
     public static void OnUserEnterRoom(BaseEvent evt)
     {
         Debug.Log("On User Enter Room: \n" + evt.Params["room"].ToString());
+        Debug.Log("On User Enter Room: \n" + evt.Params["user"].ToString());
     }
 }
