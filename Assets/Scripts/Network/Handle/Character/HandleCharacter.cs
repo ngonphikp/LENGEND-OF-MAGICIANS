@@ -34,7 +34,7 @@ public class HandleChacracter
         }
         else
         {
-            Debug.Log("ErrorCode: " + ec);
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
         }
     }
 
@@ -48,7 +48,7 @@ public class HandleChacracter
         }
         else
         {
-            Debug.Log("ErrorCode: " + ec);
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
         }
     }
 }

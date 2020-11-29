@@ -51,6 +51,8 @@ public class ChatAndFriend : MonoBehaviour
     public void Global()
     {
         this.type = C_Enum.CFType.Global;
+        chatCF.set(type);
+
         C_Util.ActiveGO(true, FindObj);
 
         RequestCF.GetAccountGlobal();
@@ -59,7 +61,6 @@ public class ChatAndFriend : MonoBehaviour
     public void RecAccount(List<M_Account> accounts)
     {
         friendCF.set(accounts);
-        chatCF.set(type);
     }
 
     public void RecMessage(C_Enum.CFType type, M_Account account, string message)
@@ -70,7 +71,7 @@ public class ChatAndFriend : MonoBehaviour
     public void Guild()
     {
         this.type = C_Enum.CFType.Guild;
-
+        chatCF.set(type);
         C_Util.ActiveGO(false, FindObj);
 
         if (id_guild != GameManager.instance.account.id_guild) chatCF.SetContentGuild("");
@@ -112,5 +113,10 @@ public class ChatAndFriend : MonoBehaviour
     {
         this.type = C_Enum.CFType.Private;
         chatCF.set(type, id, name);
+    }
+
+    public void RemoveMessagePrivate(int id)
+    {
+        chatCF.RemoveMessage(id);
     }
 }

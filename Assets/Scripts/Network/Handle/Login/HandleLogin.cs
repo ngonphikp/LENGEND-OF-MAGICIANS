@@ -83,7 +83,7 @@ public class HandleLogin
         var message = evt.Params["errorMessage"];
         try
         {
-            Debug.Log("ErrorCode: " + ec);
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
             Debug.Log("Message: " + message);
         }
         catch (Exception e)

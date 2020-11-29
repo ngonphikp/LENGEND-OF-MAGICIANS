@@ -54,7 +54,7 @@ public class C_Details : MonoBehaviour
 
     public void RemoveFriend()
     {
-        RequestCF.RemoveFriend(data.account.id);
+        RequestCF.RemoveFriend(data.account.id);        
     }
 
     public void RecMakeFriend()
@@ -75,6 +75,8 @@ public class C_Details : MonoBehaviour
         C_Util.ActiveGO(!data.is_friend, btnMakeF);
 
         btnChatPrivate.interactable = data.is_friend;
+
+        ChatAndFriend.instance.RemoveMessagePrivate(data.account.id);
     }
 
     public void ChatPrivate()

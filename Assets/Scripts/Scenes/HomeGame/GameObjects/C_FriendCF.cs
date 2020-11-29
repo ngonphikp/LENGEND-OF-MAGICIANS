@@ -23,6 +23,9 @@ public class C_FriendCF : MonoBehaviour
             if (i < lstObjs.Count)
             {
                 lstObjs[i].set(data[i]);
+
+                if (data[i].status == C_Enum.StatusAccount.On) lstObjs[i].transform.SetSiblingIndex(0);
+
                 news.Add(lstObjs[i]);
             }
             else

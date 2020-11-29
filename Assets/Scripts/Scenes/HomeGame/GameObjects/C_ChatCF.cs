@@ -7,10 +7,6 @@ public class C_ChatCF : MonoBehaviour
 {
     [SerializeField]
     private Text txtTitle = null;
-    [SerializeField]
-    private C_TextMessageCF txtGlobal = null;       // -1
-    [SerializeField]
-    private C_TextMessageCF txtGuild = null;        // -2
 
     [SerializeField]
     private Transform posTxtMessage = null;
@@ -20,20 +16,14 @@ public class C_ChatCF : MonoBehaviour
     [SerializeField]
     private InputField ipfMessage = null;
 
-    private C_Enum.CFType type;
+    private C_Enum.CFType type = C_Enum.CFType.None;
     private int id = -1;
 
     private Dictionary<int, C_TextMessageCF> dicTxtMessage = new Dictionary<int, C_TextMessageCF>();
 
-    private void Awake()
-    {
-        dicTxtMessage.Add(-1, txtGlobal);
-        dicTxtMessage.Add(-2, txtGuild);
-    }
-
     public void set(C_Enum.CFType type, int id = -1, string name = "")
     {
-        if (this.type == type && this.id == id) return;
+        if ((this.type == type && this.type != C_Enum.CFType.Private) || (type == C_Enum.CFType.Private && this.id == id)) return;
 
         this.type = type;
         this.id = id;
@@ -44,13 +34,27 @@ public class C_ChatCF : MonoBehaviour
                 txtTitle.text = "Thế giới";
 
                 foreach (C_TextMessageCF item in dicTxtMessage.Values) item.gameObject.SetActive(false);
+
+                if (!dicTxtMessage.ContainsKey(-1))
+                {
+                    GameObject txtMessage = Instantiate(txtMessagePfb, posTxtMessage);
+                    txtMessage.name = "Global";
+                    dicTxtMessage.Add(-1, txtMessage.GetComponent<C_TextMessageCF>());
+                }
                 dicTxtMessage[-1].gameObject.SetActive(true);
-                
+
                 break;
             case C_Enum.CFType.Guild:
                 txtTitle.text = "Hội: " + GameManager.instance.guild.name;
 
                 foreach (C_TextMessageCF item in dicTxtMessage.Values) item.gameObject.SetActive(false);
+
+                if (!dicTxtMessage.ContainsKey(-2))
+                {
+                    GameObject txtMessage = Instantiate(txtMessagePfb, posTxtMessage);
+                    txtMessage.name = "Guild";
+                    dicTxtMessage.Add(-2, txtMessage.GetComponent<C_TextMessageCF>());
+                }
                 dicTxtMessage[-2].gameObject.SetActive(true);
 
                 break;
@@ -59,16 +63,13 @@ public class C_ChatCF : MonoBehaviour
 
                 foreach (C_TextMessageCF item in dicTxtMessage.Values) item.gameObject.SetActive(false);
 
-                if (dicTxtMessage.ContainsKey(id))
-                {
-                    dicTxtMessage[id].gameObject.SetActive(true);
-                }
-                else
+                if (!dicTxtMessage.ContainsKey(id))
                 {
                     GameObject txtMessage = Instantiate(txtMessagePfb, posTxtMessage);
                     txtMessage.name = "Private " + id;
-                    dicTxtMessage.Add(id, txtMessage.GetComponent<C_TextMessageCF>());
+                    dicTxtMessage.Add(id, txtMessage.GetComponent<C_TextMessageCF>());                    
                 }
+                dicTxtMessage[id].gameObject.SetActive(true);
 
                 break;
             default:
@@ -103,10 +104,10 @@ public class C_ChatCF : MonoBehaviour
         switch (type)
         {
             case C_Enum.CFType.Global:
-                txtGlobal.add(Message(type, account, message));
+                dicTxtMessage[-1].add(Message(type, account, message));
                 break;
             case C_Enum.CFType.Guild:
-                txtGuild.add(Message(type, account, message));
+                dicTxtMessage[-2].add(Message(type, account, message));
                 break;
             case C_Enum.CFType.Private:
                 //Nếu là người gửi
@@ -120,14 +121,30 @@ public class C_ChatCF : MonoBehaviour
                     if (!dicTxtMessage.ContainsKey(account.id))
                     {
                         GameObject txtMessage = Instantiate(txtMessagePfb, posTxtMessage);
-                        txtMessage.name = "Private " + id;
-                        dicTxtMessage.Add(id, txtMessage.GetComponent<C_TextMessageCF>());
+                        txtMessage.name = "Private " + account.id;
+                        txtMessage.SetActive(false);
+                        dicTxtMessage.Add(account.id, txtMessage.GetComponent<C_TextMessageCF>());
                     }
                     dicTxtMessage[account.id].add(Message(type, account, message));
                 }
                 break;
             default:
                 break;
+        }
+    }
+
+    public void RemoveMessage(int id)
+    {
+        if (dicTxtMessage.ContainsKey(id))
+        {
+            Destroy(dicTxtMessage[id]);
+            dicTxtMessage.Remove(id);
+
+            if (this.id == id)
+            {
+                ChatAndFriend.instance.Global();
+                this.id = -1;
+            }
         }
     }
 
@@ -144,6 +161,12 @@ public class C_ChatCF : MonoBehaviour
 
     public void SetContentGuild(string str)
     {
-        txtGuild.set(str);
+        if (!dicTxtMessage.ContainsKey(-2))
+        {
+            GameObject txtMessage = Instantiate(txtMessagePfb, posTxtMessage);
+            txtMessage.name = "Guild";
+            dicTxtMessage.Add(-2, txtMessage.GetComponent<C_TextMessageCF>());
+        }
+        dicTxtMessage[-2].set(str);
     }
 }

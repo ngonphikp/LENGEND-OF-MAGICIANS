@@ -50,12 +50,19 @@ public class CmdDefine
     public static class ErrorCode
     {
         public const short SUCCESS = 0;
-        public static readonly Dictionary<int, string> Errors
-        = new Dictionary<int, string>
+        public const short WRONG_USERNAME_OR_PASSWORD = 1;
+        public const short EXIT_ACCOUNT = 2;
+        public const short ACCOUNT_LOGON = 3;
+
+        public const short UNFRIENDED = 4;
+
+        public static readonly Dictionary<short, string> Errors
+        = new Dictionary<short, string>
         {
-            {1, "WRONG_USERNAME_OR_PASSWORD"},
-            {2, "EXIT_ACCOUNT"},
-            {3, "ACCOUNT_LOGON" }
+            {WRONG_USERNAME_OR_PASSWORD, "WRONG_USERNAME_OR_PASSWORD"},
+            {EXIT_ACCOUNT, "EXIT_ACCOUNT"},
+            {ACCOUNT_LOGON, "ACCOUNT_LOGON" },
+            {UNFRIENDED, "UNFRINEDED" }
        };
     }
 
