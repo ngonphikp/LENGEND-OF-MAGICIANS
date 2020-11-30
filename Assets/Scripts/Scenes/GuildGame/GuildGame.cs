@@ -13,12 +13,22 @@ public class GuildGame : MonoBehaviour
     [SerializeField]
     private C_TabGuild tab = null;
 
+    [SerializeField]
+    private C_BossesG bossesG = null;
+    [SerializeField]
+    private C_ConfigBossG cfgBoss = null;
+
     [Header("UI Master")]
     [SerializeField]
     private GameObject[] uis = null;
 
     public bool isMaster = false;
     public M_Guild guild = null;
+
+    public List<M_TickBossGuild> tick_bosses = new List<M_TickBossGuild>();
+    public Dictionary<int, M_TickBossGuild> tick_bossesDic = new Dictionary<int, M_TickBossGuild>();
+
+    private int id_active = -1;
 
     private void Awake()
     {
@@ -97,4 +107,40 @@ public class GuildGame : MonoBehaviour
         tab.SetAccounts(accounts);
         profile.set(guild);
     }    
+
+    public void OpenBoss()
+    {
+        if(id_active == -1)
+        {
+            RequestGuild.GetTickBosses();
+        }
+        else
+        {
+            RequestGuild.GetTickBoss(id_active);
+        }
+    }
+
+    public void RecTickBosses(List<M_TickBossGuild> tick_bosses)
+    {
+        this.tick_bosses = tick_bosses;
+        tick_bossesDic = new Dictionary<int, M_TickBossGuild>(tick_bosses.Count);
+        tick_bosses.ForEach(x => tick_bossesDic.Add(x.id, x));
+
+        if(tick_bosses.Count >= 4) bossesG.show();
+        if(tick_bosses.Count > 0) this.id_active = tick_bosses[0].id;
+        if(id_active != -1) cfgBoss.set(id_active);
+    }
+
+    public void RecTickBoss(M_TickBossGuild tbg)
+    {
+        this.id_active = tbg.id;
+
+        if (tick_bossesDic.ContainsKey(tbg.id))
+        {
+            tick_bossesDic[tbg.id] = tbg;
+        }
+
+        bossesG.UpdateUI(tbg.id);
+        cfgBoss.set(id_active);
+    }
 }

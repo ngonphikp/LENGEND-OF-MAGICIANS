@@ -21,7 +21,8 @@ public class C_Enum
     public enum CharacterType
     {
         Hero = 0,
-        Creep = 1
+        Creep = 1,
+        Boss = 2,
     }
 
     public enum CardType
@@ -79,5 +80,12 @@ public class C_Enum
         Global = 0,
         Guild = 1,
         Private = 2,
+    }
+
+    public enum StatusBossG
+    {
+        Lock = 0,
+        Fight = 1,
+        Reward = 2,
     }
 }

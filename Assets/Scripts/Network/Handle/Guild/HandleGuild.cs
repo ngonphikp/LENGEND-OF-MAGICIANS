@@ -39,6 +39,12 @@ public class HandleGuild
             case CmdDefine.CMD.FIX_NOTI_GUILD:
                 HandleFixNoti(sfsObject);
                 break;
+            case CmdDefine.CMD.GET_TICK_BOSSES_GUILD:
+                HandleGetTickBosses(sfsObject);
+                break;
+            case CmdDefine.CMD.GET_TICK_BOSS_GUILD:
+                HandleGetTickBoss(sfsObject);
+                break;
             default:
                 break;
         }
@@ -195,6 +201,38 @@ public class HandleGuild
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             Debug.Log("SUCCESS");
+        }
+        else
+        {
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
+        }
+    }
+
+    public static void HandleGetTickBosses(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE TICK BOSSES\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            List<M_TickBossGuild> lstTbg = new List<M_TickBossGuild>();
+
+            GuildGame.instance.RecTickBosses(lstTbg);
+        }
+        else
+        {
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
+        }
+    }
+
+    public static void HandleGetTickBoss(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE TICK BOSS\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            M_TickBossGuild tbg = new M_TickBossGuild();
+
+            GuildGame.instance.RecTickBoss(tbg);
         }
         else
         {

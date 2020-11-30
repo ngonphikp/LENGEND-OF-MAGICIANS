@@ -1,4 +1,5 @@
 ﻿using Sfs2X.Core;
+using Sfs2X.Entities;
 using Sfs2X.Entities.Data;
 using UnityEngine;
 

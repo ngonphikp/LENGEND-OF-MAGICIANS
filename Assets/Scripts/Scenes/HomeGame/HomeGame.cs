@@ -120,7 +120,7 @@ public class HomeGame : MonoBehaviour
         }
         else
         {            
-            RequestGuild.GetGuild(GameManager.instance.account.id_guild);
+            RequestGuild.GetGuild();
         }
     }
 

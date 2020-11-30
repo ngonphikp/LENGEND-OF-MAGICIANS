@@ -45,6 +45,9 @@ public class CmdDefine
         public const int FIND_ACCOUNT_GLOBAL = 1027;
 
         public const int SEND_MESSAGE_PRIVATE = 1028;
+
+        public const int GET_TICK_BOSSES_GUILD = 1029;
+        public const int GET_TICK_BOSS_GUILD = 1030;
     }
 
     public static class ErrorCode
@@ -160,5 +163,14 @@ public class CmdDefine
 
         public const string CONTENT = "content";
         public const string IS_CHECK_ID = "is_check_id";
+    }
+
+    public static class ModuleTickBossGuild
+    {
+        public const string ID = "id_tbg";
+        public const string ID_BOSS = "id_boss";
+        public const string CUR_HP = "current_hp";
+        public const string MAX_HP = "maximum_hp";
+        public const string STATUS = "status_tbg";
     }
 }

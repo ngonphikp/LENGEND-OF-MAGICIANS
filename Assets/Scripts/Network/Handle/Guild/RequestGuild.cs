@@ -28,13 +28,11 @@ public class RequestGuild
         SmartFoxConnection.send(packet);
     }
 
-    public static void GetGuild(int id)
+    public static void GetGuild()
     {
         Debug.Log("=========================== Get Guild");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_GUILD);
-
-        isFSObject.PutInt(CmdDefine.ModuleGuild.ID, id);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);
@@ -58,8 +56,6 @@ public class RequestGuild
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.OUT_GUILD);
 
-        isFSObject.PutInt(CmdDefine.ModuleGuild.ID, GameManager.instance.guild.id);
-
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);
     }
@@ -70,7 +66,6 @@ public class RequestGuild
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.FIX_MASTER_GUILD);
 
-        isFSObject.PutInt(CmdDefine.ModuleGuild.ID, GameManager.instance.guild.id);
         isFSObject.PutInt(CmdDefine.ModuleGuild.MASTER, master);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
@@ -83,8 +78,6 @@ public class RequestGuild
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_NOTI_GUILD);
 
-        isFSObject.PutInt(CmdDefine.ModuleGuild.ID, GameManager.instance.guild.id);
-
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);
     }
@@ -95,7 +88,6 @@ public class RequestGuild
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.FIX_NOTI_GUILD);
 
-        isFSObject.PutInt(CmdDefine.ModuleGuild.ID, GameManager.instance.guild.id);
         isFSObject.PutUtfString(CmdDefine.ModuleGuild.NOTI, noti);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
@@ -108,7 +100,6 @@ public class RequestGuild
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_EVENT_GUILD);
 
-        isFSObject.PutInt(CmdDefine.ModuleGuild.ID, GameManager.instance.guild.id);
         isFSObject.PutInt(CmdDefine.ModuleEventGuild.COUNT, GameManager.instance.guild.events.Count);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
@@ -121,7 +112,27 @@ public class RequestGuild
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_MEMBER_GUID);
 
-        isFSObject.PutInt(CmdDefine.ModuleGuild.ID, GameManager.instance.guild.id);
+        var packet = new ExtensionRequest(MODULE, isFSObject);
+        SmartFoxConnection.send(packet);
+    }
+
+    public static void GetTickBosses()
+    {
+        Debug.Log("=========================== Get Tick Bosses");
+        ISFSObject isFSObject = new SFSObject();
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_TICK_BOSSES_GUILD);
+
+        var packet = new ExtensionRequest(MODULE, isFSObject);
+        SmartFoxConnection.send(packet);
+    }
+
+    public static void GetTickBoss(int id)
+    {
+        Debug.Log("=========================== Get Tick Boss");
+        ISFSObject isFSObject = new SFSObject();
+
+        isFSObject.PutInt(CmdDefine.ModuleTickBossGuild.ID, id);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_TICK_BOSS_GUILD);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);

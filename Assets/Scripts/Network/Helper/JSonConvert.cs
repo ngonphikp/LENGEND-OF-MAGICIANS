@@ -35,16 +35,7 @@ public class JSonConvert
         for (int i = 0; i < arr.Size(); i++)
         {
             ISFSObject obj = arr.GetSFSObject(i);
-            //Debug.Log(obj.GetDump());
-
-            M_Skill skill = new M_Skill();
-
-            skill.id_cfg = obj.GetUtfString("id");
-            skill.name = obj.GetUtfString("name");
-            skill.describe = obj.GetUtfString("describe");
-            skill.type = obj.GetInt("type");
-
-            yield return skill;
+            yield return new M_Skill(obj);
         }
     }
 
@@ -86,6 +77,25 @@ public class JSonConvert
         }
     }
 
+    public IEnumerable<M_Character> GetListBoss()
+    {
+        TextAsset file = Resources.Load<TextAsset>("ConfigJSon/Boss");
+        string jsonString = file.ToString();
+        ISFSObject sfsObj = SFSObject.NewFromJsonData(jsonString);
+        ISFSArray arr = sfsObj.GetSFSArray("list");
+        for (int i = 0; i < arr.Size(); i++)
+        {
+            ISFSObject obj = arr.GetSFSObject(i);
+            //Debug.Log(obj.GetDump());
+
+            M_Character boss = new M_Character(obj, C_Enum.ReadType.CONFIG);
+
+            boss.type = C_Enum.CharacterType.Boss;
+
+            yield return boss;
+        }
+    }
+
     public IEnumerable<M_Milestone> GetListMilestone()
     {
         TextAsset file = Resources.Load<TextAsset>("ConfigJSon/Milestone");
@@ -122,6 +132,45 @@ public class JSonConvert
             }
 
             yield return milestone;
+        }
+    }
+
+    public IEnumerable<M_BossG> GetListBossG()
+    {
+        TextAsset file = Resources.Load<TextAsset>("ConfigJSon/BossG");
+        string jsonString = file.ToString();
+        ISFSObject sfsObj = SFSObject.NewFromJsonData(jsonString);
+        ISFSArray arr = sfsObj.GetSFSArray("list");
+        for (int i = 0; i < arr.Size(); i++)
+        {
+            ISFSObject obj = arr.GetSFSObject(i);
+            //Debug.Log(obj.GetDump());
+
+            M_BossG bossG = new M_BossG();
+            bossG.id = obj.GetInt("id");
+            bossG.name = obj.GetText("name");
+
+            bossG.listBoss.Clear();
+
+            ISFSArray cArr = obj.GetSFSArray("listBoss");
+            for (int j = 0; j < cArr.Size(); j++)
+            {
+                ISFSObject cObj = cArr.GetSFSObject(j);
+                //Debug.Log(cObj.GetDump());
+
+                M_Character boss = new M_Character();
+                boss.id_cfg = cObj.GetText("id");
+                boss.lv = cObj.GetInt("lv");
+                boss.idx = cObj.GetInt("idx");
+
+                boss.type = C_Enum.CharacterType.Boss;
+
+                boss.UpdateById();
+
+                bossG.listBoss.Add(boss);
+            }
+
+            yield return bossG;
         }
     }
 }
