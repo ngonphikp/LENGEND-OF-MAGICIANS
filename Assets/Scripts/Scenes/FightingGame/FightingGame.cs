@@ -51,6 +51,7 @@ public class FightingGame : MonoBehaviour
 
     private C_Enum.EndGame isEndGame = C_Enum.EndGame.NOT;
     private int starEndGame = 0;
+    private int pointEndGame = 0;
 
     private List<C_Character> lstObj = new List<C_Character>();
     public Dictionary<int, C_Character> Objs = new Dictionary<int, C_Character>();
@@ -73,7 +74,7 @@ public class FightingGame : MonoBehaviour
 
     // Statistical
     [SerializeField]
-    private SerializableDictionary<int, M_Statistical> statistical = new SerializableDictionary<int, M_Statistical>();
+    private Dictionary<int, M_Statistical> statistical = new Dictionary<int, M_Statistical>();
     [SerializeField]
     private GameObject statisticalPrb = null;
     [SerializeField]
@@ -105,9 +106,10 @@ public class FightingGame : MonoBehaviour
     private void LoadData()
     {
         Debug.Log("LoadData");
-        milestone = GameManager.instance.milestonesDic[GameManager.instance.idMilestone];
+        milestone = GameManager.instance.milestone;
         txtTurn.text = "0 / " + milestone.maxTurn;
 
+        int count = 0;
         dataTeamL.Clear();
         for (int i = 0; i < GameManager.instance.characters.Count; i++)
         {
@@ -115,16 +117,22 @@ public class FightingGame : MonoBehaviour
             {
                 M_Character character = new M_Character(GameManager.instance.characters[i]);
                 character.team = 0;
-                character.id = i;
+                character.max_ep = 100;
+                character.Current_ep = 0;
+
+                character.id = count++;
                 dataTeamL.Add(new M_Character(character));
             }
         }
         dataTeamR.Clear();
-        for (int i = 0; i < milestone.listCreep.Count; i++)
+        for (int i = 0; i < milestone.lstCharacter.Count; i++)
         {
-            M_Character character = new M_Character(milestone.listCreep[i]);
+            M_Character character = new M_Character(milestone.lstCharacter[i]);
             character.team = 1;
-            character.id = i + dataTeamL.Count;
+            character.max_ep = 100;
+            character.Current_ep = 0;
+
+            character.id = count++;
             character.UpdateLevel();
             dataTeamR.Add(new M_Character(character));
         }
@@ -145,6 +153,7 @@ public class FightingGame : MonoBehaviour
 
         isEndGame = C_Enum.EndGame.NOT;
         starEndGame = 0;
+        pointEndGame = 0;
 
         idTargets.Clear();
         targets.Clear();
@@ -176,6 +185,9 @@ public class FightingGame : MonoBehaviour
                         break;
                     case C_Enum.CharacterType.Creep:
                         nvAs = Resources.Load("Prefabs/Character/M1000", typeof(GameObject)) as GameObject;
+                        break;
+                    case C_Enum.CharacterType.Boss:
+                        nvAs = Resources.Load("Prefabs/Character/B1000", typeof(GameObject)) as GameObject;
                         break;
                     default:
                         nvAs = Resources.Load("Prefabs/Character/T1004", typeof(GameObject)) as GameObject;
@@ -213,52 +225,78 @@ public class FightingGame : MonoBehaviour
 
             CountTurn(turnS++);
 
-            Attack(dataTeamL, dataTeamR, C_Enum.EndGame.WIN);
+            Attack(dataTeamL, dataTeamR);
 
-            Attack(dataTeamR, dataTeamL, C_Enum.EndGame.LOSE);
+            Attack(dataTeamR, dataTeamL);
         }        
     }
 
     private bool CheckEndGame(int turn) {
-        List<int> idxs = FindTargetNotDie(dataTeamL);
-        if (turn > milestone.maxTurn || idxs.Count == 0)
+        List<int> idxs = new List<int>();
+        switch (GameManager.instance.battleType)
         {
-            isEndGame = C_Enum.EndGame.LOSE;
-            starEndGame = 0;
-
-            Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": " + starEndGame + " Star");
-
-            return true;
-        }
-
-        idxs = FindTargetNotDie(dataTeamR);
-        if (idxs.Count == 0)
-        {
-            isEndGame = C_Enum.EndGame.WIN;
-
-            bool isFull = true;
-            bool is3Star = true;
-            for (int j = 0; j < dataTeamL.Count; j++)
-            {
-                if (dataTeamL[j].isDie) isFull = false;
-                else
+            case C_Enum.BattleType.None:
+                break;
+            case C_Enum.BattleType.Campain:
+                if (turn > milestone.maxTurn || FindTargetNotDie(dataTeamL).Count == 0)
                 {
-                    if (dataTeamL[j].Current_hp <= (dataTeamL[j].max_hp * 0.2)) is3Star = false;
+                    isEndGame = C_Enum.EndGame.LOSE;
+                    starEndGame = 0;
+
+                    Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": " + starEndGame + " Star");
+
+                    return true;
                 }
-            }
 
-            // Nếu còn đủ team
-            if (isFull)
-            {
-                starEndGame = (is3Star) ? 3 : 2;
-            }
-            else starEndGame = 1;
+                if (FindTargetNotDie(dataTeamR).Count == 0)
+                {
+                    isEndGame = C_Enum.EndGame.WIN;
 
-            Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": " + starEndGame + " Star");
+                    bool isFull = true;
+                    bool is3Star = true;
+                    for (int j = 0; j < dataTeamL.Count; j++)
+                    {
+                        if (dataTeamL[j].isDie) isFull = false;
+                        else
+                        {
+                            if (dataTeamL[j].Current_hp <= (dataTeamL[j].max_hp * 0.2)) is3Star = false;
+                        }
+                    }
 
-            return true;
-        }        
+                    // Nếu còn đủ team
+                    if (isFull)
+                    {
+                        starEndGame = (is3Star) ? 3 : 2;
+                    }
+                    else starEndGame = 1;
 
+                    Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": " + starEndGame + " Star");
+
+                    return true;
+                }
+                break;
+            case C_Enum.BattleType.BossGuild:
+                if (FindTargetNotDie(dataTeamL).Count == 0 || FindTargetNotDie(dataTeamR).Count == 0 || turn >= milestone.maxTurn)
+                {
+                    isEndGame = C_Enum.EndGame.WIN;
+                    starEndGame = 3;
+
+                    foreach (var item in statistical)
+                    {
+                        if (Objs[item.Key].character.team == 0)
+                        {
+                            pointEndGame += item.Value.dame;
+                        }
+                    }
+
+                    Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": Point: " + pointEndGame);
+
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
         return false;
     }
 
@@ -275,7 +313,7 @@ public class FightingGame : MonoBehaviour
     }
 
     [Obsolete]
-    private void Attack(List<M_Character> TeamAttack, List<M_Character> TeamAttacked, C_Enum.EndGame rs)
+    private void Attack(List<M_Character> TeamAttack, List<M_Character> TeamAttacked)
     {       
         for (int i = 0; i < TeamAttack.Count; i++)
         {
@@ -540,26 +578,38 @@ public class FightingGame : MonoBehaviour
     }
 
     public void SendEndGame()
-    {        
-        RequestTickMilestone.EndGame(milestone.id, starEndGame, (starEndGame > GameManager.instance.tick_milestonesDic[GameManager.instance.idMilestone].star));
+    {
+        switch (GameManager.instance.battleType)
+        {
+            case C_Enum.BattleType.None:
+                break;
+            case C_Enum.BattleType.Campain:
+                RequestCampain.EndGame(milestone.id, starEndGame, true);
+                break;
+            case C_Enum.BattleType.BossGuild:
+                RequestGuild.EndGameBoss(milestone.id, pointEndGame);
+                break;
+            default:
+                break;
+        }        
     }
 
     public void RecEndGame()
     {
-        GameManager.instance.tick_milestonesDic[milestone.id].star = Math.Max(GameManager.instance.tick_milestonesDic[GameManager.instance.idMilestone].star, starEndGame);
+        //GameManager.instance.tick_milestonesDic[milestone.id].star = Math.Max(GameManager.instance.tick_milestonesDic[milestone.id].star, starEndGame);
 
-        if(isEndGame == C_Enum.EndGame.WIN && GameManager.instance.idMilestone == GameManager.instance.tick_milestones.Count)
-        {
-            GameManager.instance.tick_milestones.Add(new M_Tick_Milestone(GameManager.instance.idMilestone + 1, GameManager.instance.account.id, GameManager.instance.idMilestone + 1, 0));
+        //if(isEndGame == C_Enum.EndGame.WIN && GameManager.instance.milestone.id == GameManager.instance.tick_milestones.Count)
+        //{
+        //    GameManager.instance.tick_milestones.Add(new M_Tick_Milestone(milestone.id + 1, GameManager.instance.account.id, milestone.id + 1, 0));
 
-            GameManager.instance.UpdateTickMS();
+        //    GameManager.instance.UpdateTickMS();
 
-            SceneManager.LoadScene("MainGame");
-        }
-        else
-        {
-            PlayGame.instance.ShowScene(false);
-        }
+        //    SceneManager.LoadScene("MainGame");
+        //}
+        //else
+        //{
+        //    PlayGame.instance.ShowScene(false);
+        //}
 
         SoundManager.instance.PlayLoop();
     }

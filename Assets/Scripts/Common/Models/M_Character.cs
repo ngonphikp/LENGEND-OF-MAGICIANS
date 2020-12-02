@@ -74,10 +74,11 @@ public class M_Character
         this.team = character.team;
         this.lv = character.lv;
         this.type = character.type;
-
-        this.current_hp = this.max_hp = this.hp;
-        this.current_ep = 0;
-        this.max_ep = 100;
+        
+        this.max_ep = character.max_ep;
+        this.current_ep = character.current_ep;
+        this.max_hp = character.max_hp;
+        this.current_hp = character.current_hp;        
     }
 
     public void UpdateLevel()
@@ -162,6 +163,9 @@ public class M_Character
                 break;
             case C_Enum.CharacterType.Creep:
                 nvInCfg = GameManager.instance.creepsDic[id_cfg];
+                break;
+            case C_Enum.CharacterType.Boss:
+                nvInCfg = GameManager.instance.bossesDic[id_cfg];
                 break;
         }
 

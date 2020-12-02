@@ -33,6 +33,19 @@
           obj.list.push(skill);
         }
     }
+	
+	for (let index = 0; index < 4; index++) {              
+        for(let i = 1; i < 5; i++){
+          let skill = {};
+          skill.id = "B" + (index + 1000) + "S" + i;
+
+          skill.name = "N:" + skill.id;
+          skill.describe = "Des:" + skill.id;
+          skill.type = 1;
+
+          obj.list.push(skill);
+        }
+    }
       
     // obj.list.forEach(element => {
     //   console.log(JSON.stringify(element) + ",");

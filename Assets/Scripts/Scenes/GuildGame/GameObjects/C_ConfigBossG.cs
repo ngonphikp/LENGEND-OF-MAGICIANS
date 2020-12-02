@@ -8,6 +8,8 @@ public class C_ConfigBossG : MonoBehaviour
     [SerializeField]
     private Text txtHp = null;
     [SerializeField]
+    private Image imgHp = null;
+    [SerializeField]
     private GameObject btnFight = null;
     [SerializeField]
     private GameObject btnLock = null;
@@ -20,17 +22,30 @@ public class C_ConfigBossG : MonoBehaviour
     [SerializeField]
     private Material gray = null;
 
-    private int id;
+    private int id_bg;
+    private int id_tbg;
 
-    public void set(int id)
+    private M_Milestone milestone = null;
+
+    public void set(int id_bg, int id_tbg)
     {
-        this.id = id;
+        this.id_bg = id_bg;
+        this.id_tbg = id_tbg;
 
-        M_TickBossGuild tick = GuildGame.instance.tick_bossesDic[id];
+        M_BossGuild bossG = GuildGame.instance.bossesDic[id_bg];
+        M_TickBossGuild tick = GuildGame.instance.tick_bossesDic[id_tbg];
 
-        txtHp.text = tick.cur_hp + " / " + tick.max_hp;
+        milestone = GameManager.instance.bossGuildsDic[bossG.id_boss];
+        M_Character boss = milestone.lstCharacter[0];
+        boss.UpdateById();
+        boss.UpdateLevel();
+        boss.max_hp = boss.hp;
+        boss.Current_hp = bossG.cur_hp;
 
-        switch (tick.status)
+        txtHp.text = boss.Current_hp + " / " + boss.max_hp;
+        imgHp.fillAmount = boss.Current_hp * 1.0f / boss.max_hp;
+
+        switch (bossG.status)
         {
             case C_Enum.StatusBossG.Lock:
                 C_Util.ActiveGO(false, btnFight, btnReward);
@@ -42,18 +57,50 @@ public class C_ConfigBossG : MonoBehaviour
                 C_Util.ActiveGO(false, btnLock, btnReward);
                 C_Util.ActiveGO(true, btnFight);
 
-                txtTurn.text = "Chiến " + tick.cut_turn + " / " + tick.max_turn;
-                btnFight.GetComponent<Image>().material = (tick.cut_turn > 0) ? null : gray;
+                txtTurn.text = "Chiến " + tick.cur_turn + " / " + 2;
+                btnFight.GetComponent<Image>().material = (tick.cur_turn > 0) ? null : gray;
 
                 break;
             case C_Enum.StatusBossG.Reward:
                 C_Util.ActiveGO(false, btnLock, btnFight);
                 C_Util.ActiveGO(true, btnReward);
 
-                btnReward.GetComponent<Image>().material = (tick.isReward) ? null : gray;
+                btnReward.GetComponent<Image>().material = (tick.is_reward) ? null : gray;
                 break;
             default:
                 break;
         }
+    }
+
+    public void UnLock()
+    {
+        if (GameManager.instance.account.job == C_Enum.JobGuild.Master)
+        {
+            RequestGuild.UnLockBoss(id_bg);
+        }
+        else Debug.LogWarning("Chỉ chủ hội mới được mở khóa chức năng này!");
+    }
+
+    public void Fight()
+    {       
+        if(GuildGame.instance.tick_bossesDic[id_tbg].cur_turn > 0)
+        {
+            GameManager.instance.isAttack = true;
+            GameManager.instance.battleType = C_Enum.BattleType.BossGuild;
+
+            GameManager.instance.milestone = milestone;
+
+            ScenesManager.instance.ChangeScene("PlayGame");
+        }
+        else Debug.LogWarning("Bạn đã hết lượt đánh boss này!");
+    }
+
+    public void Reward()
+    {
+        if (GuildGame.instance.tick_bossesDic[id_tbg].is_reward)
+        {
+            RequestGuild.RewardBoss(id_tbg);
+        }
+        else Debug.LogWarning("Bạn đã nhận thưởng rồi hoặc bạn không tham gia hạ gục boss!");
     }
 }

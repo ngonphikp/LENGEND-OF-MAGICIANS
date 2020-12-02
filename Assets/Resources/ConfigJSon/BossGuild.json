@@ -2,8 +2,9 @@
    "list":[
       {
          "id":1,
-         "name":"Ải 1",
-         "listBoss":[
+         "name":"Bạch Hổ",
+         "star":0,
+         "lstCharacter":[
             {
                "id":"B1000",
                "lv":1,
@@ -13,8 +14,9 @@
       },
       {
          "id":2,
-         "name":"Ải 2",
-         "listBoss":[
+         "name":"Chu Tước",
+         "star":0,
+         "lstCharacter":[
             {
                "id":"B1001",
                "lv":1,
@@ -24,8 +26,9 @@
       },
       {
          "id":3,
-         "name":"Ải 3",
-         "listBoss":[
+         "name":"Huyền Vũ",
+         "star":0,
+         "lstCharacter":[
             {
                "id":"B1002",
                "lv":1,
@@ -35,8 +38,8 @@
       },
       {
          "id":4,
-         "name":"Ải 4",
-         "listBoss":[
+         "star":0,
+         "lstCharacter":[
             {
                "id":"B1003",
                "lv":1,

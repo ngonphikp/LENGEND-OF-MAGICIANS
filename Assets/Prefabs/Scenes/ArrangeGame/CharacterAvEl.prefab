@@ -221,21 +221,20 @@ MonoBehaviour:
   av: {fileID: 1269853149462278942}
   active: {fileID: 8955080154028895874}
   isActive: 0
-  nhanVat:
-    id_nv: -1
+  character:
+    id: -1
     id_cfg: 
-    id_tk: 0
+    lv: 0
+    idx: -1
     def: 1
     hp: 1
     atk: 1
     crit: 1
     dodge: 1
-    lv: 0
     name: 
     element: 
     star: 0
     skills: []
-    idx: -1
     isDie: 0
     current_ep: 0
     max_ep: 1

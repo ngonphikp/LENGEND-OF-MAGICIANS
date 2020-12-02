@@ -18,7 +18,7 @@ public class CampaignGame : MonoBehaviour
         yield return Timing.WaitForOneFrame;
         for(int i = 0; i < milestones.Length; i++)
         {
-            milestones[i].set(GameManager.instance.milestones[i]);
+            milestones[i].set(GameManager.instance.campains[i]);
         }
     }
 }

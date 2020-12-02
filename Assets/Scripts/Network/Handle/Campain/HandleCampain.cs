@@ -1,7 +1,7 @@
 ﻿using Sfs2X.Entities.Data;
 using UnityEngine;
 
-public class HandleTickMilestone
+public class HandleCampain
 {
     public static void OnResponse(SFSObject sfsObject)
     {
@@ -11,7 +11,7 @@ public class HandleTickMilestone
 
         switch (cmdid)
         {
-            case CmdDefine.CMD.END_GAME:
+            case CmdDefine.CMD.END_GAME_CAMPAIN:
                 HandleEndGame(sfsObject);
                 break;
             default:

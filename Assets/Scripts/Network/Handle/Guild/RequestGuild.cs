@@ -116,11 +116,11 @@ public class RequestGuild
         SmartFoxConnection.send(packet);
     }
 
-    public static void GetTickBosses()
+    public static void GetBosses()
     {
         Debug.Log("=========================== Get Tick Bosses");
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_TICK_BOSSES_GUILD);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_BOSSES_GUILD);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);
@@ -131,8 +131,45 @@ public class RequestGuild
         Debug.Log("=========================== Get Tick Boss");
         ISFSObject isFSObject = new SFSObject();
 
-        isFSObject.PutInt(CmdDefine.ModuleTickBossGuild.ID, id);
+        isFSObject.PutInt(CmdDefine.ModuleBossGuild.ID, id);
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.GET_TICK_BOSS_GUILD);
+
+        var packet = new ExtensionRequest(MODULE, isFSObject);
+        SmartFoxConnection.send(packet);
+    }
+
+    public static void UnLockBoss(int id)
+    {
+        Debug.Log("=========================== Get Un Lock");
+        ISFSObject isFSObject = new SFSObject();
+
+        isFSObject.PutInt(CmdDefine.ModuleBossGuild.ID, id);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.UNLOCK_BOSS_GUILD);
+
+        var packet = new ExtensionRequest(MODULE, isFSObject);
+        SmartFoxConnection.send(packet);
+    }
+
+    public static void EndGameBoss(int id, int point)
+    {
+        Debug.Log("=========================== End Game Boss");
+        ISFSObject isFSObject = new SFSObject();
+
+        isFSObject.PutInt(CmdDefine.ModuleBossGuild.ID, id);
+        isFSObject.PutInt(CmdDefine.ModuleTickBossGuild.POINT, point);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.END_GAME_BOSS_GUILD);
+
+        var packet = new ExtensionRequest(MODULE, isFSObject);
+        SmartFoxConnection.send(packet);
+    }
+
+    public static void RewardBoss(int id)
+    {
+        Debug.Log("=========================== Reward Boss");
+        ISFSObject isFSObject = new SFSObject();
+
+        isFSObject.PutInt(CmdDefine.ModuleTickBossGuild.ID, id);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.REWARD_BOSS_GUILD);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);

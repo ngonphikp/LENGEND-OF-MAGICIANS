@@ -20,7 +20,7 @@ public class CmdDefine
 
         public const int UPLEVEL = 1007;
 
-        public const int END_GAME = 1008;
+        public const int END_GAME_CAMPAIN = 1008;
 
         public const int GET_GUILDS = 1009;
         public const int CREATE_GUILD = 1010;
@@ -46,8 +46,13 @@ public class CmdDefine
 
         public const int SEND_MESSAGE_PRIVATE = 1028;
 
-        public const int GET_TICK_BOSSES_GUILD = 1029;
+        public const int GET_BOSSES_GUILD = 1029;
         public const int GET_TICK_BOSS_GUILD = 1030;
+
+        public const int UNLOCK_BOSS_GUILD = 1031;
+
+        public const int END_GAME_BOSS_GUILD = 1032;
+        public const int REWARD_BOSS_GUILD = 1033;
     }
 
     public static class ErrorCode
@@ -73,9 +78,8 @@ public class CmdDefine
     {
         public const string MODULE_ACCOUNT = "account";
         public const string MODULE_CHARACTER = "character";
-        public const string MODULE_TICK_MILESTONE = "tick_milestone";
+        public const string MODULE_CAMPAIN = "tick_milestone";
         public const string MODULE_GUILD = "guild";
-        public const string MODULE_EVENT_GUILD = "event_guild";
         public const string MODULE_CHAT_AND_FRIEND = "chat_and_friend";
     }
 
@@ -115,7 +119,7 @@ public class CmdDefine
         public const string IDX = "idx_char";
     }
 
-    public static class ModuleTickMilestone
+    public static class ModuleTickCampain
     {
         public const string ID = "id_tms";
         public const string STAR = "star_tms";
@@ -140,6 +144,10 @@ public class CmdDefine
         public const string GUILDS = "guilds";
 
         public const string EVENTS = "events";
+
+        public const string BOSSES = "bosses";
+        public const string BOSS = "boss";
+        public const string TICK_BOSS = "tick_boss";
     }
 
     public static class ModuleEventGuild
@@ -165,12 +173,21 @@ public class CmdDefine
         public const string IS_CHECK_ID = "is_check_id";
     }
 
+    public static class ModuleBossGuild
+    {
+        public const string ID = "id_bg";
+        public const string ID_BOSS = "id_boss";
+        public const string CUR_HP = "current_hp";
+        public const string STATUS = "status_bg";
+    }
+
     public static class ModuleTickBossGuild
     {
         public const string ID = "id_tbg";
-        public const string ID_BOSS = "id_boss";
-        public const string CUR_HP = "current_hp";
-        public const string MAX_HP = "maximum_hp";
-        public const string STATUS = "status_tbg";
+
+        public const string CUR_TURN = "current_turn";
+        public const string IS_REWARD = "is_reward";
+
+        public const string POINT = "point_tbg";
     }
 }

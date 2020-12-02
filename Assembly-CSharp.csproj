@@ -76,7 +76,7 @@
     <Compile Include="Assets\Scripts\Common\Manager\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Account.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Action.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_BossG.cs" />
+    <Compile Include="Assets\Scripts\Common\Models\M_BossGuild.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Character.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Details.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_EventGuild.cs" />
@@ -113,6 +113,8 @@
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\I_Control.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Account\HandleAccount.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Account\RequestAccount.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Campain\HandleCampain.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Campain\RequestCampain.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\HandleCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\RequestCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\ChatAndFriend\HandleCF.cs" />
@@ -124,12 +126,11 @@
     <Compile Include="Assets\Scripts\Network\Handle\HandleRoom.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\HandleLogin.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\RequestLogin.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\HandleTickMilestone.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\TickMilestone\RequestTickMilestone.cs" />
     <Compile Include="Assets\Scripts\Network\Helper\ConfigConnection.cs" />
     <Compile Include="Assets\Scripts\Network\Helper\JSonConvert.cs" />
     <Compile Include="Assets\Scripts\Network\SFSConnection.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\ArrangeGame.cs" />
+    <Compile Include="Assets\Scripts\Scenes\ArrangeGame\GameObjects\C_LstCharacterAvEl.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CellAT.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_CharacterAvEl.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\C_DD.cs" />

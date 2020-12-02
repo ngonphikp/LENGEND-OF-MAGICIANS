@@ -19,6 +19,8 @@ public class C_CharacterAvEl : MonoBehaviour
         this.character = character;
 
         av.set(character);
+
+        if (character.idx != -1) Active();
     }
 
     public void ClickHero()
@@ -30,12 +32,8 @@ public class C_CharacterAvEl : MonoBehaviour
             return;
         }
 
-        ArrangeGame.instance.Active(this.character);
-
-        if (!isActive)
-        {
-            Active();
-        }
+        ArrangeGame.instance.Active(character.id);
+        Active();
     }
 
     public void Active()

@@ -8,6 +8,7 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 {
     [SerializeField]
     private GameObject Trigger = null;
+    public int pos = -1;
 
     public M_Character character = new M_Character();
 
@@ -52,6 +53,9 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                         break;
                     case C_Enum.CharacterType.Creep:
                         nvAs = Resources.Load("Prefabs/Character/M1000", typeof(GameObject)) as GameObject;
+                        break;
+                    case C_Enum.CharacterType.Boss:
+                        nvAs = Resources.Load("Prefabs/Character/B1000", typeof(GameObject)) as GameObject;
                         break;
                     default:
                         nvAs = Resources.Load("Prefabs/Character/T1004", typeof(GameObject)) as GameObject;
@@ -103,6 +107,15 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         {
             Debug.Log("Other: " + other.character.id);
 
+            Debug.Log(this.character.id + " From: " + pos + " => To: " + other.pos);
+            ArrangeGame.instance.characterDic[this.character.id].idx = other.pos;
+            
+            if(other.character.id != - 1)
+            {
+                Debug.Log(other.character.id + " From: " + other.pos + " => To: " + this.pos);
+                ArrangeGame.instance.characterDic[other.character.id].idx = this.pos;
+            }
+
             M_Character character = this.character;
             bool isActive = this.isActive;
 
@@ -124,8 +137,7 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (!isActive || isOnBeginDrag || !ArrangeGame.instance || !isDD) return;
         Debug.Log("OnClick: " + character.id);
 
-        ArrangeGame.instance.Objs[character.id].UnActive();
-        ArrangeGame.instance.countActive--;
+        ArrangeGame.instance.UnActive(character.id);
 
         this.ReLoad(new M_Character(), false);        
     }

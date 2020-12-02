@@ -88,4 +88,11 @@ public class C_Enum
         Fight = 1,
         Reward = 2,
     }
+
+    public enum BattleType
+    {
+        None = -1,
+        Campain = 0,
+        BossGuild = 1,
+    }
 }

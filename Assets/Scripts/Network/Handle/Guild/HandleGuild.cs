@@ -39,11 +39,20 @@ public class HandleGuild
             case CmdDefine.CMD.FIX_NOTI_GUILD:
                 HandleFixNoti(sfsObject);
                 break;
-            case CmdDefine.CMD.GET_TICK_BOSSES_GUILD:
-                HandleGetTickBosses(sfsObject);
+            case CmdDefine.CMD.GET_BOSSES_GUILD:
+                HandleGetBosses(sfsObject);
                 break;
             case CmdDefine.CMD.GET_TICK_BOSS_GUILD:
                 HandleGetTickBoss(sfsObject);
+                break;
+            case CmdDefine.CMD.UNLOCK_BOSS_GUILD:
+                HandleUnLockBoss(sfsObject);
+                break;
+            case CmdDefine.CMD.END_GAME_BOSS_GUILD:
+                //HandleUnLockBoss(sfsObject);
+                break;
+            case CmdDefine.CMD.REWARD_BOSS_GUILD:
+                HandleRewardBoss(sfsObject);
                 break;
             default:
                 break;
@@ -208,15 +217,20 @@ public class HandleGuild
         }
     }
 
-    public static void HandleGetTickBosses(SFSObject packet)
+    public static void HandleGetBosses(SFSObject packet)
     {
-        Debug.Log("=========================== HANDLE TICK BOSSES\n" + packet.GetDump());
+        Debug.Log("=========================== HANDLE BOSSES\n" + packet.GetDump());
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            List<M_TickBossGuild> lstTbg = new List<M_TickBossGuild>();
+            List<M_BossGuild> lstBg = new List<M_BossGuild>();
+            ISFSArray bgs = packet.GetSFSArray(CmdDefine.ModuleGuild.BOSSES);
+            for (int i = 0; i < bgs.Count; i++)
+            {
+                lstBg.Add(new M_BossGuild(bgs.GetSFSObject(i)));
+            }
 
-            GuildGame.instance.RecTickBosses(lstTbg);
+            GuildGame.instance.RecBosses(lstBg);
         }
         else
         {
@@ -230,9 +244,35 @@ public class HandleGuild
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_TickBossGuild tbg = new M_TickBossGuild();
+            GuildGame.instance.RecTickBoss(new M_BossGuild(packet.GetSFSObject(CmdDefine.ModuleGuild.BOSS)), new M_TickBossGuild(packet.GetSFSObject(CmdDefine.ModuleGuild.TICK_BOSS)));
+        }
+        else
+        {
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
+        }
+    }
 
-            GuildGame.instance.RecTickBoss(tbg);
+    public static void HandleUnLockBoss(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE UNLOCK BOSS\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            GuildGame.instance.RecUnLockBoss();
+        }
+        else
+        {
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
+        }
+    }
+
+    public static void HandleRewardBoss(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE REWARD GUILD\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            GuildGame.instance.RecRewardBoss();
         }
         else
         {

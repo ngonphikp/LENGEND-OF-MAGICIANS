@@ -25,10 +25,12 @@ public class GuildGame : MonoBehaviour
     public bool isMaster = false;
     public M_Guild guild = null;
 
+    public List<M_BossGuild> bosses = new List<M_BossGuild>();
+    public Dictionary<int, M_BossGuild> bossesDic = new Dictionary<int, M_BossGuild>();
     public List<M_TickBossGuild> tick_bosses = new List<M_TickBossGuild>();
     public Dictionary<int, M_TickBossGuild> tick_bossesDic = new Dictionary<int, M_TickBossGuild>();
 
-    private int id_active = -1;
+    private int id_bg = -1;
 
     private void Awake()
     {
@@ -110,37 +112,41 @@ public class GuildGame : MonoBehaviour
 
     public void OpenBoss()
     {
-        if(id_active == -1)
-        {
-            RequestGuild.GetTickBosses();
-        }
-        else
-        {
-            RequestGuild.GetTickBoss(id_active);
-        }
+        RequestGuild.GetBosses();
     }
 
-    public void RecTickBosses(List<M_TickBossGuild> tick_bosses)
+    public void RecBosses(List<M_BossGuild> bosses)
     {
-        this.tick_bosses = tick_bosses;
-        tick_bossesDic = new Dictionary<int, M_TickBossGuild>(tick_bosses.Count);
-        tick_bosses.ForEach(x => tick_bossesDic.Add(x.id, x));
+        this.bosses = bosses;
+        bossesDic.Clear();
+        bosses.ForEach(x => { bossesDic.Add(x.id, x); });
+        bossesG.show();
 
-        if(tick_bosses.Count >= 4) bossesG.show();
-        if(tick_bosses.Count > 0) this.id_active = tick_bosses[0].id;
-        if(id_active != -1) cfgBoss.set(id_active);
+        if (id_bg == -1) id_bg = bosses[0].id;
+        RequestGuild.GetTickBoss(id_bg);
     }
 
-    public void RecTickBoss(M_TickBossGuild tbg)
+    public void RecTickBoss(M_BossGuild bg, M_TickBossGuild tbg)
     {
-        this.id_active = tbg.id;
+        this.id_bg = bg.id;
+        bossesDic[bg.id] = bg;
+        bossesG.UpdateUI(bg.id);
 
         if (tick_bossesDic.ContainsKey(tbg.id))
-        {
             tick_bossesDic[tbg.id] = tbg;
-        }
+        else
+            tick_bossesDic.Add(tbg.id, tbg);
+                
+        cfgBoss.set(bg.id, tbg.id);
+    }
 
-        bossesG.UpdateUI(tbg.id);
-        cfgBoss.set(id_active);
+    public void RecUnLockBoss()
+    {
+        RequestGuild.GetTickBoss(id_bg);
+    }
+
+    public void RecRewardBoss()
+    {
+        RequestGuild.GetTickBoss(id_bg);
     }
 }

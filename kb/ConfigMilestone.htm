@@ -15,7 +15,7 @@
     //     milestone.name = "Ải " + index;
     //     milestone.star = 0;  
 
-    //     milestone.listCreep = [];
+    //     milestone.lstCharacter = [];
 
     //     let size = Math.floor(index / 3) + 1;        
     //     if (size > 5) size = 5;
@@ -23,13 +23,13 @@
     //     var poss = [];
 
     //     for (let i = 0; i < size; i++) {
-    //         let creep = {};
+    //         let character = {};
 
     //         let id = Math.floor((index + 1) / 10) * 5;
     //         if (id  > 5) id = 5;
-    //         creep.id = "M" + (1000 + Math.floor(Math.random() * 4) + id);
+    //         character.id = "M" + (1000 + Math.floor(Math.random() * 4) + id);
             
-    //         creep.lv = (Math.floor(index / 3) + 1) + Math.floor(Math.random() * 2);
+    //         character.lv = (Math.floor(index / 3) + 1) + Math.floor(Math.random() * 2);
 
     //         var pos = 0;
     //         var isLoop = true;
@@ -45,27 +45,31 @@
     //         }                    
     //         poss.push(pos);
             
-    //         creep.idx = pos;            
+    //         character.idx = pos;            
             
-    //         milestone.listCreep.push(creep);
+    //         milestone.lstCharacter.push(character);
     //     }        
     //     obj.list.push(milestone);
     // }    
 
+    var names = ["Thanh Long", "Bạch Hổ", "Chu Tước", "Huyền Vũ"]
     for (let index = 1; index <= 4; index++) {
-        let bossG = {};
+      let milestone = {};
         
-        bossG.id = index;
-        bossG.name = "Ải " + index;
+        milestone.id = index;
+        milestone.name = names[index];
+        milestone.star = 0;  
 
-        bossG.listBoss = [];
-        let boss = {};
-        boss.id = "B" + (999 + index);
-        boss.lv = 1;
-        boss.idx = 4;
-        bossG.listBoss.push(boss);
+        milestone.lstCharacter = [];
+        
+        let character = {};
+        character.id = "B" + (999 + index);
+        character.lv = 1;
+        character.idx = 4;
 
-        obj.list.push(bossG);
+        milestone.lstCharacter.push(character);
+
+        obj.list.push(milestone);
     }
       
     // obj.list.forEach(element => {

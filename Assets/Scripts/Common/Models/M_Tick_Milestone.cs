@@ -24,8 +24,8 @@ public class M_Tick_Milestone
     {
         if (obj == null) return;
 
-        this.id_ac = obj.GetInt(CmdDefine.ModuleTickMilestone.ID_AC);
-        this.id_ml = obj.GetInt(CmdDefine.ModuleTickMilestone.ID_ML);
-        this.star = obj.GetInt(CmdDefine.ModuleTickMilestone.STAR);
+        this.id_ac = obj.GetInt(CmdDefine.ModuleTickCampain.ID_AC);
+        this.id_ml = obj.GetInt(CmdDefine.ModuleTickCampain.ID_ML);
+        this.star = obj.GetInt(CmdDefine.ModuleTickCampain.STAR);
     }
 }

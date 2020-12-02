@@ -1887,8 +1887,8 @@ MonoBehaviour:
   heros: []
   creeps: []
   bosses: []
-  milestones: []
-  bossGs: []
+  campains: []
+  bossGuilds: []
   skills: []
   account:
     id: 0
@@ -1903,9 +1903,13 @@ MonoBehaviour:
     dediWeek: 0
     status: -1
   characters: []
-  tick_milestones: []
   isAttack: 0
-  idMilestone: 0
+  battleType: -1
+  milestone:
+    id: 0
+    name: 
+    maxTurn: 20
+    lstCharacter: []
   idxCharacter: 0
   guild:
     id: 0

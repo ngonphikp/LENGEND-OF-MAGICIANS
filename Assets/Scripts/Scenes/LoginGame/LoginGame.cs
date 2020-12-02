@@ -37,9 +37,6 @@ public class LoginGame : MonoBehaviour
     {
         GameManager.instance.account.id_guild = id_guild;
 
-        GameManager.instance.tick_milestones = lstTick_milestones;
-        GameManager.instance.UpdateTickMS();
-
         GameManager.instance.characters = lstCharacter;
         ScenesManager.instance.ChangeScene("MainGame");
 

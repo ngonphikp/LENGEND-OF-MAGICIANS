@@ -18,12 +18,12 @@ public class C_Milestone : MonoBehaviour
     {
         this.milestone = milestone;
 
-        if (GameManager.instance.tick_milestonesDic.ContainsKey(this.milestone.id))
-        {
-            UpdateStar(GameManager.instance.tick_milestonesDic[milestone.id].star);
+        //if (GameManager.instance.tick_milestonesDic.ContainsKey(this.milestone.id))
+        //{
+        //    UpdateStar(GameManager.instance.tick_milestonesDic[milestone.id].star);
 
-            this.GetComponent<Button>().interactable = true;
-        }        
+        //    this.GetComponent<Button>().interactable = true;
+        //}        
     }
 
     public void Click()
@@ -31,7 +31,8 @@ public class C_Milestone : MonoBehaviour
         Debug.Log("Click :" + this.milestone.id);
 
         GameManager.instance.isAttack = true;
-        GameManager.instance.idMilestone = this.milestone.id;
+        GameManager.instance.battleType = C_Enum.BattleType.Campain;
+        GameManager.instance.milestone = this.milestone;
 
         ScenesManager.instance.ChangeScene("PlayGame");
     }

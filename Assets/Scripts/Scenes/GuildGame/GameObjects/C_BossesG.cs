@@ -17,8 +17,8 @@ public class C_BossesG : MonoBehaviour
             bossDic = new Dictionary<int, C_BossG>();
             for (int i = 0; i < bosses.Length; i++)
             {
-                bosses[i].set(GuildGame.instance.tick_bosses[i].id);
-                bossDic.Add(GuildGame.instance.tick_bosses[i].id, bosses[i]);
+                bosses[i].set(GuildGame.instance.bosses[i].id);
+                bossDic.Add(GuildGame.instance.bosses[i].id, bosses[i]);
             }
         }
 
