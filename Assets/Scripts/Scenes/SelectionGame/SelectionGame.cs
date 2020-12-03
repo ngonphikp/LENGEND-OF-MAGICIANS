@@ -49,12 +49,13 @@ public class SelectionGame : MonoBehaviour
             GameObject heroObj = Instantiate(heroAs, posMagician);
             hero = heroObj.GetComponent<C_Character>();
             M_Character character = new M_Character();
-
-            character.Current_ep = character.max_ep = 100;
-            character.Current_hp = character.max_hp = character.hp;
             character.id_cfg = id;
             character.UpdateById();
             character.lv = 1;
+
+            character.current_ep = character.max_ep = 100;
+            character.current_hp = character.max_hp;
+            
             hero.Set(character);
         }
 
@@ -81,7 +82,7 @@ public class SelectionGame : MonoBehaviour
 
             GameManager.instance.account.name = nameAc;
 
-            MainGame.instance.ShowScene("HomeScene");
+            MainGame.instance.ShowScene(C_Enum.MainGame.HomeScene);
         }
     }
 

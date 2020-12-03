@@ -13,8 +13,6 @@ public class C_CharacterAcEl : MonoBehaviour
     public IEnumerator<float> _set(int idx)
     {
         M_Character character = new M_Character(GameManager.instance.characters[idx]);
-        character.Current_ep = character.max_ep = 100;
-        character.Current_hp = character.max_hp = character.hp;
 
         this.idx = idx;
 
@@ -36,6 +34,6 @@ public class C_CharacterAcEl : MonoBehaviour
     public void ClickHero()
     {
         GameManager.instance.idxCharacter = idx;
-        MainGame.instance.ShowScene("InforScene");
+        MainGame.instance.ShowScene(C_Enum.MainGame.InforScene);
     }
 }

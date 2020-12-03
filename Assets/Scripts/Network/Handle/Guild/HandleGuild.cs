@@ -49,7 +49,7 @@ public class HandleGuild
                 HandleUnLockBoss(sfsObject);
                 break;
             case CmdDefine.CMD.END_GAME_BOSS_GUILD:
-                //HandleUnLockBoss(sfsObject);
+                HandleEndGameBoss(sfsObject);
                 break;
             case CmdDefine.CMD.REWARD_BOSS_GUILD:
                 HandleRewardBoss(sfsObject);
@@ -273,6 +273,20 @@ public class HandleGuild
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             GuildGame.instance.RecRewardBoss();
+        }
+        else
+        {
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
+        }
+    }
+
+    public static void HandleEndGameBoss(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE END GAME\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            FightingGame.instance.RecEndGame();
         }
         else
         {

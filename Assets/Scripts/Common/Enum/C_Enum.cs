@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class C_Enum
 {
-    public enum Scrolltype
+    public enum MainGame
     {
-        VerDown = 0,
-        VerUp = 1,
-        HozLeft = 2,
-        HozRight = 3,
+        HomeScene = 0,
+        SelectionScene = 1,
+        CampaignScene = 2,        
+        TarvenScene = 3,
+        InforScene = 4,
+        GuildScene = 5,
     }
 
     public enum ReadType
@@ -92,7 +94,9 @@ public class C_Enum
     public enum BattleType
     {
         None = -1,
-        Campain = 0,
+        Campaign = 0,
         BossGuild = 1,
+        Duel = 2,
+        PVP = 3
     }
 }

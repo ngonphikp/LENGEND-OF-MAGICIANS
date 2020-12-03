@@ -42,16 +42,21 @@ public class C_Character : MonoBehaviour
     {
         if (UICharacter != null)
         {
-            UICharacter.hp = character.Current_hp * 1.0f / character.max_hp;
-            UICharacter.ep = character.Current_ep * 1.0f / character.max_ep;
+            UICharacter.hp = character.current_hp * 1.0f / character.max_hp;
+            UICharacter.ep = character.current_ep * 1.0f / character.max_ep;
         }
 
         preUpdate = Timing.RunCoroutine(_preUpdate());
     }
 
+    private void OnDestroy()
+    {
+        Timing.KillCoroutines(preUpdate);
+    }
+
     private void OnEnable()
     {
-        if (preUpdate.IsValid) Timing.ResumeCoroutines(preUpdate);
+        Timing.ResumeCoroutines(preUpdate);
     }
 
     private void OnDisable()
@@ -228,10 +233,10 @@ public class C_Character : MonoBehaviour
         while (propHPs.Count > 0)
         {
             M_Prop prop = propHPs[0];
-            character.Current_hp += prop.hpChange;
+            character.current_hp += prop.hpChange;
             if (UICharacter != null)
             {
-                UICharacter.hp = character.Current_hp * 1.0f / character.max_hp;
+                UICharacter.hp = character.current_hp * 1.0f / character.max_hp;
 
                 if (prop.hpChange >= 0)
                 {
@@ -259,10 +264,10 @@ public class C_Character : MonoBehaviour
         while (propEPs.Count > 0)
         {
             M_Prop prop = propEPs[0];
-            character.Current_ep += prop.epChange;
+            character.current_ep += prop.epChange;
             if (UICharacter != null)
             {
-                UICharacter.ep = character.Current_ep * 1.0f / character.max_ep;
+                UICharacter.ep = character.current_ep * 1.0f / character.max_ep;
 
                 if (prop.epChange >= 0)
                 {

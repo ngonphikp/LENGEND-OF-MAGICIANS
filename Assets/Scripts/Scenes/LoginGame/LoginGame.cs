@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoginGame : MonoBehaviour
 {    
@@ -33,12 +34,13 @@ public class LoginGame : MonoBehaviour
         RequestAccount.GetInfo(ac.id);
     }
 
-    public void RecInfo(int id_guild, List<M_Character> lstCharacter, List<M_Tick_Milestone> lstTick_milestones)
+    public void RecInfo(int id_guild, List<M_Character> lstCharacter)
     {
         GameManager.instance.account.id_guild = id_guild;
 
         GameManager.instance.characters = lstCharacter;
-        ScenesManager.instance.ChangeScene("MainGame");
+        GameManager.instance.mainName = (lstCharacter.Count == 0) ? C_Enum.MainGame.SelectionScene : C_Enum.MainGame.HomeScene;
+        SceneManager.LoadSceneAsync("MainGame");
 
         SoundManager.instance.PlayLoop();
     }

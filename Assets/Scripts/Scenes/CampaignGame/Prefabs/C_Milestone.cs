@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class C_Milestone : MonoBehaviour
@@ -17,13 +18,6 @@ public class C_Milestone : MonoBehaviour
     public void set(M_Milestone milestone)
     {
         this.milestone = milestone;
-
-        //if (GameManager.instance.tick_milestonesDic.ContainsKey(this.milestone.id))
-        //{
-        //    UpdateStar(GameManager.instance.tick_milestonesDic[milestone.id].star);
-
-        //    this.GetComponent<Button>().interactable = true;
-        //}        
     }
 
     public void Click()
@@ -31,21 +25,16 @@ public class C_Milestone : MonoBehaviour
         Debug.Log("Click :" + this.milestone.id);
 
         GameManager.instance.isAttack = true;
-        GameManager.instance.battleType = C_Enum.BattleType.Campain;
+        GameManager.instance.battleType = C_Enum.BattleType.Campaign;
         GameManager.instance.milestone = this.milestone;
 
-        ScenesManager.instance.ChangeScene("PlayGame");
+        GameManager.instance.mainName = C_Enum.MainGame.CampaignScene;
+        SceneManager.LoadSceneAsync("PlayGame");
     }
 
-    private void UpdateStar(int star)
+    public void UpdateStar(int star)
     {
-        if(star <= spriteStars.Length)
-        {
-            img.sprite = spriteStars[star];
-        }
-        else
-        {
-            Debug.LogWarning("Exits Sprite");
-        }
+        img.sprite = spriteStars[star];
+        this.GetComponent<Button>().interactable = true;
     }
 }

@@ -35,6 +35,7 @@ public class M_Milestone
             character.type = type;
 
             character.UpdateById();
+            character.UpdateLevel();
 
             lstCharacter.Add(character);
         }

@@ -86,7 +86,7 @@
     <Compile Include="Assets\Scripts\Common\Models\M_Skill.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_Statistical.cs" />
     <Compile Include="Assets\Scripts\Common\Models\M_TickBossGuild.cs" />
-    <Compile Include="Assets\Scripts\Common\Models\M_Tick_Milestone.cs" />
+    <Compile Include="Assets\Scripts\Common\Models\M_Tick_Campaign.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_ParticleSystemAutoDestroy.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_SoundAnim.cs" />
     <Compile Include="Assets\Scripts\Common\Prefabs\EF\C_TimeScaleAnim.cs" />
@@ -113,12 +113,14 @@
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\I_Control.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Account\HandleAccount.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Account\RequestAccount.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Campain\HandleCampain.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Campain\RequestCampain.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Campain\HandleCampaign.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Campain\RequestCampaign.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\HandleCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\RequestCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\ChatAndFriend\HandleCF.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\ChatAndFriend\RequestCF.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Game\HandlePvP1.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Game\RequestPvP1.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Guild\HandleGuild.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Guild\RequestGuild.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\HandleConnect.cs" />
@@ -126,6 +128,8 @@
     <Compile Include="Assets\Scripts\Network\Handle\HandleRoom.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\HandleLogin.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\RequestLogin.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\PvP\HandleGame.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\PvP\RequestGame.cs" />
     <Compile Include="Assets\Scripts\Network\Helper\ConfigConnection.cs" />
     <Compile Include="Assets\Scripts\Network\Helper\JSonConvert.cs" />
     <Compile Include="Assets\Scripts\Network\SFSConnection.cs" />
@@ -146,7 +150,6 @@
     <Compile Include="Assets\Scripts\Scenes\GuildGame\GuildGame.cs" />
     <Compile Include="Assets\Scripts\Scenes\GuildGame\Prefabs\C_BossG.cs" />
     <Compile Include="Assets\Scripts\Scenes\GuildGame\Prefabs\C_MemberG.cs" />
-    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_BtnArrange.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ChatCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_Details.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FindAcc.cs" />
@@ -156,6 +159,7 @@
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ProfileAcc.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_TextMessageCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\ChatAndFriend.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\PvP.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\HomeGame.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\Prefabs\C_BagEl.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\Prefabs\C_CardGuild.cs" />

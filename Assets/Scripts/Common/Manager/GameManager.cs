@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour
     // Guild
     public M_Guild guild;
 
+    // Main
+    public C_Enum.MainGame mainName = C_Enum.MainGame.HomeScene;
+
     private void Awake()
     {
         MakeSingleInstance();
@@ -83,7 +86,7 @@ public class GameManager : MonoBehaviour
         LoadListHero();
         LoadListCreep();
         LoadListBoss();
-        LoadListMilestone();
+        LoadListCampaign();
         LoadListBossGuild();
         LoadListSkill();
     }
@@ -133,7 +136,7 @@ public class GameManager : MonoBehaviour
         bossGuilds.ForEach(x => bossGuildsDic.Add(x.id, x));
     }
 
-    private void LoadListMilestone()
+    private void LoadListCampaign()
     {
         JSonConvert convert = new JSonConvert();
         campains = convert.GetListCampain().ToList<M_Milestone>();

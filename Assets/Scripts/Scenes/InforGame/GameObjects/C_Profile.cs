@@ -32,11 +32,11 @@ public class C_Profile : MonoBehaviour
         txtName.text = character.name + "";
 
         txtLv.text = character.lv + "";
-        txtHp.text = character.hp + "";
+        txtHp.text = character.max_hp + "";
         txtAtk.text = character.atk + "";
         txtDef.text = character.def + "";
 
-        txtHpUp.text = " + " + Mathf.RoundToInt(character.hp * (C_Params.coeUpLv - 1));
+        txtHpUp.text = " + " + Mathf.RoundToInt(character.max_hp * (C_Params.coeUpLv - 1));
         txtAtkUp.text = " + " + Mathf.RoundToInt(character.atk * (C_Params.coeUpLv - 1));
         txtDefUp.text = " + " + Mathf.RoundToInt(character.def * (C_Params.coeUpLv - 1));
     }

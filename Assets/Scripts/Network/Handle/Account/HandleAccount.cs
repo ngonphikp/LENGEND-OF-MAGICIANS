@@ -42,20 +42,13 @@ public class HandleAccount
                 M_Character character = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
                 character.UpdateById();
                 character.UpdateLevel();
+                character.current_ep = character.max_ep = 100;
+                character.current_hp = character.max_hp;
                 character.type = C_Enum.CharacterType.Hero;
                 lstCharacter.Add(character);
             }
 
-            List<M_Tick_Milestone> lstTick_milestones = new List<M_Tick_Milestone>();
-            ISFSArray tick_milestones = packet.GetSFSArray(CmdDefine.ModuleAccount.TICK_MILESTONES);
-            for (int i = 0; i < tick_milestones.Size(); i++)
-            {
-                lstTick_milestones.Add(new M_Tick_Milestone(tick_milestones.GetSFSObject(i)));
-            }
-
-            lstTick_milestones.Add(new M_Tick_Milestone(tick_milestones.Size() + 1, GameManager.instance.account.id, tick_milestones.Size() + 1, 0));
-
-            LoginGame.instance.RecInfo(id_guild, lstCharacter, lstTick_milestones);
+            LoginGame.instance.RecInfo(id_guild, lstCharacter);
         }
         else
         {
@@ -76,6 +69,8 @@ public class HandleAccount
                 M_Character character = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
                 character.UpdateById();
                 character.UpdateLevel();
+                character.current_ep = character.max_ep = 100;
+                character.current_hp = character.max_hp;
                 character.type = C_Enum.CharacterType.Hero;
                 lstCharacter.Add(character);
             }
@@ -99,9 +94,8 @@ public class HandleAccount
             M_Character character = new M_Character(packet.GetSFSObject(CmdDefine.ModuleAccount.CHARACTER), C_Enum.ReadType.SERVER);
             character.lv = 1;
             character.UpdateById();
-            character.Current_ep = character.max_ep = 100;
-            character.Current_hp = character.max_hp = character.hp;
-            character.UpdateLevel();
+            character.current_ep = character.max_ep = 100;
+            character.current_hp = character.max_hp;
             character.type = C_Enum.CharacterType.Hero;            
                                     
             TavernGame.instance.RecCard(type, character);

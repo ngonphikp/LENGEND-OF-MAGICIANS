@@ -10,49 +10,47 @@ public class CmdDefine
         public const int REGISTER = 1001;
         public const int LOGIN = 1002;
 
-        public const int GET_INFO = 1003;
+        public const int GET_INFO = 2001;
+        public const int SELECTION = 2002;
+        public const int TAVERN = 2003;
 
-        public const int SELECTION = 1004;
+        public const int ARRANGE = 3001;        
+        public const int UPLEVEL = 3002;
 
-        public const int ARRANGE = 1005;
+        public const int GET_TICKS_CAMPAIGN = 4001;
+        public const int END_GAME_CAMPAIGN = 4002;
 
-        public const int TAVERN = 1006;
+        public const int GET_GUILDS = 5001;
+        public const int CREATE_GUILD = 5002;
+        public const int GET_GUILD = 5003;
+        public const int OUT_GUILD = 5004;
+        public const int PLEASE_GUILD = 5005;
+        public const int FIX_MASTER_GUILD = 5006;
+        public const int GET_NOTI_GUILD = 5007;
+        public const int GET_EVENT_GUILD = 5008;
+        public const int GET_MEMBER_GUID = 5009;
+        public const int FIX_NOTI_GUILD = 5010;
+        public const int GET_BOSSES_GUILD = 5011;
+        public const int GET_TICK_BOSS_GUILD = 5012;
+        public const int UNLOCK_BOSS_GUILD = 5013;
+        public const int END_GAME_BOSS_GUILD = 5014;
+        public const int REWARD_BOSS_GUILD = 5015;
 
-        public const int UPLEVEL = 1007;
+        public const int GET_ACCOUNT_GLOBAL = 6001;
+        public const int SEND_MESSAGE_GLOBAL = 6002;
+        public const int GET_ACCOUNT_GUILD = 6003;
+        public const int SEND_MESSAGE_GUILD = 6004;
+        public const int GET_DETAILS = 6005;
+        public const int MAKE_FRIEND = 6006;
+        public const int REMOVE_FRIEND = 6007;
+        public const int GET_ACCOUNT_FRIEND = 6008;
+        public const int FIND_ACCOUNT_GLOBAL = 6009;
+        public const int SEND_MESSAGE_PRIVATE = 6010;
 
-        public const int END_GAME_CAMPAIN = 1008;
+        public const int START_PVP = 7001;
+        public const int CANCLE_PVP = 7002;
 
-        public const int GET_GUILDS = 1009;
-        public const int CREATE_GUILD = 1010;
-        public const int GET_GUILD = 1011;
-        public const int OUT_GUILD = 1012;
-        public const int PLEASE_GUILD = 1013;
-        public const int FIX_MASTER_GUILD = 1014;
-        public const int GET_NOTI_GUILD = 1015;
-        public const int GET_EVENT_GUILD = 1016;
-        public const int GET_MEMBER_GUID = 1017;
-        public const int FIX_NOTI_GUILD = 1018;
-
-        public const int GET_ACCOUNT_GLOBAL = 1019;
-        public const int SEND_MESSAGE_GLOBAL = 1020;
-        public const int GET_ACCOUNT_GUILD = 1021;
-        public const int SEND_MESSAGE_GUILD = 1022;
-
-        public const int GET_DETAILS = 1023;
-        public const int MAKE_FRIEND = 1024;
-        public const int REMOVE_FRIEND = 1025;
-        public const int GET_ACCOUNT_FRIEND = 1026;
-        public const int FIND_ACCOUNT_GLOBAL = 1027;
-
-        public const int SEND_MESSAGE_PRIVATE = 1028;
-
-        public const int GET_BOSSES_GUILD = 1029;
-        public const int GET_TICK_BOSS_GUILD = 1030;
-
-        public const int UNLOCK_BOSS_GUILD = 1031;
-
-        public const int END_GAME_BOSS_GUILD = 1032;
-        public const int REWARD_BOSS_GUILD = 1033;
+        public const int JOIN_ROOM_GAME = 8001;
     }
 
     public static class ErrorCode
@@ -78,9 +76,11 @@ public class CmdDefine
     {
         public const string MODULE_ACCOUNT = "account";
         public const string MODULE_CHARACTER = "character";
-        public const string MODULE_CAMPAIN = "tick_milestone";
+        public const string MODULE_CAMPAIGN = "campaign";
         public const string MODULE_GUILD = "guild";
         public const string MODULE_CHAT_AND_FRIEND = "chat_and_friend";
+        public const string MODULE_PVP = "PvP";
+        public const string MODULE_GAME = "Game";
     }
 
     public static class ModuleAccount
@@ -105,8 +105,6 @@ public class CmdDefine
 
         public const string CHARACTERS = "characters";
 
-        public const string TICK_MILESTONES = "tick_milestones";
-
         public const string TYPE_TAVERN = "type_tavern";
         public const string CHARACTER = "character";
     }
@@ -119,14 +117,13 @@ public class CmdDefine
         public const string IDX = "idx_char";
     }
 
-    public static class ModuleTickCampain
+    public static class ModuleTickCampaign
     {
-        public const string ID = "id_tms";
-        public const string STAR = "star_tms";
-        public const string ID_AC = "id_ac";
-        public const string ID_ML = "id_ml";
+        public const string ID = "id_tc";
+        public const string STAR = "star_tc";
+        public const string ID_CAMPAIGN = "id_campaign";
 
-        public const string IS_SAVE = "is_save";
+        public const string TICKS = "ticks";
     }
 
     public static class ModuleGuild
@@ -189,5 +186,12 @@ public class CmdDefine
         public const string IS_REWARD = "is_reward";
 
         public const string POINT = "point_tbg";
+    }
+
+    public static class ModuleGame
+    {
+        public const string LIST = "list";
+        public const string ACCOUNTS = "accounts";
+        public const string CHARACTERS = "characters";
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MEC;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -29,5 +30,11 @@ public class TavernGame : MonoBehaviour
 
         cardsDic[type].Rec(character);
         cardsDic.Remove(type);
+    }
+
+    public void Back()
+    {
+        Timing.KillCoroutines();
+        MainGame.instance.ShowScene(C_Enum.MainGame.HomeScene);
     }
 }

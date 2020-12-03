@@ -117,8 +117,7 @@ public class FightingGame : MonoBehaviour
             {
                 M_Character character = new M_Character(GameManager.instance.characters[i]);
                 character.team = 0;
-                character.max_ep = 100;
-                character.Current_ep = 0;
+                character.current_ep = 0;
 
                 character.id = count++;
                 dataTeamL.Add(new M_Character(character));
@@ -129,11 +128,11 @@ public class FightingGame : MonoBehaviour
         {
             M_Character character = new M_Character(milestone.lstCharacter[i]);
             character.team = 1;
+            if(GameManager.instance.battleType != C_Enum.BattleType.BossGuild) character.current_hp = character.max_hp;
             character.max_ep = 100;
-            character.Current_ep = 0;
+            character.current_ep = 0;
 
             character.id = count++;
-            character.UpdateLevel();
             dataTeamR.Add(new M_Character(character));
         }
 
@@ -219,7 +218,7 @@ public class FightingGame : MonoBehaviour
         Debug.Log("Scenario");
 
         int turnS = 1;
-        while (true)
+        while (turnS < milestone.maxTurn + 1)
         {
             if (CheckEndGame(turnS)) break;
 
@@ -232,12 +231,30 @@ public class FightingGame : MonoBehaviour
     }
 
     private bool CheckEndGame(int turn) {
-        List<int> idxs = new List<int>();
         switch (GameManager.instance.battleType)
         {
-            case C_Enum.BattleType.None:
+            case C_Enum.BattleType.BossGuild:
+                if (FindTargetNotDie(dataTeamL).Count == 0 || FindTargetNotDie(dataTeamR).Count == 0 || turn >= milestone.maxTurn)
+                {
+                    isEndGame = C_Enum.EndGame.WIN;
+                    starEndGame = 3;
+
+                    foreach (var item in statistical)
+                    {
+                        if (Objs[item.Key].character.team == 0)
+                        {
+                            pointEndGame += item.Value.dame;
+                        }
+                    }
+
+                    Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": Point: " + pointEndGame);
+
+                    return true;
+                }
                 break;
-            case C_Enum.BattleType.Campain:
+            case C_Enum.BattleType.Duel:
+            case C_Enum.BattleType.Campaign:
+            default:
                 if (turn > milestone.maxTurn || FindTargetNotDie(dataTeamL).Count == 0)
                 {
                     isEndGame = C_Enum.EndGame.LOSE;
@@ -259,7 +276,7 @@ public class FightingGame : MonoBehaviour
                         if (dataTeamL[j].isDie) isFull = false;
                         else
                         {
-                            if (dataTeamL[j].Current_hp <= (dataTeamL[j].max_hp * 0.2)) is3Star = false;
+                            if (dataTeamL[j].current_hp <= (dataTeamL[j].max_hp * 0.2)) is3Star = false;
                         }
                     }
 
@@ -274,27 +291,6 @@ public class FightingGame : MonoBehaviour
 
                     return true;
                 }
-                break;
-            case C_Enum.BattleType.BossGuild:
-                if (FindTargetNotDie(dataTeamL).Count == 0 || FindTargetNotDie(dataTeamR).Count == 0 || turn >= milestone.maxTurn)
-                {
-                    isEndGame = C_Enum.EndGame.WIN;
-                    starEndGame = 3;
-
-                    foreach (var item in statistical)
-                    {
-                        if (Objs[item.Key].character.team == 0)
-                        {
-                            pointEndGame += item.Value.dame;
-                        }
-                    }
-
-                    Debug.Log("=========================== Scenario End Game: " + isEndGame.ToString() + ": Point: " + pointEndGame);
-
-                    return true;
-                }
-                break;
-            default:
                 break;
         }
         return false;
@@ -321,7 +317,7 @@ public class FightingGame : MonoBehaviour
 
             if (actor.isDie) continue;
 
-            int idSkill = (actor.Current_ep >= actor.max_ep) ? 5 : 3;
+            int idSkill = (actor.current_ep >= actor.max_ep) ? 5 : 3;
 
             int find = 1;
 
@@ -399,7 +395,7 @@ public class FightingGame : MonoBehaviour
                 actionC.prop = new M_Prop();
                 actionC.prop.epChange = -100;
 
-                actor.Current_ep += -100;
+                actor.current_ep += -100;
                 action.actions.Add(actionC);
             }
         }
@@ -414,7 +410,7 @@ public class FightingGame : MonoBehaviour
                 actionC.prop = new M_Prop();
                 actionC.prop.epChange = 20;
 
-                actor.Current_ep += 20;
+                actor.current_ep += 20;
                 action.actions.Add(actionC);
             }
         }
@@ -448,7 +444,7 @@ public class FightingGame : MonoBehaviour
             else
             {
                 // Nếu dame chết
-                bool isDie = dame >= targets[i].Current_hp;
+                bool isDie = dame >= targets[i].current_hp;
                 if (isDie)
                 {
                     // target chết
@@ -481,7 +477,7 @@ public class FightingGame : MonoBehaviour
                         actionC.prop = new M_Prop();
                         actionC.prop.epChange = 10;
 
-                        targets[i].Current_ep += 10;
+                        targets[i].current_ep += 10;
                         action.actions.Add(actionC);
                     }
                 }
@@ -497,9 +493,9 @@ public class FightingGame : MonoBehaviour
                     actionC.prop.hpChange = -dame;
                     actionC.prop.hpChangeCrit = isCrit;
 
-                    int hp = targets[i].Current_hp;
+                    int hp = targets[i].current_hp;
 
-                    targets[i].Current_hp += -dame;                    
+                    targets[i].current_hp += -dame;                    
 
                     action.actions.Add(actionC);
 
@@ -581,37 +577,29 @@ public class FightingGame : MonoBehaviour
     {
         switch (GameManager.instance.battleType)
         {
-            case C_Enum.BattleType.None:
-                break;
-            case C_Enum.BattleType.Campain:
-                RequestCampain.EndGame(milestone.id, starEndGame, true);
+            case C_Enum.BattleType.Campaign:
+                RequestCampaign.EndGame(milestone.id, starEndGame);
                 break;
             case C_Enum.BattleType.BossGuild:
                 RequestGuild.EndGameBoss(milestone.id, pointEndGame);
                 break;
+            case C_Enum.BattleType.Duel:
             default:
+                SceneManager.LoadSceneAsync("MainGame");
                 break;
         }        
     }
 
     public void RecEndGame()
     {
-        //GameManager.instance.tick_milestonesDic[milestone.id].star = Math.Max(GameManager.instance.tick_milestonesDic[milestone.id].star, starEndGame);
-
-        //if(isEndGame == C_Enum.EndGame.WIN && GameManager.instance.milestone.id == GameManager.instance.tick_milestones.Count)
-        //{
-        //    GameManager.instance.tick_milestones.Add(new M_Tick_Milestone(milestone.id + 1, GameManager.instance.account.id, milestone.id + 1, 0));
-
-        //    GameManager.instance.UpdateTickMS();
-
-        //    SceneManager.LoadScene("MainGame");
-        //}
-        //else
-        //{
-        //    PlayGame.instance.ShowScene(false);
-        //}
-
-        SoundManager.instance.PlayLoop();
+        switch (GameManager.instance.battleType)
+        {
+            case C_Enum.BattleType.Campaign:
+            case C_Enum.BattleType.BossGuild:
+            default:
+                SceneManager.LoadSceneAsync("MainGame");
+                break;
+        }
     }
 
     private void EndGame()
@@ -853,6 +841,22 @@ public class FightingGame : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Back()
+    {
+        Timing.KillCoroutines();
+        switch (GameManager.instance.battleType)
+        {
+            case C_Enum.BattleType.BossGuild:
+                SceneManager.LoadSceneAsync("MainGame");
+                break;
+            case C_Enum.BattleType.Duel:
+            case C_Enum.BattleType.Campaign:                
+            default:
+                PlayGame.instance.ShowScene(false);
+                break;
+        }        
     }
 
     public void ScaleTime()

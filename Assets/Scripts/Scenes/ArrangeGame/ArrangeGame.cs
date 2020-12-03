@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MEC;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ArrangeGame : MonoBehaviour
@@ -41,19 +42,18 @@ public class ArrangeGame : MonoBehaviour
 
         LoadListHero();
 
-        if(GameManager.instance.isAttack)
+        if (GameManager.instance.isAttack)
         {
             switch (GameManager.instance.battleType)
             {
-                case C_Enum.BattleType.None:
-                    break;
-                case C_Enum.BattleType.Campain:
-                    LoadListCreep();
-                    break;
                 case C_Enum.BattleType.BossGuild:
                     LoadListBoss();
                     break;
+                case C_Enum.BattleType.Campaign:
+                case C_Enum.BattleType.Duel:
+                case C_Enum.BattleType.PVP:
                 default:
+                    LoadListCreep();
                     break;
             }
         }
@@ -77,8 +77,6 @@ public class ArrangeGame : MonoBehaviour
         for (int i = 0; i < GameManager.instance.characters.Count; i++)
         {
             M_Character character = new M_Character(GameManager.instance.characters[i]);
-            character.Current_ep = character.max_ep = 100;
-            character.Current_hp = character.max_hp = character.hp;
             character.team = 0;
 
             characters.Add(character);
@@ -102,8 +100,8 @@ public class ArrangeGame : MonoBehaviour
             if (creeps[i].idx != -1)
             {
                 M_Character character = new M_Character(new M_Character(creeps[i]));
-                character.Current_ep = character.max_ep = 100;
-                character.Current_hp = character.max_hp = character.hp;
+                character.current_ep = character.max_ep = 100;
+                character.current_hp = character.max_hp;
                 character.team = 1;
 
                 teamR[creeps[i].idx].set(character, canvas, false);
@@ -120,7 +118,7 @@ public class ArrangeGame : MonoBehaviour
             if (bosses[i].idx != -1)
             {
                 M_Character character = new M_Character(bosses[i]);
-                character.Current_ep = character.max_ep = 100;
+                character.current_ep = character.max_ep = 100;
                 character.team = 1;
 
                 teamR[bosses[i].idx].set(character, canvas, false);
@@ -150,6 +148,11 @@ public class ArrangeGame : MonoBehaviour
         countActive--;
     }
 
+    public void Back()
+    {
+        SceneManager.LoadSceneAsync("MainGame");
+    }
+
     public void Fighting()
     {
         iSave();
@@ -162,6 +165,7 @@ public class ArrangeGame : MonoBehaviour
 
     private void iSave()
     {
+        Timing.KillCoroutines();
         List<M_Character> characters = new List<M_Character>();
         foreach (M_Character item in characterDic.Values) characters.Add(item);
         GameManager.instance.characters = characters;
@@ -174,6 +178,9 @@ public class ArrangeGame : MonoBehaviour
 
         yield return Timing.WaitForSeconds(1f);
         if (GameManager.instance.isAttack) PlayGame.instance.ShowScene(true);
-        else ScenesManager.instance.ChangeScene("MainGame");
+        else
+        {
+            SceneManager.LoadSceneAsync("MainGame");
+        }
     }
 }

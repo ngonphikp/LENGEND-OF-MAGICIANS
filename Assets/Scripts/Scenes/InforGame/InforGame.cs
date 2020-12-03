@@ -49,8 +49,8 @@ public class InforGame : MonoBehaviour
             GameObject heroObj = Instantiate(heroAs, posCharacter);
             hero = heroObj.GetComponent<C_Character>();
 
-            character.Current_ep = character.max_ep = 100;
-            character.Current_hp = character.max_hp = character.hp;
+            character.current_ep = character.max_ep = 100;
+            character.current_hp = character.max_hp;
 
             hero.Set(character, false);
         }
@@ -94,5 +94,10 @@ public class InforGame : MonoBehaviour
         GameManager.instance.characters[index].lv += 1;
         GameManager.instance.characters[index].UpLevel();
         profile.set(character);
+    }
+
+    public void Back()
+    {
+        MainGame.instance.ShowScene(C_Enum.MainGame.HomeScene);
     }
 }

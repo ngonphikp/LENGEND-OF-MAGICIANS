@@ -15661,7 +15661,7 @@ PrefabInstance:
     - target: {fileID: 8059351839735318210, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8059351839735318210, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
@@ -15672,7 +15672,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5297565401856746525}
     - target: {fileID: 8059351839735318210, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -15681,12 +15681,12 @@ PrefabInstance:
     - target: {fileID: 8059351839735318210, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowScene
+      value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 8059351839735318210, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8059351839735318210, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}

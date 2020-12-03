@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class C_ConfigBossG : MonoBehaviour
@@ -39,11 +40,10 @@ public class C_ConfigBossG : MonoBehaviour
         M_Character boss = milestone.lstCharacter[0];
         boss.UpdateById();
         boss.UpdateLevel();
-        boss.max_hp = boss.hp;
-        boss.Current_hp = bossG.cur_hp;
+        boss.current_hp = bossG.cur_hp;
 
-        txtHp.text = boss.Current_hp + " / " + boss.max_hp;
-        imgHp.fillAmount = boss.Current_hp * 1.0f / boss.max_hp;
+        txtHp.text = boss.current_hp + " / " + boss.max_hp;
+        imgHp.fillAmount = boss.current_hp * 1.0f / boss.max_hp;
 
         switch (bossG.status)
         {
@@ -90,7 +90,8 @@ public class C_ConfigBossG : MonoBehaviour
 
             GameManager.instance.milestone = milestone;
 
-            ScenesManager.instance.ChangeScene("PlayGame");
+            GameManager.instance.mainName = C_Enum.MainGame.GuildScene;
+            SceneManager.LoadSceneAsync("PlayGame");
         }
         else Debug.LogWarning("Bạn đã hết lượt đánh boss này!");
     }

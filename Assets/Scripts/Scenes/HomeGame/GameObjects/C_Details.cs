@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class C_Details : MonoBehaviour
@@ -22,6 +23,8 @@ public class C_Details : MonoBehaviour
     private GameObject btnRemoveF = null;
     [SerializeField]
     private Button btnChatPrivate = null;
+    [SerializeField]
+    private Button btnDuel = null;
 
     [SerializeField]
     private C_LstCharacter lstCharacter = null;
@@ -43,6 +46,7 @@ public class C_Details : MonoBehaviour
         C_Util.ActiveGO(!data.is_friend, btnMakeF);
 
         btnChatPrivate.interactable = data.is_friend;
+        btnDuel.interactable = data.is_friend;
 
         this.gameObject.SetActive(true);
     }
@@ -65,6 +69,7 @@ public class C_Details : MonoBehaviour
         C_Util.ActiveGO(!data.is_friend, btnMakeF);
 
         btnChatPrivate.interactable = data.is_friend;
+        btnDuel.interactable = data.is_friend;
     }
 
     public void RecRemoveFriend()
@@ -75,6 +80,7 @@ public class C_Details : MonoBehaviour
         C_Util.ActiveGO(!data.is_friend, btnMakeF);
 
         btnChatPrivate.interactable = data.is_friend;
+        btnDuel.interactable = data.is_friend;
 
         ChatAndFriend.instance.RemoveMessagePrivate(data.account.id);
     }
@@ -83,5 +89,21 @@ public class C_Details : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         ChatAndFriend.instance.ChatPrivate(data.account.id, data.account.name);
+    }
+
+    public void Duel()
+    {
+        GameManager.instance.isAttack = true;
+        GameManager.instance.battleType = C_Enum.BattleType.Duel;
+
+        M_Milestone milestone = new M_Milestone();
+        milestone.maxTurn = 20;
+        milestone.name = "Khiêu chiến";
+        milestone.lstCharacter = data.characters;
+
+        GameManager.instance.milestone = milestone;
+
+        GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
+        SceneManager.LoadSceneAsync("PlayGame");
     }
 }

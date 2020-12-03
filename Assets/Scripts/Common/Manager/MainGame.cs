@@ -15,24 +15,16 @@ public class MainGame : MonoBehaviour
 
     private void Start()
     {
-        ShowScene((GameManager.instance.characters.Count > 0) ? scenes[0] : scenes[1]);
+        ShowScene((int) GameManager.instance.mainName);
     }
 
-    public void ShowScene(GameObject obj)
+    private void ShowScene(int idx)
     {
-        scenes.ForEach(x => x.SetActive(false));
-        obj.SetActive(true);
+        for (int i = 0; i < scenes.Count; i++) scenes[i].SetActive((i == idx));
     }
 
-    public void ShowScene(string name)
+    public void ShowScene(C_Enum.MainGame sceneName)
     {
-        for (int i = 0; i < scenes.Count; i++)
-        {
-            if (scenes[i].name == name)
-            {
-                ShowScene(scenes[i]);
-                break;
-            }
-        }
+        ShowScene((int) sceneName);
     }
 }

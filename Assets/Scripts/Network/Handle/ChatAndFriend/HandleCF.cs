@@ -118,6 +118,7 @@ public class HandleCF
                 M_Character character = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
                 character.UpdateById();
                 character.UpdateLevel();
+                character.current_hp = character.max_hp;
                 character.type = C_Enum.CharacterType.Hero;
                 lstCharacter.Add(character);
             }

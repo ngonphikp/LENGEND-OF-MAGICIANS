@@ -1,6 +1,7 @@
 ﻿using MEC;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HomeGame : MonoBehaviour
@@ -167,6 +168,31 @@ public class HomeGame : MonoBehaviour
     public void ShowGuild(M_Guild guild)
     {        
         GameManager.instance.guild = guild;
-        MainGame.instance.ShowScene("GuildScene");
+        GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
+        MainGame.instance.ShowScene(C_Enum.MainGame.GuildScene);
+    }
+
+    public void Arrange()
+    {
+        GameManager.instance.isAttack = false;
+        GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
+        SceneManager.LoadSceneAsync("PlayGame");
+    }
+
+    public void Tavern()
+    {
+        GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
+        MainGame.instance.ShowScene(C_Enum.MainGame.TarvenScene);
+    }
+
+    public void Campaign()
+    {
+        GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
+        MainGame.instance.ShowScene(C_Enum.MainGame.CampaignScene);
+    }
+
+    public void PVP()
+    {
+
     }
 }

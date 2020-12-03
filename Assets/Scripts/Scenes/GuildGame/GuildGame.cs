@@ -65,7 +65,7 @@ public class GuildGame : MonoBehaviour
     public void RecOutGuild()
     {
         GameManager.instance.account.SetJob(C_Enum.JobGuild.None);
-        MainGame.instance.ShowScene("HomeScene");
+        MainGame.instance.ShowScene(C_Enum.MainGame.HomeScene);
     }
 
     public void ChangeMaster(int master)
@@ -148,5 +148,10 @@ public class GuildGame : MonoBehaviour
     public void RecRewardBoss()
     {
         RequestGuild.GetTickBoss(id_bg);
+    }
+
+    public void Back()
+    {
+        MainGame.instance.ShowScene(C_Enum.MainGame.HomeScene);
     }
 }

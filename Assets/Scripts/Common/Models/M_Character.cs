@@ -12,7 +12,6 @@ public class M_Character
     public int idx = -1;
 
     public int def = 1;
-    public int hp = 1;
     public int atk = 1;
     public float crit = 1.0f;
     public float dodge = 1.0f;
@@ -25,29 +24,10 @@ public class M_Character
 
     public bool isDie = false;
 
-    [SerializeField]
-    private int current_ep = 0;
+    public int current_ep = 0;
     public int max_ep = 1;
-    [SerializeField]
-    private int current_hp = 0;
+    public int current_hp = 0;
     public int max_hp = 1;
-
-    public int Current_ep
-    {
-        get => current_ep; set
-        {
-            if (value < 0) value = 0; if (value > max_ep) value = max_ep;
-            current_ep = value;
-        }
-    }
-    public int Current_hp
-    {
-        get => current_hp; set
-        { 
-            if (value < 0) value = 0; if (value > max_hp) value = max_hp; 
-            current_hp = value;
-        }
-    }
 
     public C_Enum.CharacterType type = C_Enum.CharacterType.Hero;
 
@@ -67,7 +47,6 @@ public class M_Character
         this.element = character.element;
         this.star = character.star;
         this.def = character.def;
-        this.hp = character.hp;
         this.atk = character.atk;
         this.crit = character.crit;
         this.dodge = character.dodge;
@@ -90,7 +69,8 @@ public class M_Character
     {
         atk = Mathf.RoundToInt(atk * C_Params.coeUpLv);
         def = Mathf.RoundToInt(def * C_Params.coeUpLv);
-        hp = Mathf.RoundToInt(hp * C_Params.coeUpLv);        
+        max_hp = Mathf.RoundToInt(max_hp * C_Params.coeUpLv);
+        current_hp = max_hp;
         crit = crit * C_Params.coeUpLv;
         dodge = dodge * C_Params.coeUpLv;
     }
@@ -121,10 +101,12 @@ public class M_Character
                 this.element = obj.GetText("element");
                 this.star = obj.GetInt("star");
                 this.def = obj.GetInt("def");
-                this.hp = obj.GetInt("hp");
+                this.max_hp = obj.GetInt("hp");
                 this.atk = obj.GetInt("atk");
                 this.crit = (float)obj.GetDouble("crit");
                 this.dodge = (float)obj.GetDouble("dodge");
+
+                this.current_hp = max_hp;
 
                 this.skills.Clear();
                 ISFSArray skills = obj.GetSFSArray("skill");
@@ -172,7 +154,7 @@ public class M_Character
         this.name = nvInCfg.name;
         this.element = nvInCfg.element;
         this.def = nvInCfg.def;
-        this.hp = nvInCfg.hp;
+        this.max_hp = nvInCfg.max_hp;
         this.crit = nvInCfg.crit;
         this.dodge = nvInCfg.dodge;
         this.atk = nvInCfg.atk;
