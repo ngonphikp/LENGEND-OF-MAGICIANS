@@ -112,4 +112,24 @@ public class RequestGame
             SmartFoxConnection.send(packet);
         }
     }
+
+    public static void SendScenario(List<M_Action> actions)
+    {
+        Debug.Log("=========================== SEND SCENARIO");
+        ISFSObject isFSObject = new SFSObject();
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SEND_SCENARIO);
+
+        isFSObject.PutUtfString("abc", Newtonsoft.Json.JsonConvert.SerializeObject(actions));
+     
+        var packet = new ExtensionRequest(MODULE, isFSObject, SmartFoxConnection.Sfs.LastJoinedRoom);
+        if (SmartFoxConnection.isAlready())
+        {
+            SmartFoxConnection.send(packet);
+        }
+        else
+        {
+            SmartFoxConnection.Init();
+            SmartFoxConnection.send(packet);
+        }
+    }
 }

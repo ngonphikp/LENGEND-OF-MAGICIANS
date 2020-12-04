@@ -269,6 +269,7 @@ public class ArrangeGame : MonoBehaviour
             for (int i = 0; i < teamL.Length; i++)
                 if (teamL[i].content.character.idx != -1) characters.Add(teamL[i].content.character);
 
+            GameManager.instance.lockChars = characters;
             RequestGame.Lock(characters);
         }
     }

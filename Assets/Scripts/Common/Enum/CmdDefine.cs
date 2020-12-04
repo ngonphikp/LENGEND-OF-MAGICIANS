@@ -57,6 +57,7 @@ public class CmdDefine
         public const int CHANGE_CHAR = 8005;
         public const int LOCK_ARRANGE = 8006;
         public const int START_GAME = 8007;
+        public const int SEND_SCENARIO = 8008;
     }
 
     public static class ErrorCode

@@ -34,8 +34,26 @@ public class HandleGame
             case CmdDefine.CMD.START_GAME:
                 HandleStartGame(sfsObject);
                 break;
+            case CmdDefine.CMD.SEND_SCENARIO:
+                HandleSendScenario(sfsObject);
+                break;
             default:
                 break;
+        }
+    }
+
+    public static void HandleSendScenario(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE SEND SCENARIO\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            List<M_Action> actions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<M_Action>>(packet.GetUtfString("abc"));
+            FightingGame.instance.RecScenario(actions);
+        }
+        else
+        {
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
         }
     }
 

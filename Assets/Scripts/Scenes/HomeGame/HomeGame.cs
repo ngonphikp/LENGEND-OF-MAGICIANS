@@ -190,9 +190,4 @@ public class HomeGame : MonoBehaviour
         GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
         MainGame.instance.ShowScene(C_Enum.MainGame.CampaignScene);
     }
-
-    public void PVP()
-    {
-
-    }
 }

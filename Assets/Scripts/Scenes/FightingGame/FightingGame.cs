@@ -99,6 +99,17 @@ public class FightingGame : MonoBehaviour
 
         LoadData();
         Scenario();
+        if(GameManager.instance.battleType != C_Enum.BattleType.PVP)
+            Timing.RunCoroutine(_Combat());
+        else
+        {
+            RequestGame.SendScenario(actions);
+        }
+    }
+
+    public void RecScenario(List<M_Action> actions)
+    {
+        this.actions = actions;
         Timing.RunCoroutine(_Combat());
     }
 
@@ -111,18 +122,35 @@ public class FightingGame : MonoBehaviour
 
         int count = 0;
         dataTeamL.Clear();
-        for (int i = 0; i < GameManager.instance.characters.Count; i++)
+
+        if(GameManager.instance.battleType != C_Enum.BattleType.PVP)
         {
-            if (GameManager.instance.characters[i].idx != -1)
+            for (int i = 0; i < GameManager.instance.characters.Count; i++)
             {
-                M_Character character = new M_Character(GameManager.instance.characters[i]);
+                if (GameManager.instance.characters[i].idx != -1)
+                {
+                    M_Character character = new M_Character(GameManager.instance.characters[i]);
+                    character.team = 0;
+                    character.current_ep = 0;
+
+                    character.id = count++;
+                    dataTeamL.Add(new M_Character(character));
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < GameManager.instance.lockChars.Count; i++)
+            {
+                M_Character character = new M_Character(GameManager.instance.lockChars[i]);
                 character.team = 0;
                 character.current_ep = 0;
 
-                character.id = count++;
+                //character.id = count++;
                 dataTeamL.Add(new M_Character(character));
             }
         }
+        
         dataTeamR.Clear();
         for (int i = 0; i < milestone.lstCharacter.Count; i++)
         {
@@ -132,7 +160,7 @@ public class FightingGame : MonoBehaviour
             character.max_ep = 100;
             character.current_ep = 0;
 
-            character.id = count++;
+            if (GameManager.instance.battleType != C_Enum.BattleType.PVP) character.id = count++;
             dataTeamR.Add(new M_Character(character));
         }
 
@@ -678,7 +706,6 @@ public class FightingGame : MonoBehaviour
     private IEnumerator<float> _Play(M_Action action)
     {
         int idActor = action.idActor;
-        C_Character actor = Objs[idActor];
 
         switch (action.type)
         {
@@ -688,29 +715,29 @@ public class FightingGame : MonoBehaviour
                 break;
             case C_Enum.ActionType.SKILL:
                 // Debug.Log("=========================== SKILLING: " + idActor);
-                Timing.RunCoroutine(_SKILLING(actor, action));
+                Timing.RunCoroutine(_SKILLING(Objs[idActor], action));
                 break;
             case C_Enum.ActionType.CHANGE_HP:
                 Debug.LogWarning("=========================== CHANGE_HP: " + idActor);
-                actor.PushChangeHp(action.prop);
-                actor.ChangeHp();
+                Objs[idActor].PushChangeHp(action.prop);
+                Objs[idActor].ChangeHp();
                 break;
             case C_Enum.ActionType.CHANGE_EP:
                 Debug.LogWarning("=========================== CHANGE_EP: " + idActor);
-                actor.PushChangeEp(action.prop);
-                actor.ChangeEp();
+                Objs[idActor].PushChangeEp(action.prop);
+                Objs[idActor].ChangeEp();
                 break;
             case C_Enum.ActionType.DIE:
                 Debug.LogWarning("=========================== DIE: " + idActor);
-                actor.character.isDie = true;
+                Objs[idActor].character.isDie = true;
 
                 while (true)
                 {
-                    if (actor.isAnim1()) break;
-                    Debug.Log("=========================== Loop " + actor.character.id + " Anim1");
+                    if (Objs[idActor].isAnim1()) break;
+                    Debug.Log("=========================== Loop " + Objs[idActor].character.id + " Anim1");
                     yield return Timing.WaitForSeconds(0.01f);
                 }
-                actor.Play(6);
+                Objs[idActor].Play(6);
                 break;
         }
 

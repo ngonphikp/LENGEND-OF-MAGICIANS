@@ -1910,6 +1910,7 @@ MonoBehaviour:
     name: 
     maxTurn: 20
     lstCharacter: []
+  lockChars: []
   idxCharacter: 0
   guild:
     id: 0

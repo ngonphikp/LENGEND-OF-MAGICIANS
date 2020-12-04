@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public bool isAttack = false;
     public C_Enum.BattleType battleType = C_Enum.BattleType.None;
     public M_Milestone milestone;
+    public List<M_Character> lockChars = new List<M_Character>();
 
     private int idxTimeScale = 0;
     public int IdxTimeScale { 
