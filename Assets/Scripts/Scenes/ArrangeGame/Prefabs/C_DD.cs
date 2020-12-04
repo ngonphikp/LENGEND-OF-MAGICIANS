@@ -73,7 +73,7 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
     }
 
-    public void ReLoad(M_Character character, bool isActive, Canvas canvas = null)
+    public void ReLoad(M_Character character, bool isActive = false, Canvas canvas = null)
     {
         this.isActive = isActive;
         this.character = character;        
@@ -106,15 +106,7 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (other != null)
         {
             Debug.Log("Other: " + other.character.id);
-
-            Debug.Log(this.character.id + " From: " + pos + " => To: " + other.pos);
-            ArrangeGame.instance.characterDic[this.character.id].idx = other.pos;
-            
-            if(other.character.id != - 1)
-            {
-                Debug.Log(other.character.id + " From: " + other.pos + " => To: " + this.pos);
-                ArrangeGame.instance.characterDic[other.character.id].idx = this.pos;
-            }
+            ArrangeGame.instance.Change(this.character.idx, other.pos);
 
             M_Character character = this.character;
             bool isActive = this.isActive;
@@ -139,7 +131,7 @@ public class C_DD : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
         ArrangeGame.instance.UnActive(character.id);
 
-        this.ReLoad(new M_Character(), false);        
+        this.ReLoad(new M_Character());        
     }
 
     private C_DD oldOther;

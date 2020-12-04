@@ -40,11 +40,11 @@ public class HandleAccount
             for(int i = 0; i < characters.Size(); i++)
             {
                 M_Character character = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
+                character.type = C_Enum.CharacterType.Hero;
                 character.UpdateById();
                 character.UpdateLevel();
                 character.current_ep = character.max_ep = 100;
                 character.current_hp = character.max_hp;
-                character.type = C_Enum.CharacterType.Hero;
                 lstCharacter.Add(character);
             }
 
@@ -67,11 +67,11 @@ public class HandleAccount
             for (int i = 0; i < characters.Size(); i++)
             {
                 M_Character character = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
+                character.type = C_Enum.CharacterType.Hero;
                 character.UpdateById();
                 character.UpdateLevel();
                 character.current_ep = character.max_ep = 100;
                 character.current_hp = character.max_hp;
-                character.type = C_Enum.CharacterType.Hero;
                 lstCharacter.Add(character);
             }
 
@@ -92,11 +92,11 @@ public class HandleAccount
             C_Enum.CardType type = (C_Enum.CardType)packet.GetInt(CmdDefine.ModuleAccount.TYPE_TAVERN);
 
             M_Character character = new M_Character(packet.GetSFSObject(CmdDefine.ModuleAccount.CHARACTER), C_Enum.ReadType.SERVER);
+            character.type = C_Enum.CharacterType.Hero;      
             character.lv = 1;
             character.UpdateById();
             character.current_ep = character.max_ep = 100;
-            character.current_hp = character.max_hp;
-            character.type = C_Enum.CharacterType.Hero;            
+            character.current_hp = character.max_hp;      
                                     
             TavernGame.instance.RecCard(type, character);
         }

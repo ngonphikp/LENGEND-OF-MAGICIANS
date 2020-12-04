@@ -524,7 +524,7 @@ public class FightingGame : MonoBehaviour
         {
             if (t <= 0 || isSkip) break;
             Debug.Log("Đếm ngược: " + t);
-            txtTime.text = t + " ";
+            txtTime.text = t + "";
             yield return Timing.WaitForSeconds(1 / myTimeScale);
             t -= 1;
         }
@@ -577,6 +577,9 @@ public class FightingGame : MonoBehaviour
     {
         switch (GameManager.instance.battleType)
         {
+            case C_Enum.BattleType.PVP:
+                RequestGame.OutRoomGame();
+                break;
             case C_Enum.BattleType.Campaign:
                 RequestCampaign.EndGame(milestone.id, starEndGame);
                 break;
@@ -594,6 +597,8 @@ public class FightingGame : MonoBehaviour
     {
         switch (GameManager.instance.battleType)
         {
+            case C_Enum.BattleType.PVP:
+            case C_Enum.BattleType.Duel:
             case C_Enum.BattleType.Campaign:
             case C_Enum.BattleType.BossGuild:
             default:
@@ -848,6 +853,9 @@ public class FightingGame : MonoBehaviour
         Timing.KillCoroutines();
         switch (GameManager.instance.battleType)
         {
+            case C_Enum.BattleType.PVP:
+                RequestGame.OutRoomGame();
+                break;
             case C_Enum.BattleType.BossGuild:
                 SceneManager.LoadSceneAsync("MainGame");
                 break;

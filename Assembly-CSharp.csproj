@@ -119,8 +119,8 @@
     <Compile Include="Assets\Scripts\Network\Handle\Character\RequestCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\ChatAndFriend\HandleCF.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\ChatAndFriend\RequestCF.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Game\HandlePvP1.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Game\RequestPvP1.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Game\HandleGame.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Game\RequestGame.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Guild\HandleGuild.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Guild\RequestGuild.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\HandleConnect.cs" />
@@ -128,8 +128,8 @@
     <Compile Include="Assets\Scripts\Network\Handle\HandleRoom.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\HandleLogin.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Login\RequestLogin.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\PvP\HandleGame.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\PvP\RequestGame.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\PvP\HandlePvP.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\PvP\RequestPvP.cs" />
     <Compile Include="Assets\Scripts\Network\Helper\ConfigConnection.cs" />
     <Compile Include="Assets\Scripts\Network\Helper\JSonConvert.cs" />
     <Compile Include="Assets\Scripts\Network\SFSConnection.cs" />

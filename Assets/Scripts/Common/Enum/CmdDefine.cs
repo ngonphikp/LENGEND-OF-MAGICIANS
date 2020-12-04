@@ -51,6 +51,12 @@ public class CmdDefine
         public const int CANCLE_PVP = 7002;
 
         public const int JOIN_ROOM_GAME = 8001;
+        public const int OUT_ROOM_GAME = 8002;
+        public const int UN_ACTIVE_CHAR = 8003;
+        public const int ACTIVE_CHAR = 8004;
+        public const int CHANGE_CHAR = 8005;
+        public const int LOCK_ARRANGE = 8006;
+        public const int START_GAME = 8007;
     }
 
     public static class ErrorCode
@@ -193,5 +199,8 @@ public class CmdDefine
         public const string LIST = "list";
         public const string ACCOUNTS = "accounts";
         public const string CHARACTERS = "characters";
+
+        public const string TO = "to";
+        public const string FROM = "from";
     }
 }

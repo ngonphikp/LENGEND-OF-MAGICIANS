@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PvP : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PvP : MonoBehaviour
     private GameObject loading = null;
     [SerializeField]
     private float speedLoading = -200f;
+    [SerializeField]
+    private Text txtTime = null;
 
     [SerializeField]
     private C_ProfileAcc c_self = null;
@@ -29,7 +32,7 @@ public class PvP : MonoBehaviour
 
     private void Update()
     {
-        if (isLoading)
+        if (isLoading && loading.activeInHierarchy)
         {
             loading.transform.Rotate(0, 0, speedLoading * Time.deltaTime);
         }
@@ -52,6 +55,7 @@ public class PvP : MonoBehaviour
     {
         popUp.SetActive(true);
         isLoading = true;
+        loading.SetActive(true);
     }
 
     public void RecCancle()
@@ -60,33 +64,44 @@ public class PvP : MonoBehaviour
         isLoading = false;
     }
 
-    private bool isCall = false;
 
     public IEnumerator<float> _SuccessPvP(M_Account account, List<M_Character> characters) 
     {
-        if (!isCall)
+        isLoading = false;
+        c_rival.set(account);
+        c_rival.gameObject.SetActive(true);
+
+        yield return Timing.WaitForSeconds(1);
+        loading.SetActive(false);
+        yield return Timing.WaitUntilDone(Timing.RunCoroutine(_CDT()));
+
+        GameManager.instance.isAttack = true;
+        GameManager.instance.battleType = C_Enum.BattleType.PVP;
+
+        M_Milestone milestone = new M_Milestone();
+        milestone.maxTurn = 20;
+        milestone.name = "PVP";
+        milestone.lstCharacter = characters;
+
+        GameManager.instance.milestone = milestone;
+
+        GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
+        SceneManager.LoadSceneAsync("PlayGame");
+        yield return Timing.WaitForOneFrame;
+    }
+
+    private IEnumerator<float> _CDT()
+    {
+        int t = 3;
+        txtTime.gameObject.SetActive(true);
+        while (true)
         {
-            isCall = true;
-            isLoading = false;
-            c_rival.set(account);
-            c_rival.gameObject.SetActive(true);
-
-            yield return Timing.WaitForSeconds(2);
-
-            GameManager.instance.isAttack = true;
-            GameManager.instance.battleType = C_Enum.BattleType.PVP;
-
-            M_Milestone milestone = new M_Milestone();
-            milestone.maxTurn = 20;
-            milestone.name = "PVP";
-            milestone.lstCharacter = characters;
-
-            GameManager.instance.milestone = milestone;
-
-            GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
-            SceneManager.LoadSceneAsync("PlayGame");
+            if (t <= 0) break;
+            txtTime.text = t + "";
+            yield return Timing.WaitForSeconds(1);
+            t -= 1;
         }
-
+        txtTime.gameObject.SetActive(false);
         yield return Timing.WaitForOneFrame;
     }
 }
