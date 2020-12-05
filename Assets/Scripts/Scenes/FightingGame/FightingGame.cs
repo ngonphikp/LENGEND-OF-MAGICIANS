@@ -348,21 +348,51 @@ public class FightingGame : MonoBehaviour
             int idSkill = (actor.current_ep >= actor.max_ep) ? 5 : 3;
 
             int find = 1;
+            List<int> posTargets = new List<int>();
 
-            List<int> idxs = FindTargetNotDie(TeamAttacked);
-            if (idxs.Count > find)
-            {                
-                ShuffleArray(ref idxs);                
-            }
-
-            for (int j = 0; j < find && j < idxs.Count; j++)
+            List<int> idxs = FindTargetNotDie(TeamAttacked);            
+            if (idxs.Count <= find)
             {
-                List<M_Character> targets = new List<M_Character>();
-
-                targets.Add(TeamAttacked[idxs[j]]);
-
-                actions.Add(Action(actor, idSkill, targets));
+                posTargets = idxs;
             }
+            else
+            {
+                if (find == 1) // Đánh ưu tiên cùng hàng
+                {
+                    int column = actor.idx / 3;
+                    List<int> _idxs = new List<int>();
+                    for (int t = 0; t < idxs.Count; t++) _idxs.Add(idxs[t]);
+                    for(int t = column * 3 + 2; t >= column * 3; t--)
+                    {
+                        for (int j = 0; j < idxs.Count; j++)
+                        {
+                            if (TeamAttacked[idxs[j]].idx == t)
+                            {
+                                posTargets.Add(idxs[j]);
+                                _idxs.Remove(idxs[j]);
+                                if (posTargets.Count >= find) break;
+                            }
+                        }
+                        if (posTargets.Count >= find) break;
+                    }
+                    if(posTargets.Count < find)
+                    {
+                        ShuffleArray(ref _idxs);
+                        for (int j = posTargets.Count; j < find; j++)
+                        {
+                            posTargets.Add(_idxs[j]);
+                            if (posTargets.Count >= find) break;
+                        }
+                    }
+                }
+            }
+
+            List<M_Character> targets = new List<M_Character>();
+            for (int j = 0; j < find && j < posTargets.Count; j++)
+                targets.Add(TeamAttacked[posTargets[j]]);
+
+            if(targets.Count > 0)
+                actions.Add(Action(actor, idSkill, targets));
         }
     }
 
