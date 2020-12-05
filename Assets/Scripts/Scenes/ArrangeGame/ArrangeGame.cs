@@ -142,7 +142,7 @@ public class ArrangeGame : MonoBehaviour
                 teamR[creeps[i].idx].set(character, canvas, false);                
             }
 
-            characterDic.Add(character.id, character);
+            if(GameManager.instance.battleType == C_Enum.BattleType.PVP) characterDic.Add(character.id, character);
         }
     }
 
@@ -278,7 +278,7 @@ public class ArrangeGame : MonoBehaviour
     {
         Timing.KillCoroutines();
         List<M_Character> characters = new List<M_Character>();
-        foreach (M_Character item in characterDic.Values) characters.Add(item);
+        foreach (M_Character item in characterDic.Values) if(item.team == 0) characters.Add(item);
         GameManager.instance.characters = characters;
         RequestCharacter.Arrange(characters);
     }
