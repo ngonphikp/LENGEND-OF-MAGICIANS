@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
     public List<M_Character> bosses = new List<M_Character>();
     public Dictionary<string, M_Character> bossesDic = new Dictionary<string, M_Character>();
 
-    public List<M_Milestone> campains = new List<M_Milestone>();
-    public Dictionary<int, M_Milestone> campainsDic = new Dictionary<int, M_Milestone>();
+    public List<M_Milestone> campaigns = new List<M_Milestone>();
+    public Dictionary<int, M_Milestone> campaignsDic = new Dictionary<int, M_Milestone>();
 
     public List<M_Milestone> bossGuilds = new List<M_Milestone>();
     public Dictionary<int, M_Milestone> bossGuildsDic = new Dictionary<int, M_Milestone>();
@@ -140,10 +140,10 @@ public class GameManager : MonoBehaviour
     private void LoadListCampaign()
     {
         JSonConvert convert = new JSonConvert();
-        campains = convert.GetListCampain().ToList<M_Milestone>();
+        campaigns = convert.GetListCampaign().ToList<M_Milestone>();
 
-        campainsDic = new Dictionary<int, M_Milestone>(campains.Count);
-        campains.ForEach(x => campainsDic.Add(x.id, x));
+        campaignsDic = new Dictionary<int, M_Milestone>(campaigns.Count);
+        campaigns.ForEach(x => campaignsDic.Add(x.id, x));
     }
 
     private void Update()

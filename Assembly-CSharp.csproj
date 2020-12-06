@@ -113,8 +113,8 @@
     <Compile Include="Assets\Scripts\Common\Prefabs\Hero\I_Control.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Account\HandleAccount.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Account\RequestAccount.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Campain\HandleCampaign.cs" />
-    <Compile Include="Assets\Scripts\Network\Handle\Campain\RequestCampaign.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Campaign\HandleCampaign.cs" />
+    <Compile Include="Assets\Scripts\Network\Handle\Campaign\RequestCampaign.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\HandleCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\Character\RequestCharacter.cs" />
     <Compile Include="Assets\Scripts\Network\Handle\ChatAndFriend\HandleCF.cs" />

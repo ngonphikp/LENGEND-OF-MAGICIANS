@@ -4,8 +4,7 @@ using System.Data;
 [System.Serializable]
 public class M_Tick_Campaign
 {
-    public int id_ac;
-    public int id_ml;
+    public int id;
     public int star;
 
     public M_Tick_Campaign()
@@ -17,8 +16,7 @@ public class M_Tick_Campaign
     {
         if (obj == null) return;
 
-        this.id_ac = obj.GetInt(CmdDefine.ModuleAccount.ID);
-        this.id_ml = obj.GetInt(CmdDefine.ModuleCampaign.ID);
+        this.id = obj.GetInt(CmdDefine.ModuleTickCampaign.ID);
         this.star = obj.GetInt(CmdDefine.ModuleTickCampaign.STAR);
     }
 }

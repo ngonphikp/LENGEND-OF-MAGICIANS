@@ -69,10 +69,8 @@ public class HandleGuild
             ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleGuild.GUILDS);
 
             for (int i = 0; i < arr.Count; i++)
-            {
-                M_Guild guild = new M_Guild(arr.GetSFSObject(i));
-                guild.UpdateLevel();
-                guilds.Add(guild);
+            {               
+                guilds.Add(new M_Guild(arr.GetSFSObject(i)));
             }
 
             HomeGame.instance.RecGuilds(guilds);
@@ -89,10 +87,7 @@ public class HandleGuild
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_Guild guild = new M_Guild(packet.GetSFSObject(CmdDefine.ModuleGuild.GUILD));
-            guild.UpdateLevel();
-
-            HomeGame.instance.RecCreateGuild(guild);
+            HomeGame.instance.RecCreateGuild(new M_Guild(packet));
         }
         else
         {
@@ -106,10 +101,7 @@ public class HandleGuild
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_Guild guild = new M_Guild(packet.GetSFSObject(CmdDefine.ModuleGuild.GUILD));
-            guild.UpdateLevel();
-
-            HomeGame.instance.RecPleaseGuild(guild);
+            HomeGame.instance.RecPleaseGuild(new M_Guild(packet));
         }
         else
         {
@@ -123,10 +115,7 @@ public class HandleGuild
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_Guild guild = new M_Guild(packet.GetSFSObject(CmdDefine.ModuleGuild.GUILD));
-            guild.UpdateLevel();
-
-            HomeGame.instance.ShowGuild(guild);
+            HomeGame.instance.ShowGuild(new M_Guild(packet));
         }
         else
         {

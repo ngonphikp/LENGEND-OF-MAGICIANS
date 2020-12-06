@@ -17,13 +17,13 @@ public class RequestCampaign
         SmartFoxConnection.send(packet);
     }
 
-    public static void EndGame(int id_campaign, int star)
+    public static void EndGame(int id_camp, int star)
     {
         Debug.Log("=========================== End Game");
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.END_GAME_CAMPAIGN);
 
-        isFSObject.PutInt(CmdDefine.ModuleCampaign.ID, id_campaign);
+        isFSObject.PutInt(CmdDefine.ModuleCampaign.ID, id_camp);
         isFSObject.PutInt(CmdDefine.ModuleTickCampaign.STAR, star);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);

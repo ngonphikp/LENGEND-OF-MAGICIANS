@@ -29,8 +29,8 @@ public class CampaignGame : MonoBehaviour
         yield return Timing.WaitForOneFrame;
         for(int i = 0; i < milestones.Length; i++)
         {
-            milestones[i].set(GameManager.instance.campains[i]);
-            campainsDic.Add(GameManager.instance.campains[i].id, milestones[i]);
+            milestones[i].set(GameManager.instance.campaigns[i]);
+            campainsDic.Add(GameManager.instance.campaigns[i].id, milestones[i]);
         }
     }
 
@@ -38,7 +38,7 @@ public class CampaignGame : MonoBehaviour
     {
         for (int i = 0; i < ticks.Count && i < campainsDic.Count; i++)
         {
-            campainsDic[ticks[i].id_ml].UpdateStar(ticks[i].star);
+            campainsDic[i + 1].UpdateStar(ticks[i].star);
         }
     }
 

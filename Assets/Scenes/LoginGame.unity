@@ -1883,11 +1883,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5ec0b41bc28a640a77b33646842b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  host: 192.168.0.102
+  host: 192.168.0.104
   heros: []
   creeps: []
   bosses: []
-  campains: []
+  campaigns: []
   bossGuilds: []
   skills: []
   account:
@@ -1919,7 +1919,6 @@ MonoBehaviour:
     asset: 0
     rank: 0
     noti: 
-    master: 0
     maxMember: 20
     accounts: []
     events: []

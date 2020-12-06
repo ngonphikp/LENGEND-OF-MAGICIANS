@@ -96,9 +96,9 @@ public class JSonConvert
         }
     }
 
-    public IEnumerable<M_Milestone> GetListCampain()
+    public IEnumerable<M_Milestone> GetListCampaign()
     {
-        TextAsset file = Resources.Load<TextAsset>("ConfigJSon/Campain");
+        TextAsset file = Resources.Load<TextAsset>("ConfigJSon/Campaign");
         string jsonString = file.ToString();
         ISFSObject sfsObj = SFSObject.NewFromJsonData(jsonString);
         ISFSArray arr = sfsObj.GetSFSArray("list");

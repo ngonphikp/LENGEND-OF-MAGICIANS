@@ -347,22 +347,40 @@ public class FightingGame : MonoBehaviour
 
             int idSkill = (actor.current_ep >= actor.max_ep) ? 5 : 3;
 
-            int find = 1;
             List<int> posTargets = new List<int>();
+            List<int> idxs = FindTargetNotDie(TeamAttacked);
+            int find = 1;
 
-            List<int> idxs = FindTargetNotDie(TeamAttacked);            
-            if (idxs.Count <= find)
+            // Lấy thông tin skill 
+            // Ex: skill 3 đánh 1 mục tiêu ngẫu nhiên
+            if (idSkill == 3 && find == 1)
             {
-                posTargets = idxs;
+                if (idxs.Count <= find)
+                {
+                    posTargets = idxs;
+                }
+                else
+                {
+                    ShuffleArray(ref idxs);
+                    for(int j = 0; j < find; j++)
+                    {
+                        posTargets.Add(idxs[j]);
+                    }
+                }
             }
-            else
+            // Ex: skill 5 đánh 1 mục tiêu ưu tiên cùng hàng
+            else if (idSkill == 5 && find == 1)
             {
-                if (find == 1) // Đánh ưu tiên cùng hàng
+                if (idxs.Count <= find)
+                {
+                    posTargets = idxs;
+                }
+                else
                 {
                     int column = actor.idx / 3;
                     List<int> _idxs = new List<int>();
                     for (int t = 0; t < idxs.Count; t++) _idxs.Add(idxs[t]);
-                    for(int t = column * 3 + 2; t >= column * 3; t--)
+                    for (int t = column * 3 + 2; t >= column * 3; t--)
                     {
                         for (int j = 0; j < idxs.Count; j++)
                         {
@@ -375,7 +393,7 @@ public class FightingGame : MonoBehaviour
                         }
                         if (posTargets.Count >= find) break;
                     }
-                    if(posTargets.Count < find)
+                    if (posTargets.Count < find)
                     {
                         ShuffleArray(ref _idxs);
                         for (int j = posTargets.Count; j < find; j++)
@@ -388,7 +406,7 @@ public class FightingGame : MonoBehaviour
             }
 
             List<M_Character> targets = new List<M_Character>();
-            for (int j = 0; j < find && j < posTargets.Count; j++)
+            for (int j = 0; j < posTargets.Count; j++)
                 targets.Add(TeamAttacked[posTargets[j]]);
 
             if(targets.Count > 0)

@@ -1,4 +1,5 @@
 ﻿using Sfs2X.Entities.Data;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class M_Account

@@ -12,7 +12,6 @@ public class M_Guild
     public int asset;
     public int rank;
     public string noti;
-    public int master;
     public int maxMember = 20;
 
     public List<M_Account> accounts = new List<M_Account>();
@@ -28,24 +27,30 @@ public class M_Guild
     {
         if (obj == null) return;
 
-        this.id = obj.GetInt(CmdDefine.ModuleGuild.ID);
-        this.name = obj.GetUtfString(CmdDefine.ModuleGuild.NAME);
-        this.noti = obj.GetUtfString(CmdDefine.ModuleGuild.NOTI);
-        this.lv = obj.GetInt(CmdDefine.ModuleGuild.LV);
-        this.master = obj.GetInt(CmdDefine.ModuleGuild.MASTER);
+        ISFSObject guild = obj.GetSFSObject(CmdDefine.ModuleGuild.GUILD);
+        {
+            this.id = guild.GetInt(CmdDefine.ModuleGuild.ID);
+            this.name = guild.GetUtfString(CmdDefine.ModuleGuild.NAME);
+            this.noti = guild.GetUtfString(CmdDefine.ModuleGuild.NOTI);
+            this.lv = guild.GetInt(CmdDefine.ModuleGuild.LV);
+        }
 
+        this.UpdateLevel();
+
+        List<M_Account> accounts = new List<M_Account>();
         ISFSArray arr = obj.GetSFSArray(CmdDefine.ModuleAccount.ACCOUNTS);
         for (int i = 0; i < arr.Count; i++)
         {
             accounts.Add(new M_Account(arr.GetSFSObject(i)));
         }
+        this.accounts = accounts;
     }
 
     public M_Account GetMaster()
     {
         foreach (M_Account  acc in accounts)
         {
-            if (acc.id == master) return acc;
+            if (acc.job == C_Enum.JobGuild.Master) return acc;
         }
         return null;
     }
