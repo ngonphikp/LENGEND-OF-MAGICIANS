@@ -33,10 +33,10 @@ public class HandleAccount
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            int id_guild = packet.GetInt(CmdDefine.ModuleAccount.ID_GUILD);
+            int id_guild = packet.GetInt(CmdDefine.ModuleGuild.ID);
 
             List<M_Character> lstCharacter = new List<M_Character>();
-            ISFSArray characters = packet.GetSFSArray(CmdDefine.ModuleAccount.CHARACTERS);
+            ISFSArray characters = packet.GetSFSArray(CmdDefine.ModuleCharacter.CHARACTERS);
             for(int i = 0; i < characters.Size(); i++)
             {
                 M_Character character = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
@@ -63,7 +63,7 @@ public class HandleAccount
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             List<M_Character> lstCharacter = new List<M_Character>();
-            ISFSArray characters = packet.GetSFSArray(CmdDefine.ModuleAccount.CHARACTERS);
+            ISFSArray characters = packet.GetSFSArray(CmdDefine.ModuleCharacter.CHARACTERS);
             for (int i = 0; i < characters.Size(); i++)
             {
                 M_Character character = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
@@ -91,7 +91,7 @@ public class HandleAccount
         {
             C_Enum.CardType type = (C_Enum.CardType)packet.GetInt(CmdDefine.ModuleAccount.TYPE_TAVERN);
 
-            M_Character character = new M_Character(packet.GetSFSObject(CmdDefine.ModuleAccount.CHARACTER), C_Enum.ReadType.SERVER);
+            M_Character character = new M_Character(packet.GetSFSObject(CmdDefine.ModuleCharacter.CHARACTER), C_Enum.ReadType.SERVER);
             character.type = C_Enum.CharacterType.Hero;      
             character.lv = 1;
             character.UpdateById();

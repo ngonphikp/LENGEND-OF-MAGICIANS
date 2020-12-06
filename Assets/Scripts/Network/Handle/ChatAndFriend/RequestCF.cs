@@ -24,7 +24,7 @@ public class RequestCF : MonoBehaviour
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SEND_MESSAGE_GLOBAL);
 
-        isFSObject.PutUtfString(CmdDefine.MouduleCF.MESSAGE, message);
+        isFSObject.PutUtfString(CmdDefine.ModuleCF.MESSAGE, message);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);
@@ -46,7 +46,7 @@ public class RequestCF : MonoBehaviour
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SEND_MESSAGE_GUILD);
 
-        isFSObject.PutUtfString(CmdDefine.MouduleCF.MESSAGE, message);
+        isFSObject.PutUtfString(CmdDefine.ModuleCF.MESSAGE, message);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);
@@ -60,7 +60,7 @@ public class RequestCF : MonoBehaviour
 
         isFSObject.PutInt(CmdDefine.ModuleAccount.ID, id);
 
-        isFSObject.PutUtfString(CmdDefine.MouduleCF.MESSAGE, message);
+        isFSObject.PutUtfString(CmdDefine.ModuleCF.MESSAGE, message);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);
@@ -118,8 +118,8 @@ public class RequestCF : MonoBehaviour
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.FIND_ACCOUNT_GLOBAL);
 
-        isFSObject.PutBool(CmdDefine.MouduleCF.IS_CHECK_ID, isCheckId);
-        isFSObject.PutUtfString(CmdDefine.MouduleCF.CONTENT, content);
+        isFSObject.PutBool(CmdDefine.ModuleCF.IS_CHECK_ID, isCheckId);
+        isFSObject.PutUtfString(CmdDefine.ModuleCF.CONTENT, content);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);
         SmartFoxConnection.send(packet);

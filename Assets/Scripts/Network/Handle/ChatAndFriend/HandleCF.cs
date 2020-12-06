@@ -47,10 +47,10 @@ public class HandleCF
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            ISFSArray idOnls = packet.GetSFSArray(CmdDefine.MouduleCF.ID_ONLINES);
+            ISFSArray idOnls = packet.GetSFSArray(CmdDefine.ModuleCF.ID_ONLINES);
 
             List<M_Account> accounts = new List<M_Account>();
-            ISFSArray arr = packet.GetSFSArray(CmdDefine.MouduleCF.ACCOUNTS);
+            ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleAccount.ACCOUNTS);
             for (int i = 0; i < arr.Count; i++)
             {
                 M_Account account = new M_Account(arr.GetSFSObject(i));
@@ -76,8 +76,8 @@ public class HandleCF
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_Account account = new M_Account(packet.GetSFSObject(CmdDefine.MouduleCF.ACCOUNT));
-            string message = packet.GetUtfString(CmdDefine.MouduleCF.MESSAGE);
+            M_Account account = new M_Account(packet.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT));
+            string message = packet.GetUtfString(CmdDefine.ModuleCF.MESSAGE);
 
             if(ChatAndFriend.instance) ChatAndFriend.instance.RecMessage(C_Enum.CFType.Global, account, message);
         }
@@ -93,8 +93,8 @@ public class HandleCF
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_Account account = new M_Account(packet.GetSFSObject(CmdDefine.MouduleCF.ACCOUNT));
-            string message = packet.GetUtfString(CmdDefine.MouduleCF.MESSAGE);
+            M_Account account = new M_Account(packet.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT));
+            string message = packet.GetUtfString(CmdDefine.ModuleCF.MESSAGE);
 
             if (ChatAndFriend.instance) ChatAndFriend.instance.RecMessage(C_Enum.CFType.Guild, account, message);
         }
@@ -112,7 +112,7 @@ public class HandleCF
         {
             M_Account account = new M_Account(packet.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT));
             List<M_Character> lstCharacter = new List<M_Character>();
-            ISFSArray characters = packet.GetSFSArray(CmdDefine.ModuleAccount.CHARACTERS);
+            ISFSArray characters = packet.GetSFSArray(CmdDefine.ModuleCharacter.CHARACTERS);
             for (int i = 0; i < characters.Size(); i++)
             {
                 M_Character character = new M_Character(characters.GetSFSObject(i), C_Enum.ReadType.SERVER);
@@ -132,7 +132,7 @@ public class HandleCF
                 name_guild = packet.GetUtfString(CmdDefine.ModuleGuild.NAME);
             }
 
-            bool isFriend = packet.GetBool(CmdDefine.MouduleCF.IS_FRIEND);
+            bool isFriend = packet.GetBool(CmdDefine.ModuleCF.IS_FRIEND);
             M_Details details = new M_Details();
 
             details.account = account;
@@ -184,8 +184,8 @@ public class HandleCF
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            M_Account account = new M_Account(packet.GetSFSObject(CmdDefine.MouduleCF.ACCOUNT));
-            string message = packet.GetUtfString(CmdDefine.MouduleCF.MESSAGE);
+            M_Account account = new M_Account(packet.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNT));
+            string message = packet.GetUtfString(CmdDefine.ModuleCF.MESSAGE);
 
             if (ChatAndFriend.instance) ChatAndFriend.instance.RecMessage(C_Enum.CFType.Private, account, message);
         }

@@ -64,7 +64,7 @@ public class RequestGuild
     {
         Debug.Log("=========================== Change Master");
         ISFSObject isFSObject = new SFSObject();
-        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.FIX_MASTER_GUILD);
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.CHANGE_MASTER_GUILD);
 
         isFSObject.PutInt(CmdDefine.ModuleGuild.MASTER, master);
 

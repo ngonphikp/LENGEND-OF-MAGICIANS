@@ -31,7 +31,7 @@ public class HandleCampaign
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
             List<M_Tick_Campaign> ticks = new List<M_Tick_Campaign>();
-            ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleTickCampaign.TICKS);
+            ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleTickCampaign.TICKS_CAMPAIGN);
             for (int i = 0; i < arr.Count; i++)
             {
                 ticks.Add(new M_Tick_Campaign(arr.GetSFSObject(i)));

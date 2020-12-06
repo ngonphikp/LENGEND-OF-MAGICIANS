@@ -81,7 +81,7 @@ public class HandleGame
             if (id_ac != GameManager.instance.account.id)
             {
                 List<M_Character> characters = new List<M_Character>();
-                ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleGame.CHARACTERS);
+                ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleCharacter.CHARACTERS);
                 for (int j = 0; j < arr.Count; j++)
                 {
                     M_Character character = new M_Character(arr.GetSFSObject(j), C_Enum.ReadType.SERVER);
@@ -187,11 +187,11 @@ public class HandleGame
             for (int i = 0; i < list.Count; i++)
             {
                 ISFSObject obj = list.GetSFSObject(i);
-                M_Account account = new M_Account(obj.GetSFSObject(CmdDefine.ModuleGame.ACCOUNTS), C_Enum.StatusAccount.On);
+                M_Account account = new M_Account(obj.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNTS), C_Enum.StatusAccount.On);
                 if(account.id != GameManager.instance.account.id)
                 {
                     List<M_Character> characters = new List<M_Character>();
-                    ISFSArray arr = obj.GetSFSArray(CmdDefine.ModuleGame.CHARACTERS);
+                    ISFSArray arr = obj.GetSFSArray(CmdDefine.ModuleCharacter.CHARACTERS);
                     for(int j = 0; j < arr.Count; j++)
                     {
                         M_Character character = new M_Character(arr.GetSFSObject(j), C_Enum.ReadType.SERVER);

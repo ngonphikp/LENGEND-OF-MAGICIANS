@@ -99,7 +99,7 @@ public class RequestGame
             objs.AddSFSObject(characters[i].parse());
         }
 
-        isFSObject.PutSFSArray(CmdDefine.ModuleAccount.CHARACTERS, objs);
+        isFSObject.PutSFSArray(CmdDefine.ModuleCharacter.CHARACTERS, objs);
 
         var packet = new ExtensionRequest(MODULE, isFSObject, SmartFoxConnection.Sfs.LastJoinedRoom);
         if (SmartFoxConnection.isAlready())

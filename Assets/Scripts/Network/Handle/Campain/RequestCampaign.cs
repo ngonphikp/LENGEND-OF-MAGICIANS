@@ -23,7 +23,7 @@ public class RequestCampaign
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.END_GAME_CAMPAIGN);
 
-        isFSObject.PutInt(CmdDefine.ModuleTickCampaign.ID_CAMPAIGN, id_campaign);
+        isFSObject.PutInt(CmdDefine.ModuleCampaign.ID, id_campaign);
         isFSObject.PutInt(CmdDefine.ModuleTickCampaign.STAR, star);
 
         var packet = new ExtensionRequest(MODULE, isFSObject);

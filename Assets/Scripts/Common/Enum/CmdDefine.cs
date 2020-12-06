@@ -25,7 +25,7 @@ public class CmdDefine
         public const int GET_GUILD = 5003;
         public const int OUT_GUILD = 5004;
         public const int PLEASE_GUILD = 5005;
-        public const int FIX_MASTER_GUILD = 5006;
+        public const int CHANGE_MASTER_GUILD = 5006;
         public const int GET_NOTI_GUILD = 5007;
         public const int GET_EVENT_GUILD = 5008;
         public const int GET_MEMBER_GUID = 5009;
@@ -84,8 +84,12 @@ public class CmdDefine
         public const string MODULE_ACCOUNT = "account";
         public const string MODULE_CHARACTER = "character";
         public const string MODULE_CAMPAIGN = "campaign";
+        public const string MODULE_TICK_CAMPAIGN = "tick_campaign";
         public const string MODULE_GUILD = "guild";
+        public const string MODULE_EVENT_GUILD = "event_guild";
         public const string MODULE_CHAT_AND_FRIEND = "chat_and_friend";
+        public const string MODULE_BOSS_GUILD = "boss_guild";
+        public const string MODULE_TICK_BOSS_GUILD = "tick_boss_guild";
         public const string MODULE_PVP = "PvP";
         public const string MODULE_GAME = "Game";
     }
@@ -105,15 +109,11 @@ public class CmdDefine
         public const string DEDITOTAL = "dedication_total_ac";
         public const string DEDIWEEK = "dedication_week_ac";
 
-        public const string ID_GUILD = "id_guild";
-
         public const string ACCOUNT = "account";
+        public const string ACCOUNTS = "accounts";
+
         public const string LOGIN_OUT_DATA = "loginoutdata";
-
-        public const string CHARACTERS = "characters";
-
         public const string TYPE_TAVERN = "type_tavern";
-        public const string CHARACTER = "character";
     }
 
     public static class ModuleCharacter
@@ -122,15 +122,23 @@ public class CmdDefine
         public const string ID_CFG = "id_cfg_char";
         public const string LV = "lv_char";
         public const string IDX = "idx_char";
+
+        public const string CHARACTER = "character";
+        public const string CHARACTERS = "characters";
+    }
+
+    public static class ModuleCampaign
+    {
+        public const string ID = "id_camp";
     }
 
     public static class ModuleTickCampaign
     {
         public const string ID = "id_tc";
         public const string STAR = "star_tc";
-        public const string ID_CAMPAIGN = "id_campaign";
 
-        public const string TICKS = "ticks";
+        public const string TICK_CAMPAIGN = "tick_camp";
+        public const string TICKS_CAMPAIGN = "ticks_camp";
     }
 
     public static class ModuleGuild
@@ -140,40 +148,31 @@ public class CmdDefine
         public const string LV = "lv_guild";
         public const string NOTI = "noti_guild";
 
-        public const string ACCOUNTS = "accounts";
-
-        public const string MASTER = "master";
-
         public const string GUILD = "guild";
         public const string GUILDS = "guilds";
 
-        public const string EVENTS = "events";
-
-        public const string BOSSES = "bosses";
-        public const string BOSS = "boss";
-        public const string TICK_BOSS = "tick_boss";
+        public const string MASTER = "master_guild";
     }
 
     public static class ModuleEventGuild
     {
-        public const string ID = "id_evt_guild";
-        public const string CONTENT = "content_evt_guild";
-        public const string TIME = "time_evt_guild";
+        public const string ID = "id_evtg";
+        public const string CONTENT = "content_evtg";
+        public const string TIME = "time_evtg";
 
-        public const string COUNT = "count_evt_guild";
+        public const string COUNT = "count_evtg";
+
+        public const string EVENT_GUILD = "evt_guild";
+        public const string EVENTS_GUILD = "evts_guild";
     }
 
-    public static class MouduleCF
+    public static class ModuleCF
     {
-        public const string ACCOUNTS = "accounts";
         public const string ID_ONLINES = "id_onlines";
-
-        public const string ACCOUNT = "account_cf";
-        public const string MESSAGE = "message_cf";    
-        
+        public const string MESSAGE = "message_cf";
         public const string IS_FRIEND = "is_friend";
 
-        public const string CONTENT = "content";
+        public const string CONTENT = "content_cf";
         public const string IS_CHECK_ID = "is_check_id";
     }
 
@@ -181,25 +180,29 @@ public class CmdDefine
     {
         public const string ID = "id_bg";
         public const string ID_BOSS = "id_boss";
-        public const string CUR_HP = "current_hp";
+        public const string CUR_HP = "cur_hp_bg";
         public const string STATUS = "status_bg";
+
+        public const string BOSS_GUILD = "boss_guild";
+        public const string BOSSES_GUILD = "bosses_guild";
     }
 
     public static class ModuleTickBossGuild
     {
         public const string ID = "id_tbg";
 
-        public const string CUR_TURN = "current_turn";
-        public const string IS_REWARD = "is_reward";
+        public const string CUR_TURN = "cur_turn_tbg";
+        public const string IS_REWARD = "is_reward_tbg";
 
         public const string POINT = "point_tbg";
+
+        public const string TICK_BOSS_GUILD = "tick_bg";
+        public const string TICKS_BOSS_GUILD = "ticks_bg";
     }
 
     public static class ModuleGame
     {
         public const string LIST = "list";
-        public const string ACCOUNTS = "accounts";
-        public const string CHARACTERS = "characters";
 
         public const string TO = "to";
         public const string FROM = "from";

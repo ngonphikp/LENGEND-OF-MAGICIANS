@@ -18,7 +18,7 @@ public class M_Tick_Campaign
         if (obj == null) return;
 
         this.id_ac = obj.GetInt(CmdDefine.ModuleAccount.ID);
-        this.id_ml = obj.GetInt(CmdDefine.ModuleTickCampaign.ID_CAMPAIGN);
+        this.id_ml = obj.GetInt(CmdDefine.ModuleCampaign.ID);
         this.star = obj.GetInt(CmdDefine.ModuleTickCampaign.STAR);
     }
 }

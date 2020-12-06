@@ -38,7 +38,7 @@ public class RequestCharacter
             objs.AddSFSObject(characters[i].parse());
         }
 
-        isFSObject.PutSFSArray(CmdDefine.ModuleAccount.CHARACTERS, objs);
+        isFSObject.PutSFSArray(CmdDefine.ModuleCharacter.CHARACTERS, objs);
         var packet = new ExtensionRequest(MODULE, isFSObject);
         if (SmartFoxConnection.isAlready())
         {

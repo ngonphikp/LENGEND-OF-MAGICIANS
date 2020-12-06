@@ -34,7 +34,7 @@ public class M_Guild
         this.lv = obj.GetInt(CmdDefine.ModuleGuild.LV);
         this.master = obj.GetInt(CmdDefine.ModuleGuild.MASTER);
 
-        ISFSArray arr = obj.GetSFSArray(CmdDefine.ModuleGuild.ACCOUNTS);
+        ISFSArray arr = obj.GetSFSArray(CmdDefine.ModuleAccount.ACCOUNTS);
         for (int i = 0; i < arr.Count; i++)
         {
             accounts.Add(new M_Account(arr.GetSFSObject(i)));
