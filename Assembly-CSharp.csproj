@@ -200,7 +200,6 @@
     <None Include="Assets\B_Resources\Spines\note.txt" />
     <None Include="Assets\Scripts\Scenes\CampaignGame\GameObjects\note.txt" />
     <None Include="Assets\Scripts\Scenes\CampaignGame\Prefabs\note.txt" />
-    <None Include="Assets\Prefabs\FX\note.txt" />
     <None Include="Assets\Scripts\Scenes\HomeGame\Prefabs\note.txt" />
     <None Include="Assets\Scripts\Scenes\ArrangeGame\Prefabs\note.txt" />
     <None Include="Assets\Scripts\Scenes\SelectionGame\Prefabs\note.txt" />

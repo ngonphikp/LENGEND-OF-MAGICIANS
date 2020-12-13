@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2201127860682746159, guid: fb15c83e4b652d1479ba1cd5ab83c88c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 2753410581980772735, guid: fb15c83e4b652d1479ba1cd5ab83c88c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,10 +117,25 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7310189266293585333, guid: fb15c83e4b652d1479ba1cd5ab83c88c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.34999847
+      objectReference: {fileID: 0}
     - target: {fileID: 7940730783531557546, guid: fb15c83e4b652d1479ba1cd5ab83c88c,
         type: 3}
       propertyPath: m_Name
       value: Avatar110
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359339023035897592, guid: fb15c83e4b652d1479ba1cd5ab83c88c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359339023035897592, guid: fb15c83e4b652d1479ba1cd5ab83c88c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb15c83e4b652d1479ba1cd5ab83c88c, type: 3}

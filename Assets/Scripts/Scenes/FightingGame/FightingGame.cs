@@ -39,7 +39,9 @@ public class FightingGame : MonoBehaviour
     [SerializeField]
     private GameObject popupEndGame = null;
     [SerializeField]
-    private Text txtResult = null;
+    private GameObject imgVitory = null;
+    [SerializeField]
+    private GameObject imgDefeat = null;
     [SerializeField]
     private Image[] imgResultStars = new Image[3];
     [SerializeField]
@@ -688,9 +690,10 @@ public class FightingGame : MonoBehaviour
         Timing.RunCoroutine(SoundManager.instance._PlayOneShotAs(acEndGame));
 
         popupEndGame.SetActive(true);
-        txtResult.text = isEndGame.ToString();        
+        imgVitory.SetActive(isEndGame == C_Enum.EndGame.WIN);
+        imgDefeat.SetActive(isEndGame == C_Enum.EndGame.LOSE);
 
-        for(int i = 0; i < starEndGame; i++)
+        for (int i = 0; i < starEndGame; i++)
         {
             imgResultStars[i].sprite = spStar;
         }
