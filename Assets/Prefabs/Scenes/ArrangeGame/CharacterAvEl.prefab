@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8140200568676597332}
   - component: {fileID: 6274178088095285640}
   m_Layer: 5
-  m_Name: HeroAvEl
+  m_Name: CharacterAvEl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +227,6 @@ MonoBehaviour:
     lv: 0
     idx: -1
     def: 1
-    hp: 1
     atk: 1
     crit: 1
     dodge: 1

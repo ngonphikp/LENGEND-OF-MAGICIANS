@@ -31,7 +31,7 @@ public class C_Profile : MonoBehaviour
         imgEl.sprite = Resources.Load<Sprite>("Sprites/Element/" + character.element);
         txtName.text = character.name + "";
 
-        txtLv.text = character.lv + "";
+        txtLv.text = "Lv: " + character.lv;
         txtHp.text = character.max_hp + "";
         txtAtk.text = character.atk + "";
         txtDef.text = character.def + "";

@@ -9525,22 +9525,22 @@ PrefabInstance:
     - target: {fileID: 8059351839735318208, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8059351839735318208, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -20
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8059351839735318208, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 111
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 8059351839735318208, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 58
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 8059351839735318208, guid: 7e169cd5de889964a9cd2ac02a233822,
         type: 3}

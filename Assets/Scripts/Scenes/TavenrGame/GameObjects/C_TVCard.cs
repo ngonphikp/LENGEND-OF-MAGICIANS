@@ -46,6 +46,7 @@ public class C_TVCard : MonoBehaviour
 
     public void Rec(M_Character character)
     {
+        bG.sprite = Resources.Load<Sprite>("Sprites/BG/BG" + character.element);
         btnConfirm.interactable = true;
 
         Debug.Log("Nhan vat moi: " + character.id + " / " + character.id_cfg);
@@ -55,11 +56,11 @@ public class C_TVCard : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        GameObject nvAs = Resources.Load("Prefabs/Character/" + character.id_cfg, typeof(GameObject)) as GameObject;
+        GameObject nvAs = Resources.Load<GameObject>("Prefabs/Character/" + character.id_cfg);
 
         if (nvAs == null)
         {
-            nvAs = Resources.Load("Prefabs/Character/T1004", typeof(GameObject)) as GameObject;
+            nvAs = Resources.Load<GameObject>("Prefabs/Character/T1004");
         }
 
         if (nvAs != null)
@@ -69,7 +70,7 @@ public class C_TVCard : MonoBehaviour
             c_character.Set(character);
         }
 
-        GameManager.instance.characters.Add(character);
+        GameManager.instance.characters.Add(character);        
     }
 
 }

@@ -88,7 +88,7 @@ public class SmartFoxConnection : MonoBehaviour
             sfs.AddEventListener(SFSEvent.CONNECTION, HandleConnect.OnConnection);
             sfs.AddEventListener(SFSEvent.CONNECTION_LOST, HandleConnect.OnConnectionLost);
 
-            sfs.AddEventListener(SFSEvent.EXTENSION_RESPONSE, HandleExtension.OnExtensionResponse);
+            sfs.AddEventListener(SFSEvent.EXTENSION_RESPONSE, ZoneExtension.OnExtensionResponse);
 
             sfs.AddEventListener(SFSEvent.LOGIN, HandleLogin.OnLoginSuccess);
             sfs.AddEventListener(SFSEvent.LOGIN_ERROR, HandleLogin.OnLoginError);
