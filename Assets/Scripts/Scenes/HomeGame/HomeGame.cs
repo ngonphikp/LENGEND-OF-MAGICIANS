@@ -8,19 +8,11 @@ public class HomeGame : MonoBehaviour
 {
     public static HomeGame instance = null;
 
-    [Header("Profile")]
     [SerializeField]
     private C_ProfileAcc profileAcc = null;
 
-    [Header("Bag Hero")]
     [SerializeField]
-    private Transform listHeroAc = null;
-    [SerializeField]
-    private GameObject heroAcEl = null;
-    [SerializeField]
-    private Transform bagHero = null;
-    [SerializeField]
-    private GameObject bagEl = null;
+    private C_LstHeroAc lstHeroAc = null;
 
     [Header("Music")]
     [SerializeField]
@@ -55,50 +47,9 @@ public class HomeGame : MonoBehaviour
         btnMuteOn.SetActive(!SoundManager.instance.isMute);
         btnMuteOff.SetActive(SoundManager.instance.isMute);
 
-        Timing.RunCoroutine(_FilterListHero());
-        Timing.RunCoroutine(_LoadBagHero());
+        Timing.RunCoroutine(lstHeroAc._set());
 
-        LoadProfileAcc();
-    }
-
-    private void LoadProfileAcc()
-    {
         profileAcc.set(GameManager.instance.account);
-    }
-
-    private IEnumerator<float> _FilterListHero()
-    {
-        foreach (Transform child in listHeroAc)
-        {
-            Destroy(child.gameObject);
-        }
-
-        for (int i = 0; i < GameManager.instance.characters.Count; i++)
-        {
-            if (GameManager.instance.characters[i].idx != -1)
-            {
-                C_CharacterAcEl heroAc = Instantiate(heroAcEl, listHeroAc).GetComponent<C_CharacterAcEl>();
-                Timing.RunCoroutine(heroAc._set(i));
-            }
-        }
-
-        yield return Timing.WaitForOneFrame;
-    }
-
-    private IEnumerator<float> _LoadBagHero()
-    {
-        foreach (Transform child in bagHero)
-        {
-            Destroy(child.gameObject);
-        }
-
-        for (int i = 0; i < GameManager.instance.characters.Count; i++)
-        {
-            C_BagEl heroBag = Instantiate(bagEl, bagHero).GetComponent<C_BagEl>();
-            Timing.RunCoroutine(heroBag._set(i));
-        }
-
-        yield return Timing.WaitForOneFrame;
     }
 
     public void ChangeVolume()

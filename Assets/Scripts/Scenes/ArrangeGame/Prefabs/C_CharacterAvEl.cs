@@ -13,6 +13,8 @@ public class C_CharacterAvEl : MonoBehaviour
     public bool isActive = false;
 
     public M_Character character;
+    private C_Selection selection = null;
+    private int idx = -1;
 
     public void set(M_Character character)
     {
@@ -23,17 +25,33 @@ public class C_CharacterAvEl : MonoBehaviour
         if (character.idx != -1) Active();
     }
 
+    public void set(int idx, C_Selection selection)
+    {
+        this.idx = idx;
+        this.character = GameManager.instance.characters[idx];
+        this.selection = selection;
+
+        av.set(character);
+    }
+
     public void ClickHero()
     {
-        Debug.Log("ClickHero: " + character.id + " => " + isActive);
-        if (ArrangeGame.instance.countActive >= C_Params.maxActive)
+        if (selection)
         {
-            Debug.LogWarning("Full Active");
-            return;
+            selection.Select(idx);
         }
+        else
+        {
+            Debug.Log("ClickHero: " + character.id + " => " + isActive);
+            if (ArrangeGame.instance.countActive >= C_Params.maxActive)
+            {
+                Debug.LogWarning("Full Active");
+                return;
+            }
 
-        ArrangeGame.instance.Active(character.id);
-        Active();
+            ArrangeGame.instance.Active(character.id);
+            Active();
+        }
     }
 
     public void Active()
@@ -50,5 +68,10 @@ public class C_CharacterAvEl : MonoBehaviour
         this.GetComponent<Button>().interactable = true;
 
         active.SetActive(isActive);
+    }
+
+    public void Select(bool value)
+    {
+        active.SetActive(value);
     }
 }

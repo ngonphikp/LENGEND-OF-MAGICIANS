@@ -33,6 +33,8 @@ public class M_Character
 
     public int team = 0;
 
+    public bool isSelec = false;
+
     public M_Character()
     {
 
@@ -57,7 +59,9 @@ public class M_Character
         this.max_ep = character.max_ep;
         this.current_ep = character.current_ep;
         this.max_hp = character.max_hp;
-        this.current_hp = character.current_hp;        
+        this.current_hp = character.current_hp;
+
+        this.isSelec = character.isSelec;
     }
 
     public void UpdateLevel()

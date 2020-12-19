@@ -151,13 +151,16 @@
     <Compile Include="Assets\Scripts\Scenes\GuildGame\GuildGame.cs" />
     <Compile Include="Assets\Scripts\Scenes\GuildGame\Prefabs\C_BossG.cs" />
     <Compile Include="Assets\Scripts\Scenes\GuildGame\Prefabs\C_MemberG.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_BagHero.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ChatCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_Details.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FindAcc.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FindGuid.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_FriendCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_LstCharacter.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_LstHeroAc.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_ProfileAcc.cs" />
+    <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_Selection.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\C_TextMessageCF.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\ChatAndFriend.cs" />
     <Compile Include="Assets\Scripts\Scenes\HomeGame\GameObjects\PvP.cs" />

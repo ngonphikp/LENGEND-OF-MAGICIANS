@@ -25,10 +25,12 @@ public class C_BagEl : MonoBehaviour
     private GameObject active = null;
 
     private int idx = 0;
+    private C_Selection selection = null;
 
-    public IEnumerator<float> _set(int idx)
+    public IEnumerator<float> _set(int idx, C_Selection selection = null)
     {
         this.idx = idx;
+        this.selection = selection;
         M_Character character = new M_Character(GameManager.instance.characters[idx]);
 
         imgBg.sprite = Resources.Load<Sprite>("Sprites/Avatar/BG" + character.star);
@@ -43,14 +45,27 @@ public class C_BagEl : MonoBehaviour
         txtStar.text = character.star + "";
         txtEl.text = C_Params.Element[character.element];
 
-        active.SetActive(character.idx != -1);
+        if (selection) active.SetActive(character.isSelec);
+        else active.SetActive(character.idx != -1);
 
-        yield return Timing.WaitForOneFrame;
+        yield break;
     }
 
     public void Click()
     {
-        GameManager.instance.idxCharacter = idx;
-        MainGame.instance.ShowScene(C_Enum.MainGame.InforScene);
+        if (selection)
+        {
+            selection.Select(idx);
+        }
+        else
+        {
+            GameManager.instance.idxCharacter = idx;
+            MainGame.instance.ShowScene(C_Enum.MainGame.InforScene);
+        }
+    }
+
+    public void Select(bool value)
+    {
+        active.SetActive(value);
     }
 }

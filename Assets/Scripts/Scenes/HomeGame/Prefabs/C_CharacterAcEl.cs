@@ -12,6 +12,11 @@ public class C_CharacterAcEl : MonoBehaviour
 
     public IEnumerator<float> _set(int idx)
     {
+        foreach (Transform item in content)
+        {
+            Destroy(item.gameObject);
+        }
+
         M_Character character = new M_Character(GameManager.instance.characters[idx]);
 
         this.idx = idx;
