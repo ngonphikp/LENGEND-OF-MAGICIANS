@@ -44,14 +44,14 @@ public class ArrangeGame : MonoBehaviour
 
     private void OnEnable()
     {
-        C_Util.ActiveGO(false, pnlLock);
-        LoadListHero();
+        C_Util.ActiveGO(false, pnlLock);        
         if (GameManager.instance.isAttack)
         {
             C_Util.ActiveGO(false, btnSave);
             switch (GameManager.instance.battleType)
             {
                 case C_Enum.BattleType.PVP:
+                    LoadListHero(true);
                     isLock = false;
                     C_Util.ActiveGO(false, btnFighting);
                     C_Util.ActiveGO(true, btnLock);
@@ -59,6 +59,7 @@ public class ArrangeGame : MonoBehaviour
                     LoadListCreep();
                     break;
                 case C_Enum.BattleType.BossGuild:
+                    LoadListHero();
                     C_Util.ActiveGO(true, btnFighting);
                     C_Util.ActiveGO(false, btnLock);
                     LoadListBoss();
@@ -66,6 +67,7 @@ public class ArrangeGame : MonoBehaviour
                 case C_Enum.BattleType.Duel:
                 case C_Enum.BattleType.Campaign:
                 default:
+                    LoadListHero();
                     C_Util.ActiveGO(true, btnFighting);
                     C_Util.ActiveGO(false, btnLock);
                     LoadListCreep();
@@ -74,6 +76,7 @@ public class ArrangeGame : MonoBehaviour
         }
         else
         {
+            LoadListHero();
             C_Util.ActiveGO(true, btnSave);
         }
 
@@ -104,7 +107,7 @@ public class ArrangeGame : MonoBehaviour
         for (int i = 0; i < teamR.Length; i++) teamR[i].GetComponent<Animator>().SetBool("isArrange", v);
     }
 
-    private void LoadListHero()
+    private void LoadListHero(bool isSelec = false)
     {
         countActive = 0;
         characterDic = new Dictionary<int, M_Character>();
@@ -112,6 +115,7 @@ public class ArrangeGame : MonoBehaviour
         for (int i = 0; i < GameManager.instance.characters.Count; i++)
         {
             M_Character character = new M_Character(GameManager.instance.characters[i]);
+            if (isSelec && !character.isSelec) continue;
             character.team = 0;
 
             characters.Add(character);

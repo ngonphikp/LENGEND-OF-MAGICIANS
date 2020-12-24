@@ -119,8 +119,34 @@ public class RequestGame
         ISFSObject isFSObject = new SFSObject();
         isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.SEND_SCENARIO);
 
-        isFSObject.PutUtfString("abc", Newtonsoft.Json.JsonConvert.SerializeObject(actions));
+        isFSObject.PutUtfString(CmdDefine.ModuleGame.SCENARIO, Newtonsoft.Json.JsonConvert.SerializeObject(actions));
      
+        var packet = new ExtensionRequest(MODULE, isFSObject, SmartFoxConnection.Sfs.LastJoinedRoom);
+        if (SmartFoxConnection.isAlready())
+        {
+            SmartFoxConnection.send(packet);
+        }
+        else
+        {
+            SmartFoxConnection.Init();
+            SmartFoxConnection.send(packet);
+        }
+    }
+
+    public static void Init(List<M_Character> characters)
+    {
+        Debug.Log("=========================== Init");
+        ISFSObject isFSObject = new SFSObject();
+        isFSObject.PutInt(CmdDefine.CMD_ID, CmdDefine.CMD.INIT_CHARS);
+
+        ISFSArray objs = new SFSArray();
+        for (int i = 0; i < characters.Count; i++)
+        {
+            objs.AddSFSObject(characters[i].parse());
+        }
+
+        isFSObject.PutSFSArray(CmdDefine.ModuleCharacter.CHARACTERS, objs);
+
         var packet = new ExtensionRequest(MODULE, isFSObject, SmartFoxConnection.Sfs.LastJoinedRoom);
         if (SmartFoxConnection.isAlready())
         {

@@ -65,7 +65,7 @@ public class PvP : MonoBehaviour
     }
 
 
-    public IEnumerator<float> _SuccessPvP(M_Account account, List<M_Character> characters) 
+    public IEnumerator<float> _SuccessPvP(M_Account account) 
     {
         isLoading = false;
         c_rival.set(account);
@@ -75,19 +75,29 @@ public class PvP : MonoBehaviour
         loading.SetActive(false);
         yield return Timing.WaitUntilDone(Timing.RunCoroutine(_CDT()));
 
+        List<M_Character> characters = new List<M_Character>();
+        foreach (M_Character character in GameManager.instance.characters)
+        {
+            if (character.isSelec) characters.Add(new M_Character(character));
+        }
+
+        RequestGame.Init(characters);
+    }
+
+    public void InitMilestone(List<M_Character> lstCharacter)
+    {
         GameManager.instance.isAttack = true;
         GameManager.instance.battleType = C_Enum.BattleType.PVP;
 
         M_Milestone milestone = new M_Milestone();
         milestone.maxTurn = 20;
         milestone.name = "PVP";
-        milestone.lstCharacter = characters;
+        milestone.lstCharacter = lstCharacter;
 
         GameManager.instance.milestone = milestone;
 
         GameManager.instance.mainName = C_Enum.MainGame.HomeScene;
         SceneManager.LoadSceneAsync("PlayGame");
-        yield return Timing.WaitForOneFrame;
     }
 
     private IEnumerator<float> _CDT()

@@ -58,6 +58,8 @@ public class CmdDefine
         public const int LOCK_ARRANGE = 8006;
         public const int START_GAME = 8007;
         public const int SEND_SCENARIO = 8008;
+
+        public const int INIT_CHARS = 8009;
     }
 
     public static class ErrorCode
@@ -202,9 +204,9 @@ public class CmdDefine
 
     public static class ModuleGame
     {
-        public const string LIST = "list";
-
         public const string TO = "to";
         public const string FROM = "from";
+
+        public const string SCENARIO = "scenario";
     }
 }

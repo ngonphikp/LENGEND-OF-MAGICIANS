@@ -37,6 +37,9 @@ public class HandleGame
             case CmdDefine.CMD.SEND_SCENARIO:
                 HandleSendScenario(sfsObject);
                 break;
+            case CmdDefine.CMD.INIT_CHARS:
+                HandleInit(sfsObject);
+                break;
             default:
                 break;
         }
@@ -48,7 +51,7 @@ public class HandleGame
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            List<M_Action> actions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<M_Action>>(packet.GetUtfString("abc"));
+            List<M_Action> actions = Newtonsoft.Json.JsonConvert.DeserializeObject<List<M_Action>>(packet.GetUtfString(CmdDefine.ModuleGame.SCENARIO));
             FightingGame.instance.RecScenario(actions);
         }
         else
@@ -183,28 +186,44 @@ public class HandleGame
         short ec = packet.GetShort(CmdDefine.ERROR_CODE);
         if (ec == CmdDefine.ErrorCode.SUCCESS)
         {
-            ISFSArray list = packet.GetSFSArray(CmdDefine.ModuleGame.LIST);
-            for (int i = 0; i < list.Count; i++)
+            List<M_Account> accounts = new List<M_Account>();
+            ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleAccount.ACCOUNTS);
+            for (int i = 0; i < arr.Count; i++)
             {
-                ISFSObject obj = list.GetSFSObject(i);
-                M_Account account = new M_Account(obj.GetSFSObject(CmdDefine.ModuleAccount.ACCOUNTS), C_Enum.StatusAccount.On);
-                if(account.id != GameManager.instance.account.id)
+                M_Account account = new M_Account(arr.GetSFSObject(i), C_Enum.StatusAccount.On);
+                if (account.id != GameManager.instance.account.id)
                 {
-                    List<M_Character> characters = new List<M_Character>();
-                    ISFSArray arr = obj.GetSFSArray(CmdDefine.ModuleCharacter.CHARACTERS);
-                    for(int j = 0; j < arr.Count; j++)
-                    {
-                        M_Character character = new M_Character(arr.GetSFSObject(j), C_Enum.ReadType.SERVER);
-                        character.type = C_Enum.CharacterType.Hero;
-                        character.UpdateById();
-                        character.UpdateLevel();
-
-                        characters.Add(character);
-                    }
-
-                    Timing.RunCoroutine(PvP.instance._SuccessPvP(account, characters));
-                    return;
+                    Timing.RunCoroutine(PvP.instance._SuccessPvP(account));
                 }
+            }
+        }
+        else
+        {
+            Debug.Log(CmdDefine.ErrorCode.Errors.ContainsKey(ec) ? CmdDefine.ErrorCode.Errors[ec] : ("Error Code" + ec));
+        }
+    }
+
+    public static void HandleInit(SFSObject packet)
+    {
+        Debug.Log("=========================== HANDLE INIT\n" + packet.GetDump());
+        short ec = packet.GetShort(CmdDefine.ERROR_CODE);
+        if (ec == CmdDefine.ErrorCode.SUCCESS)
+        {
+            int id_ac = packet.GetInt(CmdDefine.ModuleAccount.ID);
+            if (id_ac != GameManager.instance.account.id)
+            {
+                List<M_Character> characters = new List<M_Character>();
+                ISFSArray arr = packet.GetSFSArray(CmdDefine.ModuleCharacter.CHARACTERS);
+                for (int j = 0; j < arr.Count; j++)
+                {
+                    M_Character character = new M_Character(arr.GetSFSObject(j), C_Enum.ReadType.SERVER);
+                    character.type = C_Enum.CharacterType.Hero;
+                    character.UpdateById();
+                    character.UpdateLevel();
+
+                    characters.Add(character);
+                }
+                PvP.instance.InitMilestone(characters);
             }
         }
         else
